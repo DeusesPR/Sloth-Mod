@@ -1,0 +1,27 @@
+# Closes bug reports that wait for information and never get it. Ideas and confirmed bugs are left alone.
+name: Close unanswered issues
+
+on:
+  schedule:
+    - cron: "37 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    if: github.repository == 'DeusesPR/Sloth-Mod'  # never in the private dev copy (no free minutes there)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v11
+        with:
+          only-labels: needs-log
+          days-before-stale: 21
+          days-before-close: 7
+          stale-issue-label: stale
+          stale-issue-message: "This report is still waiting for its run log. It will close in a week if nothing is added, but you can reopen it any time."
+          close-issue-message: "Closing for now because the details never came. Reopen it (or open a new report) whenever you can share the run log."
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
