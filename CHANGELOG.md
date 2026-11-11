@@ -2,6 +2,14 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.1.3
+
+Guns now shoot bullets you can see, and the setup questions fit what you typed.
+
+### New
+- **Guns shoot visible bullets** from the barrel, with a small muzzle flash. The Edit panel can switch between real bullets, a tracer line or an instant hit, and set the flash to off, small or big. To update a gun you already made: open it in the Edit panel, change a value and press Apply.
+- **Setup questions fit your idea.** For creatures: Friendly, Leaves you alone unless attacked, Attacks players or Just scenery, plus where it lives, how often you see one and whether they look different.
+
 ## 1.1.2
 
 A small update: drops on the newest Minecraft version, and a few fixes to how the AI makes things.
