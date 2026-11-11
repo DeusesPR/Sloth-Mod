@@ -1,0 +1,67 @@
+name: Bug report
+description: Something in Sloth-Mod did not work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make Sloth-Mod better. Please fill in as much as you can. Never paste API keys or tokens.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead? Screenshots help.
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: Sloth-Mod version
+      description: Shown in Settings, or in the installer file name (for example 1.0.0).
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: mc
+    attributes:
+      label: Minecraft version and loader
+      description: The version and loader of the mod or profile.
+      placeholder: "26.3 / Fabric, 1.21.1 / NeoForge, 1.20.1 / Forge"
+    validations:
+      required: true
+  - type: input
+    id: ai
+    attributes:
+      label: AI provider and model
+      description: Which provider and model were you using? Say "none" if the bug has nothing to do with the AI.
+      placeholder: "OpenRouter / some-model-name, LM Studio / local model, Claude / claude-sonnet-..."
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it happen?
+      options:
+        - Making a mod (chat, plan, build)
+        - Art picker or sounds
+        - Testing in Minecraft
+        - Big project mode
+        - Discover (Modrinth)
+        - My Mods, profiles or Play
+        - Setup, Settings or health check
+        - Installer or updates
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Run log
+      description: |
+        Easiest: use "Report a problem" in the app, which fills this form for you (keys and your user name are hidden). Otherwise attach `.sloth/logs/last-run.log` from your mod folder (drag the file into this box), or use "Copy run log" in the app and paste it here. Remove anything private first.
+      placeholder: Attach .sloth/logs/last-run.log here
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 23H2"

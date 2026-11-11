@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sloth-Mod: make Minecraft mods by describing them</title>
+<meta name="description" content="Sloth-Mod is a free Windows app that builds Minecraft mods from plain English with any AI (cloud or local), and manages your mods too. Fabric, NeoForge and Forge on 26.x, 1.21.1 and 1.20.1.">
+<meta name="theme-color" content="#2e7d22">
+<link rel="canonical" href="https://deusespr.github.io/Sloth-Mod/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sloth-Mod">
+<meta property="og:title" content="Sloth-Mod: make Minecraft mods by describing them">
+<meta property="og:description" content="Describe a mod in plain English. Sloth-Mod plans it, builds it and gets it ready to play. Any AI, free, for Windows.">
+<meta property="og:url" content="https://deusespr.github.io/Sloth-Mod/">
+<meta property="og:image" content="https://deusespr.github.io/Sloth-Mod/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sloth-Mod pixel sloth and title above an animated pixel scene of a small adventurer, slimes and a golem on a grassy hill.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sloth-Mod: make Minecraft mods by describing them">
+<meta name="twitter:description" content="Describe a mod in plain English. Any AI, free, for Windows.">
+<meta name="twitter:image" content="https://deusespr.github.io/Sloth-Mod/img/og.png">
+<meta name="twitter:image:alt" content="Sloth-Mod pixel sloth and title above an animated pixel scene of a small adventurer, slimes and a golem on a grassy hill.">
+<meta property="og:locale" content="en_US">
+<meta name="color-scheme" content="dark">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sloth-Mod","applicationCategory":"GameApplication","applicationSubCategory":"Minecraft mod maker and mod manager","operatingSystem":"Windows 10, Windows 11","description":"A free Windows app that builds Minecraft mods from plain English with any AI (cloud or local), and manages your mods too.","url":"https://deusespr.github.io/Sloth-Mod/","downloadUrl":"https://github.com/DeusesPR/Sloth-Mod/releases/latest","image":"https://deusespr.github.io/Sloth-Mod/img/og.png","license":"https://github.com/DeusesPR/Sloth-Mod/blob/main/LICENSE","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="preload" href="fonts/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Pixelify Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/pixelify-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Pixelify Sans";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/pixelify-sans-latin-700-normal.woff2) format("woff2")}
+/* Pixelify Sans draws 2, 5 and 7 like Z, S and a hook: numbers use VT323 (digits only). */
+@font-face{font-family:"Sloth Digits";font-display:swap;unicode-range:U+0030-0039;size-adjust:127%;src:url(fonts/vt323-latin-400-normal.woff2) format("woff2")}
+:root{
+  --ink:#f4f1e8;--dim:#d6d0c0;--dark:#1b1814;--panel:#c6c6c6;--panel-ink:#1c1c1c;--panel-dim:#3b3b3b;
+  --green:#2e7d22;--green-hi:#3f9a2e;--yellow:#ffe066;--line:#0d0b09;
+  --px:"Sloth Digits","Pixelify Sans","Courier New",ui-monospace,Consolas,monospace;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:#14110e;color:var(--ink);font:17px/1.65 var(--body);-webkit-text-size-adjust:100%}
+img{image-rendering:pixelated}
+.shot,.carousel img,.og-free{image-rendering:auto}
+a{color:var(--yellow)}
+a:hover{color:#fff}
+:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #000}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;z-index:100;font-family:var(--px)}
+.skip:focus{left:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--px);font-weight:700;line-height:1.15;letter-spacing:.01em}
+h2{font-size:clamp(1.7rem,4.6vw,2.4rem);margin:0 0 .35em;color:var(--yellow);text-shadow:3px 3px 0 #000}
+h3{font-size:1.2rem;margin:0 0 .25em}
+.lede{color:var(--dim);max-width:720px;margin:0 0 30px;font-size:1.08rem}
+.lede strong{color:var(--ink)}
+
+/* grass top border: a strip of grass-block sides along the very top of the page */
+.grass{height:32px;background:url(img/tile-grass-side.png) 0 0/32px 32px repeat-x;image-rendering:pixelated;border-bottom:4px solid #000}
+
+/* hotbar nav */
+.hotbar-wrap{position:sticky;top:0;z-index:50;background:rgba(14,12,10,.94);border-bottom:4px solid #000;backdrop-filter:blur(3px)}
+.hotbar{display:flex;gap:4px;max-width:1080px;margin:0 auto;padding:16px 12px 6px;overflow-x:auto;scrollbar-width:none;align-items:stretch}
+.hotbar::-webkit-scrollbar{display:none}
+.hotbar .brand{display:flex;align-items:center;gap:8px;padding:0 12px 0 4px;font:700 1.15rem var(--px);color:#fff;text-decoration:none;white-space:nowrap}
+.hotbar .brand img{width:32px;height:32px}
+.slot-nav{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:64px;padding:4px 8px 3px;background:#8b8b8b;color:#101010;text-decoration:none;font:400 .78rem/1.1 var(--px);border:3px solid;border-color:#373737 #fff #fff #373737;white-space:nowrap;position:relative;flex:0 0 auto}
+.slot-nav img{width:24px;height:24px;margin-bottom:2px}
+.slot-nav:hover{background:#a5a5a5;color:#000}
+.slot-nav.on{outline:3px solid #fff;outline-offset:-3px;box-shadow:0 0 0 3px #000;z-index:1}
+.slot-nav:focus-visible{outline-offset:2px}
+.slot-nav .n{position:absolute;right:3px;bottom:0;font-size:.62rem;color:#222}
+.hotbar .sp{flex:1;min-width:6px}
+.slot-nav.get{background:var(--green);color:#fff;border-color:#1d5214 #8fdc72 #8fdc72 #1d5214;font-weight:700;text-shadow:1px 1px 0 #000;position:sticky;right:0;z-index:2;box-shadow:12px 0 0 #0e0c0a,-6px 0 0 #0e0c0a}
+.slot-nav.get:hover{background:var(--green-hi);color:#fff}
+@media (max-width:640px){.hotbar .brand span{display:none}.slot-nav{min-width:62px;font-size:.7rem;padding:4px 5px 3px}}
+
+/* Minecraft-style menu buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:260px;padding:14px 26px;font:700 1.2rem/1.2 var(--px);color:#fff;text-decoration:none;text-shadow:2px 2px 0 rgba(0,0,0,.55);background:#6e6e6e;border:4px solid #000;box-shadow:inset 4px 4px 0 #b9b9b9,inset -4px -6px 0 #3d3d3d;cursor:pointer;transition:transform .05s}
+.btn:hover{background:#7d86b8;color:#fff;box-shadow:inset 4px 4px 0 #c9d0ff,inset -4px -6px 0 #404a82}
+.btn:active{transform:translateY(2px)}
+.btn.go{background:var(--green)}
+.btn.go{box-shadow:inset 4px 4px 0 #8fdc72,inset -4px -6px 0 #1d5214}
+.btn.go:hover{background:var(--green-hi);box-shadow:inset 4px 4px 0 #b4f29c,inset -4px -6px 0 #26691b}
+.btn img{width:24px;height:24px}
+.btn.sm{min-width:0;padding:10px 18px;font-size:1rem}
+
+/* textured section backgrounds, drawn from small original tiles */
+.dirt{background:linear-gradient(rgba(24,16,10,.82),rgba(24,16,10,.82)),url(img/tile-dirt.png) 0 0/64px 64px;image-rendering:pixelated}
+.stone{background:linear-gradient(rgba(16,17,18,.84),rgba(16,17,18,.84)),url(img/tile-stone.png) 0 0/64px 64px}
+.planks{background:linear-gradient(rgba(26,16,6,.8),rgba(26,16,6,.8)),url(img/tile-planks.png) 0 0/64px 64px}
+section{padding:68px 0;border-top:4px solid #000;position:relative}
+.edge{height:8px;background:repeating-linear-gradient(90deg,#4a8d2a 0 16px,#5faa36 16px 32px)}
+
+/* hero */
+.hero{text-align:center;padding:30px 0 56px;border-top:0}
+@media (max-width:640px){.hero{padding-top:20px}.hero .sloth{width:72px;height:72px}.hero .btn{min-width:0;width:100%;max-width:340px}}
+@media (max-width:480px){table{font-size:.86rem}th,td{padding:7px 6px}caption{font-size:.9rem}}
+.hero .sloth{width:96px;height:96px;margin:0 auto 6px;display:block;animation:bob 2.6s steps(6) infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.hero h1{font-size:clamp(2.8rem,10vw,5.6rem);margin:.05em 0 .05em;color:#7be04e;text-shadow:4px 4px 0 #17380d,8px 8px 0 #000;letter-spacing:.03em}
+.pitch{font:700 clamp(1.2rem,3.4vw,1.8rem)/1.3 var(--px);color:var(--yellow);margin:.1em auto .6em;text-shadow:2px 2px 0 #000}
+.sub{max-width:660px;margin:0 auto 30px;color:var(--ink);font-size:1.12rem;text-shadow:1px 1px 0 #000}
+.cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.small{font-size:.92rem;color:var(--dim);margin:16px 0 0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 0;padding:0;list-style:none}
+.badges li{background:#000;border:2px solid #555;padding:2px 10px;font:400 .85rem var(--px);color:#e8e8e8}
+.hero .shot{margin:44px auto 0;max-width:760px}
+.shot{display:block;width:100%;height:auto;border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a,10px 10px 0 4px rgba(0,0,0,.6);background:#000}
+
+/* demo gif */
+.demo{max-width:980px;margin:0 auto 40px}
+.demo img.shot{image-rendering:auto}
+.demo figcaption{margin-top:14px;text-align:center;color:var(--dim);font-size:.95rem}
+
+/* gallery carousel */
+.carousel{position:relative;max-width:860px;margin:0 auto}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a,10px 10px 0 4px rgba(0,0,0,.6);background:#000}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;margin:0;display:flex;flex-direction:column;background:#17171c}
+.slide img{display:block;width:100%;height:auto;aspect-ratio:2448/1800;object-fit:contain}
+.slide figcaption{padding:12px 20px 14px;background:#000;color:#fff;font-size:1rem;flex:1}
+.slide figcaption b{font:700 1.15rem var(--px);color:var(--yellow);display:block}
+.cctl{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:26px;flex-wrap:wrap}
+.cbtn{width:48px;height:48px;font:700 1.3rem var(--px);color:#fff;background:#6e6e6e;border:4px solid #000;box-shadow:inset 3px 3px 0 #b9b9b9,inset -3px -4px 0 #3d3d3d;cursor:pointer;padding:0;text-shadow:2px 2px 0 #000}
+.cbtn:hover{background:#7d86b8}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:26px;height:26px;padding:0;background:#555;border:3px solid #000;cursor:pointer;box-shadow:inset 2px 2px 0 #888}
+.dot[aria-current=true]{background:#7be04e;box-shadow:inset 2px 2px 0 #b8f59c}
+.dot:hover{background:#999}
+
+/* inventory panel + item slot cards */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:0;padding:0;list-style:none}
+.card{display:flex;gap:14px;align-items:flex-start;background:var(--panel);color:var(--panel-ink);padding:14px;border:4px solid #000;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #7b7b7b,6px 6px 0 rgba(0,0,0,.5)}
+.slot{flex:0 0 auto;width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:#8b8b8b;border:4px solid;border-color:#373737 #fff #fff #373737}
+.slot img{width:40px;height:40px}
+.card h3{color:#1b1b1b;font-size:1.12rem}
+.card p{margin:0;color:var(--panel-dim);font-size:.97rem;line-height:1.5}
+.card.big{padding:18px}
+.feat-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+@media (max-width:420px){.feat-grid,.grid{grid-template-columns:1fr}}
+
+/* how it works */
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.steps li{counter-increment:s;position:relative;background:var(--panel);color:var(--panel-ink);padding:20px 18px 18px;border:4px solid #000;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #7b7b7b,6px 6px 0 rgba(0,0,0,.5)}
+.steps li:before{content:counter(s);display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:10px;background:#ffe066;color:#2a2000;border:4px solid #000;font:700 1.3rem var(--px);box-shadow:inset 3px 3px 0 #fff6c2,inset -3px -3px 0 #c9a200}
+.steps b{display:block;font:700 1.2rem var(--px);margin-bottom:4px}
+.steps span{color:var(--panel-dim);font-size:.97rem;line-height:1.5;display:block}
+
+/* tables / faq */
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--panel);color:var(--panel-ink);border:4px solid #000}
+caption{text-align:left;padding:0 0 10px;font-family:var(--px);color:var(--ink)}
+th,td{border:3px solid #000;padding:10px 14px;text-align:left;vertical-align:top}
+th{background:#8b8b8b;font-family:var(--px)}
+.req{display:grid;gap:30px;grid-template-columns:1fr 1fr;align-items:start}
+@media (max-width:820px){.req{grid-template-columns:1fr}}
+ul.plain{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+ul.plain li{background:var(--panel);color:var(--panel-ink);padding:12px 16px 12px 52px;border:4px solid #000;position:relative;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #7b7b7b}
+ul.plain li:before{content:"";position:absolute;left:16px;top:50%;margin-top:-10px;width:20px;height:20px;background:url(img/ico-check.png) 0 0/20px 20px}
+details{background:var(--panel);color:var(--panel-ink);margin-bottom:14px;border:4px solid #000;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #7b7b7b}
+summary{cursor:pointer;padding:14px 18px;font:700 1.08rem var(--px);list-style:none;display:flex;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"+";display:inline-flex;align-items:center;justify-content:center;flex:0 0 26px;height:26px;background:#2e7d22;color:#fff;border:3px solid #000;font:700 1rem var(--px)}
+details[open] summary:before{content:"-";background:#a33}
+details .ans{padding:2px 20px 18px 56px;color:#262626}
+details .ans p{margin:0 0 .7em}
+details .ans a{color:#0b4f9c}
+details .ans a:hover{color:#000}
+kbd{background:#eee;border:2px solid #000;padding:0 6px;font-family:var(--px);font-size:.9em;color:#000}
+
+footer{background:#0d0b09;border-top:4px solid #000;padding:44px 0 56px;color:var(--dim);font-size:.95rem;text-align:center}
+footer .links{display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+footer .links a,.doclinks a{display:inline-block;padding:6px 2px}
+footer p{margin:.5em auto;max-width:720px}
+footer .legal{font-size:.88rem;color:#c9c3b3}
+footer img{width:48px;height:48px;margin:0 auto 6px;display:block}
+@media (prefers-reduced-motion:reduce){.hero .sloth{animation:none}.btn{transition:none}}
+
+/* hero scene */
+.scene{position:relative;margin:28px 0 0;border-top:4px solid #000;border-bottom:4px solid #000;background:linear-gradient(#4ca2ea,#c4e8ff 75%,#5fb338 75%);height:208px;overflow:hidden;box-shadow:0 6px 0 rgba(0,0,0,.5)}
+@media (min-width:700px){.scene{height:312px}}
+@media (min-width:1000px){.scene{height:416px}}
+.scene canvas{display:block;image-rendering:pixelated;cursor:pointer;touch-action:manipulation}
+.cap{position:absolute;left:0;top:0;font:700 14px var(--px);white-space:nowrap;pointer-events:none;text-shadow:-2px 0 #000,2px 0 #000,0 -2px #000,0 2px #000,2px 2px 0 #000;will-change:transform}
+.scene-ctl{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:22px 0 0}
+.scene-tip{margin:12px 0 0}
+.hero .sub{margin-top:6px;margin-bottom:22px}
+.craft-demo{margin:0 0 30px}
+.craft-demo canvas{display:block;width:336px;max-width:100%;height:auto;aspect-ratio:112/44;image-rendering:pixelated;border:4px solid #000;box-shadow:6px 6px 0 rgba(0,0,0,.5)}
+canvas.mini{width:48px;height:48px;vertical-align:middle;margin-left:10px;image-rendering:pixelated}
+.crawl{position:relative;height:52px;overflow:hidden;margin:-34px 0 14px}
+.crawl i{position:absolute;left:-70px;bottom:0;width:64px;height:48px;background:url(img/sloth-crawl.png) 0 0/256px 48px;image-rendering:pixelated;animation:sstep .9s steps(4) infinite,swalk 40s linear infinite}
+@keyframes sstep{to{background-position:-256px 0}}
+@keyframes swalk{to{left:100%}}
+@media (prefers-reduced-motion:reduce){.crawl i{animation:none;left:calc(50% - 32px)}}
+/* in-game screenshots and clips */
+.clips{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));margin:14px 0 0;padding:0;list-style:none}
+.clips figure{margin:0;background:#000;border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a,8px 8px 0 4px rgba(0,0,0,.6)}
+.clips video,.clips img{display:block;width:100%;height:auto;background:#111}
+.clips figcaption{padding:8px 12px;font:400 .95rem var(--px);color:var(--ink)}
+
+/* 3D item from the art engine */
+.engine{margin-top:26px;display:grid;gap:34px;grid-template-columns:1fr 1fr;align-items:center}
+@media (max-width:820px){.engine{grid-template-columns:1fr}}
+.stage{background:radial-gradient(circle at 50% 42%,#3a3a44,#1a1a20 72%);border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a,10px 10px 0 4px rgba(0,0,0,.6);padding:10px;text-align:center}
+.stage canvas.view{display:block;width:100%;max-width:340px;height:auto;aspect-ratio:1;margin:0 auto;cursor:grab;touch-action:pan-y;outline-offset:-3px}
+.stage canvas.view:active{cursor:grabbing}
+.stage .nm{font:700 1.1rem var(--px);color:var(--yellow);margin:2px 0 10px;text-shadow:2px 2px 0 #000;min-height:1.6em}
+.picks{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 0 6px;min-height:62px}
+.picks button.slot canvas{width:36px;height:36px;image-rendering:pixelated;pointer-events:none}
+.picks button.slot[hidden]{display:none}
+.tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:4px 0 8px}
+.tab{font:700 .95rem var(--px);color:#101010;background:#8b8b8b;border:3px solid;border-color:#fff #373737 #373737 #fff;padding:5px 12px;cursor:pointer}
+.tab:hover{background:#a5a5a5}
+.tab[aria-pressed=true]{background:var(--green);color:#fff;border-color:#8fdc72 #1d5214 #1d5214 #8fdc72;text-shadow:1px 1px 0 #000}
+.sh{color:var(--yellow);font-size:1.35rem;text-shadow:2px 2px 0 #000;margin:0 0 .4em}
+.sounds{display:flex;flex-wrap:wrap;gap:10px}
+.sounds .btn.on{background:var(--green)}
+.sheets{display:grid;grid-template-columns:minmax(0,1fr);gap:34px;margin:48px 0 44px}
+.sheets figure{margin:0;min-width:0}
+.sheets figcaption{margin-top:14px;color:var(--dim);font-size:.95rem;text-align:center}
+.shot.px{image-rendering:pixelated}
+.sheets .scroll{overflow-x:auto;padding:4px 14px 14px 4px}
+.sheets .scroll img{min-width:620px}
+.doclinks{display:flex;gap:10px 22px;justify-content:center;flex-wrap:wrap;margin:30px 0 6px;font-family:var(--px)}
+.picks button.slot{cursor:pointer;padding:0;width:56px;height:56px}
+.picks button.slot[aria-pressed=true]{outline:3px solid #fff;outline-offset:-3px;box-shadow:0 0 0 3px #000}
+.picks button.slot img{width:36px;height:36px}
+.engine p{margin:0 0 .9em;color:var(--dim)}
+.engine p strong{color:var(--ink)}
+
+/* fun extras: XP meter, advancement toasts, release chest, easter egg */
+.hero{overflow-x:clip}
+.title{position:relative;display:inline-block;max-width:100%}
+.hero .sloth.dance{animation:slothdance 1.8s ease-in-out 1}
+@keyframes slothdance{0%,100%{transform:none}10%{transform:translateY(-24px) rotate(-12deg)}22%{transform:none}34%{transform:translateY(-24px) rotate(12deg)}46%{transform:none}56%{transform:translateX(-10px) rotate(-10deg)}66%{transform:translateX(10px) rotate(10deg)}76%{transform:translateX(-10px) rotate(-10deg)}86%{transform:translateX(0) rotate(0) scale(1.12,.9)}}
+.pp{position:fixed;z-index:80;width:8px;height:8px;pointer-events:none}
+#xp{position:fixed;top:0;left:0;right:0;height:12px;display:flex;align-items:stretch;background:#0d0b09;border-bottom:2px solid #000;z-index:70;pointer-events:none}
+#xp .xp-track{flex:1;position:relative;margin:2px 0 2px 2px;background:#2a2a2a;box-shadow:inset 0 1px 0 #000}
+#xp .xp-track i{display:block;height:100%;width:0;background:linear-gradient(#b8f77f,#6fd03a 45%,#3f9a2e);box-shadow:inset 0 -2px 0 #2a6a12}
+#xp .xp-track:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(0,0,0,.4) 11px 12px)}
+#xp b{width:68px;text-align:center;font:700 10px/12px var(--px);color:#80ff20;text-shadow:1px 1px 0 #000;white-space:nowrap}
+#xp.up .xp-track i{animation:xpflash .45s steps(2) 3}
+@keyframes xpflash{50%{filter:brightness(2.4)}}
+#toasts{position:fixed;top:106px;right:12px;z-index:65;width:min(340px,calc(100vw - 24px));pointer-events:none}
+.toast{display:flex;gap:12px;align-items:center;padding:10px 14px 10px 10px;background:#1c1c1c;border:4px solid #000;box-shadow:inset 3px 3px 0 #4a4a4a,inset -3px -3px 0 #101010,0 0 0 3px #5a5a5a,6px 6px 0 rgba(0,0,0,.5);transform:translateX(calc(100% + 30px));transition:transform .35s steps(7)}
+.toast.in{transform:none}
+.toast .ti{flex:0 0 48px;height:48px;display:flex;align-items:center;justify-content:center;background:#8b8b8b;border:3px solid;border-color:#373737 #fff #fff #373737}
+.toast .ti img{width:32px;height:32px}
+.toast small{display:block;font:700 .82rem var(--px);color:var(--yellow)}
+.toast strong{display:block;font:700 1.05rem/1.2 var(--px);color:#fff}
+.slot-nav.snd .n{top:0;bottom:auto}
+button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
+.slot-nav.snd[aria-pressed=true]{background:#7be04e}
+.chest{position:relative;display:flex;align-items:center;gap:14px;max-width:400px;margin:26px auto 0;padding:16px 22px 14px;text-align:left;color:#fff3d6;background:linear-gradient(rgba(26,16,6,.3),rgba(26,16,6,.3)),url(img/tile-planks.png) 0 0/64px 64px;border:4px solid #000;box-shadow:inset 4px 4px 0 rgba(255,220,160,.35),inset -4px -4px 0 rgba(0,0,0,.4),6px 6px 0 rgba(0,0,0,.5)}
+.chest:before,.chest:after{content:"";position:absolute;top:-4px;bottom:-4px;width:10px;background:#8b8b8b;border:3px solid #000;border-top:0;border-bottom:0;box-shadow:inset 2px 0 0 #c6c6c6,inset -2px 0 0 #555}
+.chest:before{left:28px}.chest:after{right:28px}
+.chest .lock{position:absolute;left:50%;top:-10px;width:18px;height:20px;margin-left:-9px;background:#ffe066;border:3px solid #000;box-shadow:inset 2px 2px 0 #fff6c2,inset -2px -2px 0 #c9a200;z-index:1}
+.chest img{width:40px;height:40px;margin-left:30px;flex:0 0 auto}
+.chest .cb{display:flex;flex-direction:column;gap:2px;min-width:0;margin-right:30px;font-size:.92rem;line-height:1.3;text-shadow:1px 1px 0 #000}
+.chest .ct{font:700 1.05rem var(--px);color:var(--yellow)}
+.chest .cv{font:700 1.15rem var(--px)}
+.chest a{color:#fff}
+.chest a:hover{color:var(--yellow)}
+@media (max-width:420px){.chest{padding-left:14px;padding-right:14px}.chest img{margin-left:22px}.chest:before{left:14px}.chest:after{right:14px}.chest .cb{margin-right:18px}}
+@media (prefers-reduced-motion:reduce){.hero .sloth.dance{animation:none}#xp.up .xp-track i{animation:none}.toast{transform:none;opacity:0;transition:opacity .01s}.toast.in{opacity:1}}
+</style>
+</head>
+<body>
+<div id="xp" aria-hidden="true"><span class="xp-track"><i id="xp-fill"></i></span><b id="xp-lab">Lv 0</b></div>
+<div id="toasts" role="status" aria-live="polite" aria-atomic="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grass" role="presentation"></div>
+
+<div class="hotbar-wrap">
+  <nav class="hotbar" aria-label="Sections">
+    <a class="brand" href="#top"><img src="img/sloth.png" width="32" height="32" alt=""><span>Sloth-Mod</span></a>
+    <button class="slot-nav snd" id="snd" type="button" aria-pressed="false" aria-label="Sound effects"><img src="img/ico-note.png" width="24" height="24" alt="">Sound<i class="n" id="snd-n">off</i></button>
+    <a class="slot-nav" href="#make"><img src="img/ico-sword.png" width="24" height="24" alt="">Make<i class="n">1</i></a>
+    <a class="slot-nav" href="#how"><img src="img/ico-book.png" width="24" height="24" alt="">How<i class="n">2</i></a>
+    <a class="slot-nav" href="#gallery"><img src="img/ico-magnifier.png" width="24" height="24" alt="">Look<i class="n">3</i></a>
+    <a class="slot-nav" href="#showcase"><img src="img/ico-palette.png" width="24" height="24" alt="">Showcase<i class="n">4</i></a>
+    <a class="slot-nav" href="#features"><img src="img/ico-chest.png" width="24" height="24" alt="">Features<i class="n">5</i></a>
+    <a class="slot-nav" href="#trust"><img src="img/ico-shield.png" width="24" height="24" alt="">Safety<i class="n">6</i></a>
+    <a class="slot-nav" href="#requirements"><img src="img/ico-chip.png" width="24" height="24" alt="">Needs<i class="n">7</i></a>
+    <a class="slot-nav" href="#faq"><img src="img/ico-book.png" width="24" height="24" alt="">FAQ<i class="n">8</i></a>
+    <a class="slot-nav" href="https://github.com/DeusesPR/Sloth-Mod"><img src="img/ico-gem.png" width="24" height="24" alt="">GitHub<i class="n">9</i></a>
+    <span class="sp"></span>
+    <a class="slot-nav get" href="https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.1.1/Sloth-Mod_1.1.1_x64-setup.exe"><img src="img/ico-chest.png" width="24" height="24" alt="">Download</a>
+  </nav>
+</div>
+
+<main id="main">
+<header class="hero dirt" id="top">
+  <div class="wrap">
+    <img class="sloth" src="img/sloth.png" width="112" height="112" alt="Pixel-art sloth, the Sloth-Mod mascot">
+    <div class="title"><h1>SLOTH-MOD</h1></div>
+    <p class="pitch">Make Minecraft mods by describing them</p>
+    <p class="sub">A free Windows app. Tell an AI what you want in plain English: Sloth-Mod plans it, writes it, builds it and gets it ready to play. No coding, no Java setup.</p>
+    <div class="cta">
+      <a class="btn go" id="dl" href="https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.1.1/Sloth-Mod_1.1.1_x64-setup.exe" rel="noopener"><img src="img/ico-chest.png" width="24" height="24" alt="">Download for Windows</a>
+      <a class="btn" href="#how">See how it works</a>
+    </div>
+    <p class="small">Free. Windows 10 and 11, 64-bit. Works with free and local AIs. <a href="#smartscreen">About the Windows warning</a></p>
+  </div>
+  <div class="scene" id="scene-box">
+    <canvas id="scene" width="320" height="104" role="img" aria-label="Animated pixel-art scene. A small blocky adventurer fights slimes, crystal golems, pumpkin-headed scarecrows and fire sprites on a grassy hill, while a sloth hangs from a tree branch and now and then crafts a new item. Clouds drift by and day slowly turns to night. Click or tap the ground to summon a mob, a mob to hit it, or the sloth to make it craft."></canvas>
+  </div>
+  <div class="wrap">
+    <div class="scene-ctl">
+      <button class="btn sm" id="scene-summon" type="button">Summon a mob</button>
+      <button class="btn sm" id="scene-pause" type="button">Pause animation</button>
+    </div>
+    <p class="small scene-tip">Click the ground to summon a mob, click a mob to hit it, click the sloth to make it craft.</p>
+    <div class="chest" id="chest">
+      <span class="lock" aria-hidden="true"></span>
+      <img src="img/ico-chest.png" width="40" height="40" alt="">
+      <div class="cb"><span class="ct">Release chest</span><span class="cv" id="chest-v"><a href="https://github.com/DeusesPR/Sloth-Mod/releases/latest" target="_blank" rel="noopener">Latest version</a></span><span id="chest-s"></span></div>
+    </div>
+    <ul class="badges" aria-label="Quick facts">
+      <li>Minecraft 26.x / 1.21.1 / 1.20.1</li><li>Fabric</li><li>NeoForge</li><li>Forge</li><li>Any AI, cloud or local</li><li>No accounts, no tracking</li>
+    </ul>
+    <img class="shot" src="img/app-test.png" width="2448" height="1800" alt="The Ready for you to test card for a ruby sword mod: what was added, a large Test it in Minecraft button, and Undo and Keep changes buttons.">
+  </div>
+</header>
+<div class="edge" aria-hidden="true"></div>
+
+<section id="make" class="stone">
+  <div class="wrap">
+    <h2>What you can make</h2>
+    <p class="lede">If you can describe it, you can try it. Mods are real Minecraft mods (.jar files) that you can play, share with friends and publish.</p>
+    <ul class="grid">
+      <li class="card"><span class="slot"><img src="img/ico-sword.png" width="40" height="40" alt=""></span><div><h3>Items</h3><p>Swords, snacks, tools, gems and gadgets, with their own look, sounds and behavior.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-block.png" width="40" height="40" alt=""></span><div><h3>Blocks</h3><p>Glowing lamps, singing blocks and machines that remember things, even after you reload the world.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>Mobs</h3><p>Friendly or hostile creatures, flying, swimming or rideable, with their own 3D model, art, spawn rules and custom sounds.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>Big projects</h3><p>Whole game-changing mods. The AI writes a design and a step-by-step plan, then builds one piece at a time so you can test each step.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="how" class="planks">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lede">Four steps, and you stay in charge the whole way. Nothing is saved into your mod until you say so.</p>
+    <div class="craft-demo"><canvas id="craft" width="336" height="132" role="img" aria-label="A crafting table making a Ruby Sword, a Golden Blade and a Glow Lamp from items drawn by Sloth-Mod's art engine."></canvas></div>
+    <ol class="steps">
+      <li><b>Describe it</b><span>Type what you want, like "a honey cookie that heals a lot". Pick an idea from the home screen if you are stuck. The AI asks only what it needs.</span></li>
+      <li><b>Pick the art</b><span>The AI draws a few versions of each texture and 3D model. Click the ones you like. The others are kept so you can swap later.</span></li>
+      <li><b>Test in game</b><span>Sloth-Mod builds the mod, repairs build errors and starts Minecraft with your unsaved build. Then you answer "Did it work?".</span></li>
+      <li><b>Share it</b><span>Keep it, undo it, or ask for a fix. Add it to a game profile, export a .jar with a friendly readme, or publish a draft to Modrinth.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="gallery" class="dirt">
+  <div class="wrap">
+    <h2>See it in action</h2>
+    <p class="lede">Real screenshots of the app, from one sentence to a finished mod.</p>
+    <figure class="demo"><img class="shot" src="img/demo.gif" width="1680" height="1050" loading="lazy" decoding="async" alt="Demo: typing 'a ruby sword that sets mobs on fire', answering a few clickable questions, watching the build, picking the art and landing on the Ready for you to test card with a crafting guide."><figcaption>From one sentence to a mod ready to test. The app's real screens in a scripted walkthrough; a real build takes a few minutes.</figcaption></figure>
+    <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Sloth-Mod screenshots">
+      <div class="track" id="track" tabindex="0" aria-live="off">
+        <figure class="slide" aria-roledescription="slide" aria-label="1 of 6"><img src="img/app-plan.png" width="2448" height="1800" alt="The AI panel showing a plan for the ruby sword with a Looks good, build it button."><figcaption><b>A plan you approve</b>Nothing is built before you say so.</figcaption></figure>
+        <figure class="slide" aria-roledescription="slide" aria-label="2 of 6"><img src="img/app-art.png" width="2448" height="1800" alt="The art picker with three versions of a ruby sword texture: classic, cute and detailed." loading="lazy" decoding="async"><figcaption><b>Pick your favourite art</b>Three versions of every texture and model. You choose.</figcaption></figure>
+        <figure class="slide" aria-roledescription="slide" aria-label="3 of 6"><img src="img/app-test.png" width="2448" height="1800" alt="The Ready for you to test card with a large Test it in Minecraft button and Undo and Keep changes buttons." loading="lazy" decoding="async"><figcaption><b>Ready for you to test</b>One click to play it. Keep it or undo it afterwards.</figcaption></figure>
+        <figure class="slide" aria-roledescription="slide" aria-label="4 of 6"><img src="img/app-guide.png" width="2448" height="1800" alt="The how-to-play guide for the ruby sword with a crafting grid drawn like the game." loading="lazy" decoding="async"><figcaption><b>A player guide</b>Crafting panels drawn like the game, for every mod.</figcaption></figure>
+        <figure class="slide" aria-roledescription="slide" aria-label="5 of 6"><img src="img/app-discover.png" width="3360" height="2100" alt="Discover tab listing Modrinth mods filtered to the selected game profile, with Install buttons." loading="lazy" decoding="async"><figcaption><b>Discover on Modrinth</b>Search mods, modpacks, resource packs and shaders. One-click installs.</figcaption></figure>
+        <figure class="slide" aria-roledescription="slide" aria-label="6 of 6"><img src="img/app-mymods.png" width="3360" height="2100" alt="My Mods page for a game profile listing installed mods with on/off switches, plus Play, update and export buttons." loading="lazy" decoding="async"><figcaption><b>My Mods</b>Game profiles, on/off switches, updates and one-click Play.</figcaption></figure>
+      </div>
+      <div class="cctl">
+        <button class="cbtn" id="prev" type="button" aria-label="Previous screenshot">&lt;</button>
+        <div class="dots" id="dots" role="group" aria-label="Choose a screenshot"></div>
+        <button class="cbtn" id="next" type="button" aria-label="Next screenshot">&gt;</button>
+        <button class="cbtn" id="pp" type="button" aria-label="Pause automatic slideshow" aria-pressed="false" style="width:auto;padding:0 14px;font-size:.95rem">Pause</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="showcase" class="stone">
+  <div class="wrap">
+    <h2>Showcase</h2>
+    <p class="lede">Everything in this section was drawn or made by Sloth-Mod's own engine, the same one that makes the art and sounds in your mods. <strong>No image generator, no Minecraft art, nothing touched up by hand.</strong></p>
+    <div class="engine">
+      <div id="item3d" class="stage" data-src="img/showcase/">
+        <div class="tabs" role="group" aria-label="Kind of art"><button class="tab" type="button" data-tab="guns" aria-pressed="true">Guns</button><button class="tab" type="button" data-tab="tools" aria-pressed="false">Tools</button><button class="tab" type="button" data-tab="food" aria-pressed="false">Food</button><button class="tab" type="button" data-tab="blocks" aria-pressed="false">Blocks</button><button class="tab" type="button" data-tab="mobs" aria-pressed="false">Mobs</button></div>
+        <canvas class="view" width="680" height="680" tabindex="0" role="img" aria-label="Spinning 3D art made by the Sloth-Mod art engine."></canvas>
+        <p class="nm" data-name aria-live="polite"></p>
+        <div class="picks" role="group" aria-label="Choose what to look at">
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="rifle" data-label="Rifle" aria-label="Rifle" aria-pressed="true"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="pistol" data-label="Pistol" aria-label="Pistol" aria-pressed="false"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="shotgun" data-label="Shotgun" aria-label="Shotgun" aria-pressed="false"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="revolver" data-label="Revolver" aria-label="Revolver" aria-pressed="false"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="sniper" data-label="Sniper rifle" aria-label="Sniper rifle" aria-pressed="false"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="guns" data-kind="item" data-key="smg" data-label="SMG" aria-label="SMG" aria-pressed="false"><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="ruby_sword" data-label="Ruby sword" aria-label="Ruby sword" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="emerald_pickaxe" data-label="Emerald pickaxe" aria-label="Emerald pickaxe" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="golden_axe" data-label="Golden axe" aria-label="Golden axe" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="bow" data-label="Bow" aria-label="Bow" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="magic_staff" data-label="Magic staff" aria-label="Magic staff" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="tools" data-kind="item" data-key="iron_shield" data-label="Iron shield" aria-label="Iron shield" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="honey_cookie" data-label="Honey cookie" aria-label="Honey cookie" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="bread" data-label="Bread" aria-label="Bread" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="cake" data-label="Cake" aria-label="Cake" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="steak" data-label="Steak" aria-label="Steak" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="apple" data-label="Apple" aria-label="Apple" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="food" data-kind="item" data-key="potion" data-label="Potion" aria-label="Potion" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="ruby_ore" data-label="Ruby ore" aria-label="Ruby ore" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="planks" data-label="Planks" aria-label="Planks" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="log" data-label="Log" aria-label="Log" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="brick" data-label="Bricks" aria-label="Bricks" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="crystal" data-label="Crystal block" aria-label="Crystal block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="grass" data-label="Grass block" aria-label="Grass block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="magic" data-label="Magic block" aria-label="Magic block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="gold" data-label="Gold block" aria-label="Gold block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="fox" data-label="Fox" aria-label="Fox" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="ghoul" data-label="Ghoul" aria-label="Ghoul" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="slime" data-label="Slime" aria-label="Slime" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="bird" data-label="Bird" aria-label="Bird" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
+        </div>
+        <button class="btn sm" type="button" data-spin>Stop spinning</button>
+      </div>
+      <div>
+        <h3 class="sh">Items, blocks and mobs</h3>
+        <p>Real 16x16 textures and mob skins from the engine. Items are shown the way the game draws a dropped item: every pixel stretched into a thin block. Mobs are built from boxes, like the game's own.</p>
+        <p>Pick <strong>Guns</strong>, <strong>Tools</strong>, <strong>Food</strong>, <strong>Blocks</strong> or <strong>Mobs</strong>, then <strong>drag</strong> to turn it. <strong>Click</strong> it (or press <kbd>Enter</kbd>) for the next one, or use the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> keys when it is focused.</p>
+        <p class="small">In the app, the art picker shows you several versions of each one, so you choose what ends up in your mod.</p>
+        <h3 class="sh" style="margin-top:28px">Sounds</h3>
+        <p>Made by the sound maker, not recorded. Each one becomes a real sound in your mod.</p>
+        <div class="sounds" role="group" aria-label="Sound samples"><a class="btn sm" href="media/sound-squeak.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Squeak</a><a class="btn sm" href="media/sound-chime.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Chime</a><a class="btn sm" href="media/sound-zap.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Zap</a><a class="btn sm" href="media/sound-growl.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Growl</a><a class="btn sm" href="media/sound-rifle-shot.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Rifle shot</a><a class="btn sm" href="media/sound-reload.ogg" data-sound><img src="img/ico-note.png" width="24" height="24" alt="">Reload</a></div>
+      </div>
+    </div>
+    <div class="sheets">
+      <figure><div class="scroll"><img class="shot px" src="img/showcase/sheet-items.png" width="1792" height="832" loading="lazy" decoding="async" alt="A sheet of small pixel-art items drawn by the engine: swords, tools, gems, food, armor, keys, books and firearm shapes."></div><figcaption>Every item shape the engine knows, one of each. You pick the material and colors.</figcaption></figure>
+      <figure><div class="scroll"><img class="shot px" src="img/showcase/sheet-blocks.png" width="2064" height="444" loading="lazy" decoding="async" alt="A sheet of block textures drawn by the engine, side and top of each: stone, wood, metals, crystal, wool, brick, ore, lava, water and more."></div><figcaption>Block materials, side and top. They tile without seams.</figcaption></figure>
+    </div>
+    <h3 class="sh" style="margin-top:34px">In the game</h3>
+    <p>Real screenshots from Minecraft, taken by an automated camera test. The same small test mod was started on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars. This was a robot test, not a person playing, and it is not a finished mod.</p>
+    <ul class="clips">
+      <li><figure><img src="img/showcase/ingame-fabric-26.3.png" width="854" height="480" loading="lazy" decoding="async" alt="Minecraft on Fabric 26.3: a row of blocks, a green flying creature with purple wings, a vehicle, a stone boss with a purple boss bar, and stamina and mana bars."><figcaption>Fabric, Minecraft 26.3</figcaption></figure></li>
+      <li><figure><img src="img/showcase/ingame-neoforge-1.21.1.png" width="854" height="480" loading="lazy" decoding="async" alt="The same test mod on NeoForge 1.21.1."><figcaption>NeoForge, Minecraft 1.21.1</figcaption></figure></li>
+      <li><figure><img src="img/showcase/ingame-forge-1.20.1.png" width="854" height="480" loading="lazy" decoding="async" alt="The same test mod on Forge 1.20.1, with a mob, blocks and a flying creature."><figcaption>Forge, Minecraft 1.20.1</figcaption></figure></li>
+    </ul>
+  </div>
+</section>
+
+<section id="features" class="planks">
+  <div class="wrap">
+    <h2>Everything in the box</h2>
+    <p class="lede">A mod maker for people who do not code, and a mod manager for everyone who plays.</p>
+    <ul class="grid feat-grid">
+      <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Any AI, including free and local</h3><p>Claude, OpenAI, Gemini, Grok, DeepSeek, OpenRouter (has free models), Mistral, Groq and more, or run one on your own PC with LM Studio or Ollama. Keys stay in Windows Credential Manager.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Art picker</h3><p>The AI draws several different designs of every texture and 3D model. You click your favourite, in a spinning 3D viewer for models and mobs.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-note.png" width="40" height="40" alt=""></span><div><h3>Sound maker</h3><p>614 kinds of sound, from squeaks and chimes to dragon roars and machine hums, made in the app, checked, and added to your mod as real sounds. No more "chicken that sounds like a chicken".</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>How-to-play guides</h3><p>Every mod gets a player guide with crafting panels drawn like the real game, drop and spawn info, and a pixel icon for the mod.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Faster builds</h3><p>A simple mod takes about two AI turns, and every result card shows where the time went.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>More things it can build</h3><p>Creatures that fly, swim or can be ridden, guns, vehicles, wearables, enchantments, music discs and armor trims.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-pencil.png" width="40" height="40" alt=""></span><div><h3>Quick edits</h3><p>"Make the squeak louder" or "change it to blue" finishes in about two AI steps, with no questions and no big plan.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Edit panel</h3><p>Change sizes, colours, numbers and sounds of what the app made, with a live preview and no AI. Paint textures in the built-in pixel editor, or take a model to Blockbench and back.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-block.png" width="40" height="40" alt=""></span><div><h3>Update to a new Minecraft version</h3><p>One run moves your mod to a newer version of the same loader (or Forge to NeoForge) and keeps your art, sounds and hand edits.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>Big project mode</h3><p>For huge ideas: an approved design, a 20 to 50 step roadmap and a project map, built one tested step at a time.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-coin.png" width="40" height="40" alt=""></span><div><h3>Spending limit</h3><p>See what each mod costs. Ask before one mod passes an amount you pick, or stop for the day after a daily cap. A PIN can lock the limits.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-shield.png" width="40" height="40" alt=""></span><div><h3>Safety guard</h3><p>AI-written code is scanned before every build for things a mod should never do, like launching programs, opening web connections or touching files outside the game folders. Build files are checked and locked too.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chest.png" width="40" height="40" alt=""></span><div><h3>Mod manager with Modrinth</h3><p>Discover mods, modpacks, resource packs and shaders. Game profiles, on/off switches, one-click updates, .mrpack export and Play through the official launcher.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-check.png" width="40" height="40" alt=""></span><div><h3>Modpack compatibility check</h3><p>Before your mod joins a pack, a throwaway server starts with the pack's mods and tells you in plain words whether it works.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-block.png" width="40" height="40" alt=""></span><div><h3>Three versions, three loaders</h3><p>Minecraft 26.x, 1.21.1 and 1.20.1 on Fabric, NeoForge and Forge (see the table below). It downloads its own Java, so your system Java is never touched.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-gem.png" width="40" height="40" alt=""></span><div><h3>Review, undo, history</h3><p>The AI works in a sandbox copy. You review the changes, keep or undo them, and restore older versions from History.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-magnifier.png" width="40" height="40" alt=""></span><div><h3>Crash explainer</h3><p>If the game closes unexpectedly, Sloth-Mod reads the crash report, explains the cause in plain English and offers a "Fix it" button.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-gift.png" width="40" height="40" alt=""></span><div><h3>Share and publish</h3><p>Export a .jar with a friendly readme, copy a message for a friend, or publish a draft project to Modrinth. Modpacks export as .mrpack.</p></div></li>
+    </ul>
+
+    <div class="table-wrap" style="margin-top:44px">
+      <table>
+        <caption>Supported versions (what Sloth-Mod can build)</caption>
+        <thead><tr><th scope="col">Minecraft</th><th scope="col">Fabric</th><th scope="col">NeoForge</th><th scope="col">Forge</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">26.x</th><td>Yes</td><td>Yes</td><td>No</td></tr>
+          <tr><th scope="row">1.21.1</th><td>Yes</td><td>Yes</td><td>No</td></tr>
+          <tr><th scope="row">1.20.1</th><td>Yes</td><td>No</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="dirt">
+  <div class="wrap">
+    <h2>Safe and private, in plain words</h2>
+    <p class="lede">Mods are programs, so Sloth-Mod is careful with what the AI writes and with what leaves your PC.</p>
+    <ul class="grid feat-grid">
+      <li class="card"><span class="slot"><img src="img/ico-shield.png" width="40" height="40" alt=""></span><div><h3>A guard reads the AI's code</h3><p>Before every build, AI-written code is scanned for things a mod should never do, like launching programs, opening web connections or touching files outside the game folders. The build files are checked too, locked while a mod is made, and only source files can be added to your project. A blocked build tells you why.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-gem.png" width="40" height="40" alt=""></span><div><h3>Nothing is kept until you say so</h3><p>The AI works on a copy. You test the result, then keep it or undo it. Older versions stay in History.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chest.png" width="40" height="40" alt=""></span><div><h3>No accounts, no tracking</h3><p>No sign-up, no telemetry, no analytics, and nothing extra is added to the mods you make: your mod and its source are yours. Your requests and mod files go only to the AI you pick, or nowhere at all with a local AI. The AI may read a short summary from Wikipedia or the Minecraft wiki while planning (can be switched off).</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Keys stay on your PC</h3><p>API keys live in Windows Credential Manager, never in files or logs. Sloth-Mod never sees your Microsoft login: the official launcher handles it.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>Free, and your mods are yours</h3><p>Sloth-Mod costs nothing. What you make with it belongs to you: share it, publish it or sell it. Every open-source part inside the app is listed with its license.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-magnifier.png" width="40" height="40" alt=""></span><div><h3>Honest limits</h3><p>The guard is a safety net, not a guarantee, and the installer is not code-signed yet. Code that passes the guard still runs with your Windows rights. Only play mods you trust.</p></div></li>
+    </ul>
+    <p class="doclinks"><a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">Privacy</a><a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/SECURITY.md">Security</a><a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/DISCLAIMER.md">Disclaimer</a><a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/THIRD_PARTY_LICENSES.md">Licenses</a></p>
+    <p class="small" style="text-align:center">Sloth-Mod is a fan-made tool. It is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft.</p>
+  </div>
+</section>
+
+<section id="requirements" class="stone">
+  <div class="wrap">
+    <h2>System requirements</h2>
+    <p class="lede">A normal Windows PC that can already run Minecraft is enough.</p>
+    <div class="req">
+      <ul class="plain">
+        <li><strong>Windows 10 or 11</strong>, 64-bit</li>
+        <li><strong>About 4 GB free disk space</strong> for the Java and Minecraft downloads</li>
+        <li><strong>Internet</strong> for the first setup (and for cloud AIs and Modrinth)</li>
+        <li>A <strong>Minecraft Java Edition</strong> account to play what you make</li>
+      </ul>
+      <ul class="plain">
+        <li>No Java, Gradle or coding tools to install, Sloth-Mod brings its own</li>
+        <li>Installs for your user only, <strong>no admin prompt</strong></li>
+        <li>Prefer offline AI? Point it at LM Studio or Ollama on your PC</li>
+      </ul>
+    </div>
+    <p class="lede" style="margin-top:18px">New things are built and proven first on <strong>Fabric 26.3</strong>. NeoForge 1.21.1, Forge 1.20.1, Fabric 1.21.1, Fabric 1.20.1 and NeoForge 26.3 work and get fixes, and new things reach them later in batches. Fabric and NeoForge 26.1 and 26.2 get fixes only. Small updates arrive often, and the app offers them by itself.</p>
+  </div>
+</section>
+
+<section id="faq" class="planks">
+  <div class="wrap" style="max-width:860px">
+    <h2>Questions<canvas class="mini" width="16" height="16" aria-hidden="true"></canvas></h2>
+    <details><summary>Is it free?</summary><div class="ans"><p>Yes. Sloth-Mod is free to download and use, and the mods you make are yours. The only cost can be your AI: some providers have free tiers, OpenRouter has free models, and local AIs (LM Studio, Ollama) cost nothing to run. The app can show what each mod cost and lets you set a spending limit.</p></div></details>
+    <details><summary>Do I need to know how to code?</summary><div class="ans"><p>No. You describe what you want in plain English and answer a few clickable questions. The app writes, builds and tests the mod. If you do like code, the Workshop view has a full editor and diffs.</p></div></details>
+    <details><summary>Which AI should I use?</summary><div class="ans"><p>Any of them. The setup wizard lists every provider with a "Get an API key" button and a note on cost, and a <em>Test this AI</em> button checks that it can really drive the app. Bigger models make bigger mods with fewer repairs. For free: OpenRouter's free models, or a local model through LM Studio or Ollama.</p></div></details>
+    <details id="smartscreen"><summary>Windows SmartScreen says "Windows protected your PC"</summary><div class="ans"><p>The installer is not code-signed yet (certificates cost money), so Windows shows a warning for any new app. Click <strong>More info</strong>, then <strong>Run anyway</strong>. You can check the source on GitHub, and build the installer yourself if you prefer.</p></div></details>
+    <details><summary>Is it safe?</summary><div class="ans"><p>It is built to be careful. The AI writes into a sandbox copy and you review the changes before anything is kept, with undo and history. AI-written code is scanned before every build for things a mod should never do. The build files are checked and locked while a mod is made. Downloads from Modrinth are checked against their SHA-512 checksums, and your API keys are stored in Windows Credential Manager, never in files. It never sees your Microsoft login: signing in and launching stay with Mojang's own launcher.</p><p>Be honest with yourself about limits: mods are programs, and the guard is a safety net, not a guarantee. Only play mods you trust, and see <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/SECURITY.md">SECURITY.md</a> for details and how to report a problem.</p></div></details>
+    <details><summary>Does it work on Mac or Linux?</summary><div class="ans"><p>The installer is for Windows 10 and 11 only.</p></div></details>
+    <details><summary>What about privacy, and "Sign in with Grok"?</summary><div class="ans"><p>No accounts and no telemetry: your keys stay in Windows Credential Manager, and your prompts and mod files go only to the AI provider you choose. Downloads contact Modrinth, Mojang and the loader sites. Read <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">PRIVACY.md</a>, <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/DISCLAIMER.md">DISCLAIMER.md</a> and the <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/THIRD_PARTY_LICENSES.md">third-party licenses</a>. "Sign in with Grok" is experimental and off by default: it may be against xAI's terms, so an xAI API key is the supported way.</p></div></details>
+    <details><summary>Is this an official Minecraft product?</summary><div class="ans"><p>No. Sloth-Mod is a fan-made tool. It is not approved by or associated with Mojang or Microsoft, and it contains no Minecraft assets.</p></div></details>
+    <details><summary>Something broke. What do I do?</summary><div class="ans"><p>Press <em>Report a problem</em> in the app (on the failure card, in the crash window, or in Settings). It fills in a GitHub issue for you with your log already attached, with keys and your Windows name hidden. You just check it and press Submit. Have an idea? Use <em>Suggest an idea</em> in Settings, or <a href="https://github.com/DeusesPR/Sloth-Mod/issues/new/choose">open an issue</a> here.</p></div></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="crawl" aria-hidden="true"><i></i></div>
+    <img src="img/sloth.png" width="48" height="48" alt="">
+    <p><strong>Sloth-Mod</strong>, free to use: <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/LICENSE">terms</a>.</p>
+    <div class="links">
+      <a href="https://github.com/DeusesPR/Sloth-Mod">GitHub</a>
+      <a href="https://github.com/DeusesPR/Sloth-Mod/releases/latest">Download</a>
+      <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/CHANGELOG.md">Changelog</a>
+      <a href="https://github.com/DeusesPR/Sloth-Mod/issues/new/choose">Report a bug</a>
+      <a href="https://github.com/DeusesPR/Sloth-Mod/discussions">Community</a>
+    </div>
+    <p class="legal">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB and Microsoft Corporation.</p>
+    <p class="legal">Pixel art on this page is original. Headings use Pixelify Sans, with numbers in VT323 (both SIL Open Font License 1.1, see <a href="fonts/OFL.txt">fonts/OFL.txt</a> and <a href="fonts/OFL-VT323.txt">fonts/OFL-VT323.txt</a>). The release chest asks api.github.com for the latest version from your browser; there are no cookies or analytics (<a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">privacy</a>). Sound effects in the app: CC0 by Kenney.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var track=document.getElementById('track'),slides=track.children,n=slides.length,i=0;
+  var dots=document.getElementById('dots'),pp=document.getElementById('pp');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playing=!reduce,timer=null,hover=false;
+  for(var k=0;k<n;k++){(function(k){var b=document.createElement('button');b.type='button';b.className='dot';b.setAttribute('aria-label','Show screenshot '+(k+1)+' of '+n);b.onclick=function(){go(k,true)};dots.appendChild(b)})(k)}
+  function mark(){var d=dots.children;for(var k=0;k<d.length;k++){if(k===i)d[k].setAttribute('aria-current','true');else d[k].removeAttribute('aria-current')}}
+  function go(k,user){i=(k+n)%n;track.scrollTo({left:i*track.clientWidth,behavior:reduce?'auto':'smooth'});mark();if(user)restart()}
+  track.addEventListener('scroll',function(){var k=Math.round(track.scrollLeft/track.clientWidth);if(k!==i&&k>=0&&k<n){i=k;mark()}},{passive:true});
+  document.getElementById('prev').onclick=function(){go(i-1,true)};
+  document.getElementById('next').onclick=function(){go(i+1,true)};
+  track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(i+1,true);e.preventDefault()}else if(e.key==='ArrowLeft'){go(i-1,true);e.preventDefault()}});
+  function stop(){if(timer){clearInterval(timer);timer=null}}
+  function start(){stop();if(playing&&!hover)timer=setInterval(function(){go(i+1,false)},5000)}
+  function restart(){start()}
+  function label(){pp.textContent=playing?'Pause':'Play';pp.setAttribute('aria-pressed',playing?'false':'true');pp.setAttribute('aria-label',playing?'Pause automatic slideshow':'Start automatic slideshow')}
+  pp.onclick=function(){playing=!playing;label();start()};
+  var car=track.parentNode;
+  car.addEventListener('mouseenter',function(){hover=true;stop()});car.addEventListener('mouseleave',function(){hover=false;start()});
+  car.addEventListener('focusin',function(){hover=true;stop()});car.addEventListener('focusout',function(){hover=false;start()});
+  window.addEventListener('resize',function(){track.scrollTo({left:i*track.clientWidth,behavior:'auto'})});
+  // only autoplay while the gallery is on screen
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){hover=!e.isIntersecting;hover?stop():start()})},{threshold:.3}).observe(car)}
+  label();mark();start();
+  // hotbar: highlight the section being read
+  var links=[].slice.call(document.querySelectorAll('.slot-nav[href^="#"]'));
+  if('IntersectionObserver' in window){
+    var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.remove('on');a.removeAttribute('aria-current')});var a=map[e.target.id];if(a){a.classList.add('on');a.setAttribute('aria-current','true')}}})},{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
+})();
+</script>
+<script>
+(function(){
+'use strict';
+/* Hero scene + small loops. One rAF loop (30 fps cap) drives every animation; it only runs while the tab is visible,
+   a canvas is on screen and the user has not paused. window.slothScene is a tiny hook used for screenshots. */
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var paused=reduce,R=Math.random;
+function rnd(a,b){return a+R()*(b-a)}
+function pick(a){return a[(R()*a.length)|0]}
+function clamp(v,a,b){return v<a?a:v>b?b:v}
+function hx(c){return[parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16)]}
+function mixa(a,b,t){return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]}
+function rgb(a){return'rgb('+(a[0]|0)+','+(a[1]|0)+','+(a[2]|0)+')'}
+function mk(w,h){var c=document.createElement('canvas');c.width=w;c.height=h;return c}
+
+/* ---------- sprites (procedural, original) ---------- */
+function spr(rows,pal){
+  var h=rows.length,w=0,px=[];rows.forEach(function(r){w=Math.max(w,r.length)});
+  var c=mk(w,h),x=c.getContext('2d');
+  rows.forEach(function(r,j){for(var i=0;i<r.length;i++){var k=r[i];if(k!=='.'&&pal[k]){x.fillStyle=pal[k];x.fillRect(i,j,1,1);px.push([i,j,pal[k]])}}});
+  var f=mk(w,h),fx=f.getContext('2d');fx.drawImage(c,0,0);fx.globalCompositeOperation='source-atop';fx.fillStyle='#fff';fx.fillRect(0,0,w,h);
+  return{c:c,f:f,w:w,h:h,px:px}}
+var SP={
+ slime:spr(['....oooo....','..oohhGGoo..','.ohhGGGGGgo.','.ohGGGGGGgo.','ohGGGGGGGGgo','oGGeeGGeeGgo','oGGeeGGeeGgo','oGGGGGGGGggo','.oggggggggo.','..oooooooo..'],{o:'#1b5a22',G:'#5fd64b',g:'#3ca836',h:'#b4ff9c',e:'#10301a'}),
+ golem:spr(['...ooooo...','..oCCppqo..','..oeCpeqo..','..oppppqo..','.ooqqqqqoo.','oCCoppqoCCo','oppoCCpoqpo','oqqoppqoqqo','.oo.pCpq.oo','....pppq...','...oppqqo..','...opoqqo..','..ooo.ooo..'],{o:'#1e0f3d',C:'#e2b6ff',p:'#8a4ae0',q:'#5a2aa8',e:'#ffee70'}),
+ scare:spr(['....ss....','..oOOOOo..','.oOOOOOOo.','.oOkOOkOo.','.oOOkkOOo.','.oOkkkkOo.','..oOOOOo..','...oddo...','SS.bbbb.SS','.SSbbrbSS.','...bbbb...','....ww....','....ww....','...wwww...'],{o:'#6b3a08',O:'#f39a1f',d:'#b8650d',k:'#2a1400',s:'#4c9a2e',S:'#e8c45c',b:'#5f7fd0',r:'#c4503a',w:'#7a5230'}),
+ fire:spr(['...RR...','..ROOR..','.RROORR.','.ROYYOR.','RROYWYOR','ROYWWYOR','ROkYYkOR','.ROYYOR.','..RRRR..'],{R:'#d8321a',O:'#ff8a1a',Y:'#ffe14a',W:'#fffbd0',k:'#3a0d05'})
+};
+var HP={h:'#cfc9b0',j:'#ece8d6',k:'#a9a38c',s:'#b87a52',t:'#96603f',l:'#cf9468',e:'#1c1410',w:'#f2f2f2',p:'#b02a34',r:'#d04450',q:'#8a1e28',c:'#e8dcc0',n:'#2f3a5c',m:'#222a44',N:'#3d4a74',b:'#8a6a3a',B:'#5a4220'};
+var HB=['..jhhhhh.','..hhsssss','.khhtwess','..kttlstl','...ttsll.','..cpppq..','..qqpqpq.','..rppppq.','..ppqqsss','..ppqpq..','..cccqq..'];
+SP.hero=[spr(HB.concat(['..nnnm...','..nNmm...','..bbBB...']),HP),spr(HB.concat(['..nnnmm..','.nn..nn..','.bB..bB..']),HP)];
+var BLADE=['#5a4220','#8a6a3a','#e8dcc0','#d9893a','#f0a850','#f0a850','#e79a40','#e79a40','#ffd08a','#ffffff'],GUARD='#e8dcc0';
+var IT=[
+ {n:'Squeaky Toy',k:'duck',s:spr(['..yyy..','.yykyy.','.yyyoo.','..yyy..','yyyyyy.','.yyyyyy','..yyyy.'],{y:'#ffd84a',k:'#222',o:'#ff8a1a'}),t:['#ffd84a','#ffb020']},
+ {n:'Honey Cookie',k:'cookie',s:spr(['..TTT..','.TTcTT.','TTTTTcT','TcTTTTT','TTTcTTT','.TTTTT.','..TTT..'],{T:'#e0aa55',c:'#6a3a1a'}),t:['#e0aa55','#6a3a1a']},
+ {n:'Ruby',k:'gem',s:spr(['..rrr..','.rRRRr.','rRwRRRr','rRRRRRr','.rRRRr.','..rRr..','...r...'],{r:'#b3122c',R:'#ff4a5e',w:'#ffd0d6'}),t:['#ff4a5e','#ffd0d6']},
+ {n:'Glow Sword',k:'sword',s:spr(['.....bw','....bw.','...bw..','.kbw...','..kk...','.hk....','h......'],{b:'#9ad7ff',w:'#fff',k:'#d9a93a',h:'#7a4a22'}),t:['#bfe9ff','#8a5a2a']}
+];
+var LOOT=['gem','cookie','duck','gem','cookie','duck','sword'];
+function itemOf(k){for(var i=0;i<IT.length;i++)if(IT[i].k===k)return IT[i]}
+var MOB={
+ slime:{s:SP.slime,sp:17,hp:3,c:['#5fd64b','#b4ff9c']},
+ golem:{s:SP.golem,sp:9,hp:5,c:['#8a4ae0','#e2b6ff']},
+ scare:{s:SP.scare,sp:11,hp:4,c:['#f39a1f','#e8c45c']},
+ fire:{s:SP.fire,sp:21,hp:2,fly:1,c:['#ff8a1a','#ffe14a']}
+};
+var MOBS=['slime','golem','scare','fire'];
+var DIG=['111101101101111','010110010010111','111001111100111','111001111001111','101101111001001','111100111001111','111100111101111','111001001010010','111101111101111','111101111001111'];
+
+/* ---------- animation registry + loop ---------- */
+var anims=[],raf=0,last=0;
+function reg(a){a.vis=!('IntersectionObserver' in window);anims.push(a);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){a.vis=es[es.length-1].isIntersecting;sync()},{rootMargin:'40px'}).observe(a.el);return a}
+function frame(ts){raf=requestAnimationFrame(frame);if(ts-last<31)return;var dt=Math.min((ts-last)/1000,.1);last=ts;
+  for(var i=0;i<anims.length;i++)if(anims[i].vis)anims[i].step(dt)}
+function sync(){var on=!paused&&!document.hidden&&anims.some(function(a){return a.vis});
+  if(on&&!raf){last=performance.now();raf=requestAnimationFrame(frame)}else if(!on&&raf){cancelAnimationFrame(raf);raf=0}}
+document.addEventListener('visibilitychange',sync);
+
+/* ---------- main scene ---------- */
+var cv=document.getElementById('scene');if(!cv||!cv.getContext)return;
+var box=cv.parentNode,mg=cv.getContext('2d'),g=mg;
+var H=104,GY=78,S=3,W=320,tx=0,CYCLE=100;
+var wc=mk(10,H),wg=wc.getContext('2d'),sc=mk(10,H),scg=sc.getContext('2d');
+var slothImg=new Image();slothImg.onload=function(){draw()};slothImg.src='img/sloth-crawl.png';
+var tod=.16,tt=0,mobs=[],loot=[],parts=[],texts=[],craft=null,spawnT=.6,craftT=7,hero,stars=[],clouds=[];
+var KF=[[0,'#5b6fc8','#ffb98a',.08],[.1,'#4ca2ea','#c4e8ff',0],[.4,'#4ca2ea','#c4e8ff',0],[.5,'#4b3f94','#ff8f5e',.1],[.58,'#1a2050','#4a3a7a',.3],[.66,'#0b1030','#1a2258',.4],[.88,'#0b1030','#1a2258',.4],[.96,'#2a3a80','#8a6fb0',.2],[1,'#5b6fc8','#ffb98a',.08]].map(function(k){return[k[0],hx(k[1]),hx(k[2]),k[3]]});
+var sky=[0,[0,0,0],[0,0,0],0];
+function skyAt(c){for(var i=1;i<KF.length;i++)if(c<=KF[i][0]){var a=KF[i-1],b=KF[i],t=(c-a[0])/(b[0]-a[0]);return[0,mixa(a[1],b[1],t),mixa(a[2],b[2],t),a[3]+(b[3]-a[3])*t]}return KF[0]}
+
+function noise(x,y){var n=Math.sin(x*12.9898+y*78.233)*43758.5453;return n-Math.floor(n)}
+function buildStatic(){
+  sc.width=W;sc.height=H;scg=sc.getContext('2d');var x,y,v;
+  /* ground: grass, dirt, stone with ores */
+  for(x=0;x<W;x++){for(y=GY;y<H;y++){
+    v=noise(x,y);var col,d=y-GY;
+    if(d<2)col=v<.5?'#6cc23f':'#5fb338';
+    else if(d<4)col=v<.5?'#4a9a2c':'#3f8a26';
+    else if(d<16){col=v<.18?'#6e4526':v<.6?'#85582f':'#93633a';if(v>.93)col='#a97a4a'}
+    else{col=v<.2?'#6b6b72':v<.7?'#7d7d84':'#8a8a92';if(v>.985)col='#2a2a30';else if(v>.972)col='#e0a73a';else if(v>.965)col='#ff4a5e'}
+    if(d>=4&&(x%16===0||(d===16&&x%16<9)||(d===9&&x%16>8)))col=d>=16?'#5e5e66':'#5e3b20';
+    scg.fillStyle=col;scg.fillRect(x,y,1,1)}}
+  for(x=0;x<W;x++){v=noise(x,7.7);if(v>.55){scg.fillStyle=v>.8?'#6cc23f':'#4a9a2c';scg.fillRect(x,GY-1,1,1);if(v>.88)scg.fillRect(x,GY-2,1,1)}}
+  /* tree */
+  var tx0=tx;
+  for(y=GY+2;y>GY-46;y--)for(x=tx0-4;x<tx0+4;x++){v=noise(x*3,y);scg.fillStyle=(x===tx0-4||x===tx0+3)?'#4a2e14':(x===tx0-1||x===tx0+1)&&v>.5?'#946236':v<.3?'#5a3a1e':'#7a4f2a';scg.fillRect(x,y,1,1)}
+  for(x=tx0-32;x<tx0-3;x++)for(y=GY-37;y<GY-33;y++){scg.fillStyle=y===GY-37?'#946236':y===GY-34?'#4a2e14':'#7a4f2a';scg.fillRect(x,y-(x<tx0-28?1:0),1,1)}
+  leaf(tx0-36,GY-42,10,6);
+  [[GY-70,12],[GY-64,20],[GY-58,24],[GY-52,22]].forEach(function(r){leaf(tx0-r[1],r[0],r[1]*2,6)});
+}
+function leaf(x0,y0,w,h){for(var x=0;x<w;x++)for(var y=0;y<h;y++){var v=noise(x0+x,y0+y);scg.fillStyle=y===h-1?'#1f6a20':v<.3?'#2f8f2b':v<.8?'#3da535':'#56c147';if(v>.93)scg.fillStyle='#8ae070';scg.fillRect(x0+x,y0+y,1,1)}}
+
+function layout(){
+  var cw=box.clientWidth||320,ns=cw<700?2:cw<1000?3:4,nw=Math.ceil(cw/ns);
+  if(ns===S&&nw===W&&cv.width===W)return;
+  S=ns;W=nw;cv.width=W;cv.height=H;mg=cv.getContext('2d');mg.imageSmoothingEnabled=false;
+  cv.style.width=W*S+'px';cv.style.height=H*S+'px';box.style.height=H*S+'px';
+  wc.width=W;wc.height=H;wg=wc.getContext('2d');wg.imageSmoothingEnabled=false;
+  tx=W-34;buildStatic();
+  stars=[];for(var i=0;i<Math.ceil(W/3.5);i++)stars.push([(R()*W)|0,(R()*(GY-14))|0,R()*6.28,R()<.12]);
+  clouds=[];for(i=0;i<9;i++){var L=i%3;clouds.push({x:R()*(W+80),y:6+L*13+R()*6,w:16+L*7+R()*10,v:2+L*2.6,L:L})}
+  if(hero){hero.x=clamp(hero.x,8,W-8)}
+  draw();
+}
+
+/* ---------- simulation ---------- */
+function newHero(){return{x:W*.35,face:1,sw:0,cd:0,hit:0,tg:null,t:0,wt:0,wx:W*.35,hy:0,vy:0,mv:0}}
+function addPart(x,y,vx,vy,l,c,s,gv){parts.push({x:x,y:y,vx:vx,vy:vy,t:0,l:l,c:c,s:s||1,g:gv==null?200:gv})}
+function burst(x,y,cols,n,sp){for(var i=0;i<n;i++){var a=R()*6.28,v=rnd(.3,1)*sp;addPart(x,y,Math.cos(a)*v,Math.sin(a)*v-sp*.4,rnd(.4,.8),pick(cols),R()<.3?2:1)}}
+function say(t,x,y,c,l){var e=document.createElement('div'),fs=S*4+4;e.className='cap';e.setAttribute('aria-hidden','true');e.textContent=t;e.style.color=c||'#ffe066';e.style.fontSize=fs+'px';box.appendChild(e);texts.push({s:t,el:e,wd:t.length*fs*.52,x:x,y:y,t:0,l:l||1.9})}
+function spawn(type,x,pop){
+  if(mobs.length>=6)return;type=type||pick(MOBS);var d=MOB[type],side=R()<.62?-1:1;
+  var m={type:type,d:d,w:d.s.w,h:d.s.h,x:pop?x:(side<0?-12:W+12),hp:d.hp,hy:pop?(d.fly?16:20):0,vy:0,kb:0,fl:0,t:R()*9,ht:rnd(.1,.6),lane:(R()*4)|0,dir:1};
+  mobs.push(m);if(pop)burst(m.x,GY+3-m.h/2,['#fff','#cfd6e8','#a9b3d6'],10,45);return m}
+function hitMob(m,dir,crit){
+  var dm=crit?2:1;m.hp-=dm;m.fl=.12;m.kb=dir*(crit?120:85);if(!m.d.fly&&m.hy<2)m.vy=55;
+  var top=GY+3+m.lane-m.h-m.hy;texts.push({n:dm,x:m.x,y:top-2,t:0,l:.8,c:crit?'#ffe066':'#fff',z:crit?2:1});
+  burst(m.x,top+m.h/2,[m.d.c[0],m.d.c[1],'#fff'],crit?9:5,60);
+  if(m.hp<=0)kill(m)}
+function kill(m){
+  mobs.splice(mobs.indexOf(m),1);var top=GY+3+m.lane-m.h/2-m.hy;burst(m.x,top,m.d.c.concat(['#fff']),20,85);burst(m.x,top,['#cfd6e8','#a9b3d6'],6,30);
+  var n=1+(R()<.4?1:0);for(var i=0;i<n;i++)loot.push({k:pick(LOOT),x:m.x+rnd(-4,4),y:top+4,vx:rnd(-35,35),vy:-rnd(70,110),t:0,rest:0,age:0,b:0});
+  if(hero.tg===m)hero.tg=null}
+function startCraft(k){
+  if(craft)return;var it=k?itemOf(k):pick(IT);craft={it:it,t:0,x:tx-52,order:shuffle(it.s.px.length)};
+  say('Crafting...',tx-22,GY-30,'#fff',1.2)}
+function shuffle(n){var a=[],i,j,t;for(i=0;i<n;i++)a.push(i);for(i=n-1;i>0;i--){j=(R()*(i+1))|0;t=a[i];a[i]=a[j];a[j]=t}return a}
+function sim(dt){
+  tt+=dt;tod=(tod+dt/CYCLE)%1;
+  spawnT-=dt;if(spawnT<=0){spawnT=rnd(3.2,6.5);if(mobs.length<4)spawn()}
+  craftT-=dt;if(craftT<=0){craftT=rnd(11,17);startCraft()}
+  var i,m,h=hero;
+  /* mobs */
+  for(i=mobs.length-1;i>=0;i--){m=mobs[i];m.t+=dt;if(m.fl>0)m.fl-=dt;
+    var dx=h.x-m.x;m.dir=dx<0?-1:1;var stop=m.w/2+10,mv=0;
+    if(Math.abs(dx)>stop){
+      if(m.type==='slime'){if(m.hy>0)mv=m.d.sp*1.6}else mv=m.d.sp*(m.kb>20?.2:1)}
+    if(mv)for(var o=0;o<mobs.length;o++){var q=mobs[o];if(q!==m&&Math.abs(q.x-h.x)<Math.abs(m.x-h.x)&&(q.x-m.x)*m.dir>0&&Math.abs(q.x-m.x)<(q.w+m.w)/2+2){mv=0;break}}
+    m.x+=m.dir*mv*dt+m.kb*dt;m.kb*=Math.max(0,1-7*dt);if(Math.abs(m.kb)<4)m.kb=0;
+    if(m.d.fly){m.hy=15+Math.sin(m.t*3.3)*3}
+    else{if(m.hy<=0&&m.vy<=0){m.hy=0;m.vy=0;m.ht-=dt;if(m.type==='slime'&&m.ht<=0&&Math.abs(dx)>stop){m.vy=72;m.ht=rnd(.45,.8)}}
+      if(m.hy>0||m.vy>0){m.vy-=290*dt;m.hy+=m.vy*dt;if(m.hy<0){m.hy=0;m.vy=0}}}
+  }
+  /* hero */
+  h.t+=dt;h.cd-=dt;h.mv=0;
+  if(h.hy>0||h.vy>0){h.vy-=300*dt;h.hy+=h.vy*dt;if(h.hy<0){h.hy=0;h.vy=0}}
+  var tg=null,bd=1e9;for(i=0;i<mobs.length;i++){var d2=Math.abs(mobs[i].x-h.x);if(d2<bd&&mobs[i].x>-4&&mobs[i].x<W+4){bd=d2;tg=mobs[i]}}
+  if(h.sw>0){h.sw+=dt;
+    if(!h.hit&&h.sw>=.15){h.hit=1;var t2=h.tg;if(t2&&mobs.indexOf(t2)>=0&&Math.abs(t2.x-h.x)<=t2.w/2+14)hitMob(t2,h.face,R()<.2)}
+    if(h.sw>=.34){h.sw=0;h.cd=.28}}
+  else if(tg){var ddx=tg.x-h.x;h.face=ddx<0?-1:1;
+    if(Math.abs(ddx)>tg.w/2+9){h.x+=h.face*50*dt;h.mv=1}else if(h.cd<=0){h.sw=.001;h.hit=0;h.tg=tg}}
+  else{var lt=null,ld=1e9;for(i=0;i<loot.length;i++)if(loot[i].rest){var d3=Math.abs(loot[i].x-h.x);if(d3<ld){ld=d3;lt=loot[i]}}
+    if(lt){var lx=lt.x-h.x;h.face=lx<0?-1:1;if(Math.abs(lx)>4){h.x+=h.face*52*dt;h.mv=1}else{loot.splice(loot.indexOf(lt),1);var it=itemOf(lt.k);say('+ '+it.n,h.x,GY-26,'#9dff7a',1.5);burst(h.x,GY-4,it.t.concat(['#fff']),8,40);h.vy=70}}
+    else{h.wt-=dt;if(h.wt<=0){h.wt=rnd(2,4.5);h.wx=clamp(W*.38+rnd(-W*.2,W*.14),16,W-70)}
+      var wd=h.wx-h.x;if(Math.abs(wd)>3){h.face=wd<0?-1:1;h.x+=h.face*20*dt;h.mv=1}}}
+  h.x=clamp(h.x,8,W-8);
+  /* loot */
+  for(i=loot.length-1;i>=0;i--){var l=loot[i];l.age+=dt;
+    if(!l.rest){l.vy+=300*dt;l.y+=l.vy*dt;l.x+=l.vx*dt;l.vx*=1-1.5*dt;var gy=GY+5;
+      if(l.y>=gy){l.y=gy;if(l.vy>35){l.vy=-l.vy*.5;l.b++;if(l.k==='duck'&&l.b===1)say('squeak!',l.x,GY-8,'#fff',.8)}else{l.vy=0;l.rest=1}}}
+    if(l.age>16)loot.splice(i,1)}
+  /* craft */
+  if(craft){craft.t+=dt;if(R()<dt*14)addPart(tx-22+rnd(-10,10),GY-18,rnd(-8,8),-rnd(10,30),.6,pick(['#fff','#ffe066',craft.it.t[0]]),1,-20);
+    if(craft.t>=1.7){var c=craft;craft=null;say(c.it.n+' crafted!',c.x,GY-52,'#ffe066',2.6);burst(c.x,GY-14,c.it.t.concat(['#fff','#ffe066']),16,70);
+      loot.push({k:c.it.k,x:c.x,y:GY-7,vx:-rnd(5,20),vy:-80,t:0,rest:0,age:0,b:1})}}
+  /* particles + text */
+  for(i=parts.length-1;i>=0;i--){var p=parts[i];p.t+=dt;p.vy+=p.g*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.t>p.l)parts.splice(i,1)}
+  for(i=texts.length-1;i>=0;i--){var q=texts[i];q.t+=dt;if(q.t>q.l){if(q.el)q.el.remove();texts.splice(i,1)}}
+  if(h.sw>.1&&h.sw<.3&&R()<.7){var a2=swordAng(h.sw/.34);addPart(h.x+h.face*4+Math.sin(a2)*h.face*9,GY-11-Math.cos(a2)*9,0,0,.18,'#fff',1,0)}
+}
+function swordAng(p){var e=1-Math.pow(1-p,2);return(-1.75+3.3*e)}
+
+/* ---------- drawing ---------- */
+function put(s,x,y,flip,sx,sy,fl){
+  var w=Math.round(s.w*(sx||1)),h=Math.round(s.h*(sy||1)),dx=Math.round(x-w/2),dy=Math.round(y-h),im=fl?s.f:s.c;
+  if(flip){g.save();g.translate(dx+w,dy);g.scale(-1,1);g.drawImage(im,0,0,w,h);g.restore()}else g.drawImage(im,dx,dy,w,h)}
+function disc(x,y,r,c){g.fillStyle=c;for(var d=-r;d<=r;d++){var w=Math.floor(Math.sqrt(r*r-d*d));g.fillRect(x-w,y+d,w*2+1,1)}}
+function num(n,x,y,c,z){var s=String(n),i,j,k,w=4*z;x=Math.round(x-(s.length*w-z)/2);y=Math.round(y);
+  for(var pass=0;pass<2;pass++){g.fillStyle=pass?c:'#000';for(i=0;i<s.length;i++){var d=DIG[+s[i]];for(j=0;j<15;j++)if(d[j]==='1')g.fillRect(x+i*w+(j%3)*z+(pass?0:z),y+((j/3)|0)*z+(pass?0:z),z,z)}}}
+function hills(off,sp,base,amp,col){g.fillStyle=col;for(var x=0;x<W+4;x+=4){var X=x+off*sp;var h=base+amp*Math.sin(X*.035)+amp*.6*Math.sin(X*.09+1.7);h=Math.round(h/3)*3;g.fillRect(x,GY-h,4,h+2)}}
+function cloud(x,y,w,c1,c2){x=Math.round(x);y=Math.round(y);g.fillStyle=c1;g.fillRect(x,y+3,w,4);g.fillRect(x+3,y,Math.round(w*.35),4);g.fillRect(x+Math.round(w*.42),y-2,Math.round(w*.3),6);g.fillStyle=c2;g.fillRect(x,y+6,w,1)}
+
+function draw(){
+  if(!W||!cv.width)return;
+  var i,n;sky=skyAt(tod);n=sky[3]/.4;
+  g=mg;g.imageSmoothingEnabled=false;
+  for(var y=0;y<GY+2;y+=3){g.fillStyle=rgb(mixa(sky[1],sky[2],clamp(y/GY,0,1)));g.fillRect(0,y,W,3)}
+  /* stars */
+  var sa=clamp((n-.45)*2,0,1);if(sa>0){for(i=0;i<stars.length;i++){var st=stars[i],tw=Math.sin(tt*2+st[2])>.7?.4:1;g.globalAlpha=sa*tw;g.fillStyle='#fff';g.fillRect(st[0],st[1],1,1);if(st[3]){g.fillRect(st[0]-1,st[1],3,1);g.fillRect(st[0],st[1]-1,1,3)}}g.globalAlpha=1}
+  /* sun and moon */
+  var u=tod<.5?tod*2:(tod-.5)*2,sx=Math.round(-10+u*(W+20)),syy=Math.round(GY-2-Math.sin(u*Math.PI)*(GY-18));
+  if(tod<.5){disc(sx,syy,7,'#ffb020');disc(sx,syy,5,'#ffe066');g.fillStyle='#ffe066';[[-10,0],[10,0],[0,-10],[0,10]].forEach(function(r){g.fillRect(sx+r[0]-1,syy+r[1]-1,2,2)})}
+  else{disc(sx,syy,6,'#dfe5ff');g.fillStyle='#b9c0e6';g.fillRect(sx-3,syy-2,2,2);g.fillRect(sx+1,syy+1,3,2);g.fillRect(sx-1,syy+3,2,1)}
+  /* clouds (night-tinted) */
+  var c1=rgb(mixa([255,255,255],[120,126,176],n)),c2=rgb(mixa([214,226,242],[84,90,140],n));
+  for(i=0;i<clouds.length;i++){var c=clouds[i],cx=((c.x+tt*c.v)%(W+80))-40;cloud(cx,c.y,c.w,c1,c2)}
+  /* world layer */
+  g=wg;wg.clearRect(0,0,W,H);wg.imageSmoothingEnabled=false;
+  hills(tt,1.2,16,7,'#6fae9a');hills(tt,3,7,5,'#4f9a43');
+  g.drawImage(sc,0,0);
+  /* sloth on the branch */
+  var fr=craft?((tt*9)|0)%4:((tt*2.2)|0)%4,sl=Math.round(tx-38),sy=GY-35+(craft?0:(Math.sin(tt*1.6)>.6?1:0));
+  if(slothImg.complete&&slothImg.naturalWidth)g.drawImage(slothImg,fr*32,0,32,24,sl,sy,32,24);
+  /* craft ghost */
+  if(craft){var it=craft.it,pr=craft.t/1.5,cnt=Math.min(it.s.px.length,Math.floor(pr*it.s.px.length)),ph=Math.round(craft.x-7),pv=Math.round(GY-8-14+Math.sin(tt*5)*1);
+    g.fillStyle='rgba(255,255,255,.18)';g.fillRect(ph-1,pv-1,16,16);
+    for(i=0;i<cnt;i++){var px=it.s.px[craft.order[i]];g.fillStyle=px[2];g.fillRect(ph+px[0]*2,pv+px[1]*2,2,2)}}
+  /* entities sorted by lane */
+  var ents=[];mobs.forEach(function(m){ents.push([m.lane,0,m])});ents.push([2,1,hero]);ents.sort(function(a,b){return a[0]-b[0]});
+  loot.forEach(function(l){var s=itemOf(l.k).s,by=Math.round(l.y+(l.rest?Math.sin(tt*4+l.x)*1:0));g.fillStyle='rgba(0,0,0,.25)';g.fillRect(Math.round(l.x-3),GY+6,6,1);
+    if(l.age>13&&((tt*8)|0)%2)return;put(s,l.x,by,0);if(l.rest&&((tt*1.3+l.x)%1)<.08){g.fillStyle='#fff';g.fillRect(Math.round(l.x)+1,by-6,1,1)}});
+  ents.forEach(function(e){
+    if(e[1]){drawHero()}else{var m=e[2],fy=GY+3+m.lane,sqx=1,sqy=1,off=0;
+      g.fillStyle='rgba(0,0,0,.25)';g.fillRect(Math.round(m.x-m.w/2+1),fy,m.w-2,1);
+      if(m.type==='slime'){if(m.hy>0){sqx=.92;sqy=1.12}else if(m.ht>.35){sqx=1.12;sqy=.88}}
+      else if(!m.d.fly&&Math.abs(m.kb)<5&&m.hy<1)off=Math.abs(Math.sin(m.t*7))>.5?1:0;
+      var fh=(m.d.fly?(((tt*10)|0)%2):0);
+      put(m.d.s,m.x,fy-m.hy-off,m.dir<0,sqx,sqy+(fh?.06:0),m.fl>0);
+      if(m.hp<m.d.hp&&m.hp>0){var bw=10,bx=Math.round(m.x-bw/2),by2=Math.round(fy-m.hy-m.h*sqy-5);g.fillStyle='#000';g.fillRect(bx-1,by2-1,bw+2,4);g.fillStyle='#a33';g.fillRect(bx,by2,bw,2);g.fillStyle='#7be04e';g.fillRect(bx,by2,Math.round(bw*m.hp/m.d.hp),2)}}});
+  /* particles */
+  parts.forEach(function(p){g.globalAlpha=clamp(1.6-p.t/p.l*1.6+.1,0,1);g.fillStyle=p.c;g.fillRect(Math.round(p.x),Math.round(p.y),p.s,p.s)});g.globalAlpha=1;
+  /* night shade over the world only */
+  if(n>0){g.globalCompositeOperation='source-atop';g.fillStyle='rgba(10,14,60,'+(sky[3]*.95).toFixed(2)+')';g.fillRect(0,0,W,H);g.globalCompositeOperation='source-over'}
+  g=mg;g.drawImage(wc,0,0);
+  /* fire glow */
+  mobs.forEach(function(m){if(m.type==='fire'){var fy=Math.round(GY+3+m.lane-m.hy-4),a=.05+n*.12;disc(Math.round(m.x),fy,15,'rgba(255,150,40,'+a+')');disc(Math.round(m.x),fy,9,'rgba(255,190,70,'+a+')')}});
+  /* numbers and captions */
+  texts.forEach(function(q){var k=q.t/q.l,yy=q.y-(q.n?k*10:k*8);g.globalAlpha=k>.75?clamp((1-k)*4,0,1):1;if(q.n)num(q.n,q.x,yy,q.c,q.z);else if(q.el){var cpx=clamp(q.x*S,q.wd/2+4,W*S-q.wd/2-4);q.el.style.transform='translate('+cpx.toFixed(1)+'px,'+(yy*S).toFixed(1)+'px) translate(-50%,-100%)';q.el.style.opacity=g.globalAlpha}});g.globalAlpha=1;
+}
+function drawHero(){
+  var h=hero,fl=h.face<0,fr=h.mv?(((h.t*8)|0)%2):0,bob=h.mv&&fr?1:0,by=GY+4-h.hy-bob;
+  g.fillStyle='rgba(0,0,0,.25)';g.fillRect(Math.round(h.x-4),GY+4,8,1);
+  put(SP.hero[fr],h.x,by,fl);
+  var hxp=Math.round(h.x+h.face*4),hyp=Math.round(by-6),a=h.sw>0?swordAng(h.sw/.34):.45+Math.sin(h.t*3)*.05;
+  for(var i=0;i<10;i++){var px=Math.round(hxp+Math.sin(a)*h.face*i),py=Math.round(hyp-Math.cos(a)*i);g.fillStyle=BLADE[i];g.fillRect(px,py,1,1);
+    if(i===2){var ox=Math.round(Math.cos(a)*h.face),oy=Math.round(Math.sin(a));g.fillStyle=GUARD;g.fillRect(px+ox,py+oy,1,1);g.fillRect(px-ox,py-oy,1,1)}}
+  if(h.sw>0)for(var j=3;j<9;j++){g.fillStyle='rgba(255,255,255,.55)';g.fillRect(Math.round(hxp+Math.sin(a-.22)*h.face*j),Math.round(hyp-Math.cos(a-.22)*j),1,1)}
+}
+
+/* scene animation */
+var scene=reg({el:cv,step:function(dt){sim(dt);draw()}});
+function nowDraw(){if(paused)draw()}
+/* input */
+function pos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width*W,(e.clientY-r.top)/r.height*H]}
+cv.addEventListener('pointerdown',function(e){
+  var p=pos(e),i,m;
+  for(i=mobs.length-1;i>=0;i--){m=mobs[i];var fy=GY+3+m.lane;if(Math.abs(p[0]-m.x)<=m.w/2+3&&p[1]>=fy-m.h-m.hy-3&&p[1]<=fy+3){hitMob(m,p[0]<m.x?1:-1,R()<.2);nowDraw();return}}
+  if(p[0]>tx-40&&p[0]<tx-4&&p[1]>GY-38&&p[1]<GY-8){startCraft();nowDraw();return}
+  if(Math.abs(p[0]-hero.x)<7&&p[1]>GY-14&&p[1]<GY+5&&!hero.hy){hero.vy=90;nowDraw();return}
+  if(p[1]>=GY-6){spawn(null,clamp(p[0],6,W-6),true);nowDraw()}
+});
+var bs=document.getElementById('scene-summon'),bp=document.getElementById('scene-pause');
+function setLabel(){if(bp)bp.textContent=paused?'Play animation':'Pause animation'}
+if(bs)bs.onclick=function(){if(!spawn(null,rnd(20,W-60),true)){}nowDraw()};
+if(bp)bp.onclick=function(){paused=!paused;setLabel();sync()};
+
+/* ---------- small loops elsewhere ---------- */
+var mini=document.querySelector('canvas.mini'),mt=.3;
+if(mini){var mx=mini.getContext('2d');mx.imageSmoothingEnabled=false;
+  var drawMini=function(){mx.clearRect(0,0,16,16);var k=(mt%1.5)/1.5,jh=Math.max(0,Math.sin(Math.min(1,k/.7)*Math.PI))*5,sq=k>.7?.85:(jh>0?1.1:1),sw=k>.7?1.12:(jh>0?.92:1),w=Math.round(12*sw),h=Math.round(10*sq);
+    mx.fillStyle='rgba(0,0,0,.25)';mx.fillRect(4,14,8,1);mx.drawImage(SP.slime.c,Math.round(8-w/2),Math.round(14-jh-h),w,h)};
+  reg({el:mini,step:function(dt){mt+=dt;drawMini()}});drawMini();
+}
+var cc=document.getElementById('craft'),ct=5.6,ci=0;
+if(cc){var cx=cc.getContext('2d');cx.imageSmoothingEnabled=false;
+  /* real 16x16 items drawn by Sloth-Mod's art engine, shown at exact 2x/3x pixels */
+  var IMG={};['gem','stick','ingot','star','sword','blade','lamp'].forEach(function(k){var im=new Image();im.src='img/engine-'+k+'.png';IMG[k]=im});
+  var REC=[{c:{1:'gem',4:'gem',7:'stick'},o:'sword'},{c:{1:'ingot',4:'ingot',7:'stick'},o:'blade'},{c:{1:'gem',3:'gem',4:'star',5:'gem',7:'gem'},o:'lamp'}];
+  var ok=function(im){return im&&im.complete&&im.naturalWidth>0};
+  var slot=function(x,y,w,h){cx.fillStyle='#373737';cx.fillRect(x,y,w,h);cx.fillStyle='#fff';cx.fillRect(x+2,y+2,w-2,h-2);cx.fillStyle='#8b8b8b';cx.fillRect(x+2,y+2,w-4,h-4)};
+  var drawCraft=function(){cx.clearRect(0,0,336,132);cx.fillStyle='#c6c6c6';cx.fillRect(0,0,336,132);cx.fillStyle='#fff';cx.fillRect(0,0,336,3);cx.fillRect(0,0,3,132);cx.fillStyle='#7b7b7b';cx.fillRect(0,129,336,3);cx.fillRect(333,0,3,132);
+    var r=REC[ci%REC.length],t=ct,i,n=0,keys=Object.keys(r.c);
+    for(i=0;i<9;i++){var sx=18+(i%3)*36,sy=12+((i/3)|0)*36;slot(sx,sy,36,36);
+      var k=r.c[i];if(k&&t<6.4){if(t>.4+n*.45&&ok(IMG[k]))cx.drawImage(IMG[k],sx+2,sy+2,32,32);n++}}
+    var ap=clamp((t-3.2)/1,0,1),al=Math.round(ap*42);cx.fillStyle='#555';cx.fillRect(140,63,42,6);cx.fillRect(170,54,6,24);cx.fillRect(176,57,6,18);
+    cx.fillStyle='#ffe066';cx.fillRect(140,63,al,6);if(ap>=1){cx.fillRect(170,54,6,24);cx.fillRect(176,57,6,18)}
+    slot(214,38,56,56);
+    if(t>4.3&&t<6.8&&ok(IMG[r.o])){var g0=clamp((t-4.3)/.35,0,1),sz=Math.max(16,Math.round(48*g0/16)*16);cx.drawImage(IMG[r.o],242-sz/2,66-sz/2,sz,sz);
+      if(t>5.3&&t<5.9){cx.fillStyle='#fff';[[220,44],[262,46],[258,86],[219,84]].forEach(function(s,j){if(((t*12)|0)%2===j%2)cx.fillRect(s[0],s[1],4,4)})}}};
+  reg({el:cc,step:function(dt){ct+=dt;if(ct>7.2){ct=0;ci++}drawCraft()}});drawCraft();
+  window.addEventListener('load',drawCraft);
+}
+
+/* ---------- boot ---------- */
+hero=newHero();layout();
+for(var k=0;k<60;k++)sim(.033);
+if(reduce){mobs.length=0;parts.length=0;texts.length=0;spawn('slime',W*.62,true);spawn('golem',W*.2,true);hero.x=W*.45;hero.face=1;hero.sw=.18;hero.hit=1;tod=.16;for(k=0;k<14;k++){var s0=hero.sw;sim(.033);hero.sw=s0;hero.x=W*.45}}
+setLabel();draw();sync();
+if('ResizeObserver' in window)new ResizeObserver(function(){layout()}).observe(box);else window.addEventListener('resize',layout);
+window.slothScene={time:function(c){tod=c;draw()},summon:function(t,x){spawn(t,x==null?W*.55:x,true);draw()},craft:function(){if(paused)return false;startCraft();draw();return true},advance:function(s){for(var i=0;i<s*30;i++)sim(1/30);draw()}};
+})();
+</script>
+<script src="fun.js" defer></script>
+<script src="item3d.js" defer></script>
+</body>
+</html>

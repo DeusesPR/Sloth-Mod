@@ -1,0 +1,36 @@
+name: Mod idea or feature request
+description: Suggest something Sloth-Mod should be able to make, or a way to make it better
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas for the "try one of these" cards, new ready-made mods, new kinds of mods the AI should handle well, and app features are all welcome.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of idea is this?
+      options:
+        - A mod idea (for the home screen or the ready-made mods)
+        - Something the AI should handle better
+        - A new app feature
+        - A change to how something works today
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Describe it in plain English
+      description: For a mod idea, write it the way you would type it into Sloth-Mod.
+      placeholder: "A lantern that follows me around and lights up caves..."
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it be useful or fun?
+  - type: input
+    id: version
+    attributes:
+      label: Minecraft version and loader (if it matters)
+      placeholder: "1.21.1 / NeoForge"
