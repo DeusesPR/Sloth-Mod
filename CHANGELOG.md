@@ -2,6 +2,18 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.1.2
+
+A small update: drops on the newest Minecraft version, and a few fixes to how the AI makes things.
+
+### Fixed
+- **Drops work on Minecraft 26.3.** Custom mobs and custom loot give the amounts and chances you asked for; the newest game version changed how drops are written.
+- **Fewer wasted AI repair rounds** (recipes that equal one of the game's own, small slips while painting, more colour words, free sound descriptions).
+- **About window** shows the new terms and the open-source notices.
+
+### Terms
+- Sloth-Mod stays free to use. From 1.1.2 the source code is no longer published; see LICENSE. Versions up to 1.1.1 keep their MIT license.
+
 ## 1.1.1
 
 Fixes for what showed up when 1.1.0 was played for real: staffs that did nothing on a quick click, custom keys on Forge 1.20.1, ideas that kept shuffling, and a Simple view that showed items twice and had no guide.
