@@ -269,6 +269,24 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 .chest a:hover{color:var(--yellow)}
 @media (max-width:420px){.chest{padding-left:14px;padding-right:14px}.chest img{margin-left:22px}.chest:before{left:14px}.chest:after{right:14px}.chest .cb{margin-right:18px}}
 @media (prefers-reduced-motion:reduce){.hero .sloth.dance{animation:none}#xp.up .xp-track i{animation:none}.toast{transform:none;opacity:0;transition:opacity .01s}.toast.in{opacity:1}}
+
+/* direction banner and section */
+.banner{display:block;background:#2a2112;border-bottom:4px solid #000;color:var(--ink);text-align:center;text-decoration:none;padding:10px 16px;font-size:1rem}
+.banner b{font-family:var(--px);color:var(--yellow);margin-right:8px}
+.banner u{text-decoration:underline;text-underline-offset:3px;color:#9dff7a}
+.banner:hover{background:#3a2e18;color:var(--ink)}
+#direction h3{color:#1b1b1b}
+.dir-cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin:0 0 26px}
+.dir-box{background:var(--panel);color:var(--panel-ink);padding:18px;border:4px solid #000;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #7b7b7b,6px 6px 0 rgba(0,0,0,.5)}
+.dir-box h3{font-size:1.15rem;margin:0 0 .4em}
+.dir-box p,.dir-box li{color:var(--panel-dim);font-size:.97rem;line-height:1.5;margin:0 0 .6em}
+.dir-box ul{margin:0;padding-left:1.2em}
+.dir-box a{color:#0b3d91;text-decoration:underline}
+.dir-box .tag{display:inline-block;background:#000;color:#ffe066;font:400 .8rem var(--px);padding:2px 8px;margin-bottom:8px}
+.dir-box.soon{box-shadow:inset 4px 4px 0 #ffe066,inset -4px -4px 0 #c9a200,6px 6px 0 rgba(0,0,0,.5)}
+.dir-next{margin:0;padding:0;list-style:none;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:n}
+.dir-next li{counter-increment:n;background:#000;border:3px solid #555;padding:12px 14px 12px 50px;position:relative;color:var(--ink);line-height:1.45}
+.dir-next li:before{content:counter(n);position:absolute;left:10px;top:10px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:#ffe066;color:#2a2000;font:700 1rem var(--px);border:3px solid #000}
 </style>
 </head>
 <body>
@@ -281,6 +299,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
   <nav class="hotbar" aria-label="Sections">
     <a class="brand" href="#top"><img src="img/sloth.png" width="32" height="32" alt=""><span>Sloth-Mod</span></a>
     <button class="slot-nav snd" id="snd" type="button" aria-pressed="false" aria-label="Sound effects"><img src="img/ico-note.png" width="24" height="24" alt="">Sound<i class="n" id="snd-n">off</i></button>
+    <a class="slot-nav" href="#direction"><img src="img/ico-castle.png" width="24" height="24" alt="">Direction</a>
     <a class="slot-nav" href="#make"><img src="img/ico-sword.png" width="24" height="24" alt="">Make<i class="n">1</i></a>
     <a class="slot-nav" href="#how"><img src="img/ico-book.png" width="24" height="24" alt="">How<i class="n">2</i></a>
     <a class="slot-nav" href="#gallery"><img src="img/ico-magnifier.png" width="24" height="24" alt="">Look<i class="n">3</i></a>
@@ -296,6 +315,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 </div>
 
 <main id="main">
+<a class="banner" href="#direction"><b>Where Sloth-Mod is going.</b> We are growing from "mods from one sentence" into a place to shape your own Minecraft experiences. <u>Read the update</u></a>
 <header class="hero dirt" id="top">
   <div class="wrap">
     <img class="sloth" src="img/sloth.png" width="112" height="112" alt="Pixel-art sloth, the Sloth-Mod mascot">
@@ -329,6 +349,59 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
   </div>
 </header>
 <div class="edge" aria-hidden="true"></div>
+
+<section id="direction" class="planks">
+  <div class="wrap">
+    <h2>Where Sloth-Mod is going</h2>
+    <p class="lede">A short, honest update for everyone who has tried Sloth-Mod or is about to. Nothing you use today is going away. We just want you to know where we are headed, and what is real today and what is not.</p>
+    <div class="dir-cols">
+      <div class="dir-box">
+        <h3>What Sloth-Mod is today</h3>
+        <p>You describe a mod in plain English, and Sloth-Mod plans it, builds it and gets it ready for you to test in Minecraft.</p>
+        <p>Every mod is built for real with Minecraft's own tools and started on a real Minecraft server before you see it, and build problems are fixed along the way. Nothing is kept until you have tried it and say so.</p>
+        <p><strong>Coming in the next update:</strong> we learned that "describe it and it appears" works best when the app does the hard parts itself, so the next update rebuilds the engine around ready-made, tested building blocks. The goal is that mods from cheap and free AI come out working more often.</p>
+      </div>
+      <div class="dir-box soon">
+        <span class="tag">WHERE WE ARE HEADING, NOT AVAILABLE TODAY</span>
+        <h3>A place to make your own Minecraft experiences</h3>
+        <p>One sentence is a great start, but it is not the whole story. Sloth-Mod is becoming a place where you describe an idea and then shape every part of it yourself, without writing code:</p>
+        <ul>
+          <li>tweak how creatures move and act</li>
+          <li>adjust items and effects with sliders</li>
+          <li>build campaigns with missions, quests and characters</li>
+          <li>add cutscenes and dialogue</li>
+        </ul>
+        <p>We are building this step by step. None of the list above is in the app today, and we will say so plainly in the app and here when each piece arrives.</p>
+      </div>
+    </div>
+    <div class="dir-cols">
+      <div class="dir-box">
+        <h3>What stays the same</h3>
+        <ul>
+          <li><strong>Free.</strong> No accounts, no tracking.</li>
+          <li><strong>Windows</strong>, installed for your user only.</li>
+          <li><strong>Cheap or free AI.</strong> Cloud AIs with free tiers, or an AI running on your own PC.</li>
+          <li><strong>Modpack-friendly.</strong> Before a new mod joins your pack, the app can check it on a throwaway server together with the pack's mods.</li>
+          <li><strong>Safety checks</strong> on everything the AI writes, before every build.</li>
+        </ul>
+      </div>
+      <div class="dir-box">
+        <h3>If you use Sloth-Mod today</h3>
+        <p>Nothing breaks. Your mods, settings and keys stay where they are, and updates keep arriving through the app's own updater.</p>
+        <p>Your feedback shapes this. Tell us what you would like to make: join the <a href="https://github.com/DeusesPR/Sloth-Mod/discussions">Community discussions</a>, or press <em>Report a problem</em> in the app (Settings) when something goes wrong.</p>
+      </div>
+    </div>
+    <h3 style="color:var(--yellow);text-shadow:2px 2px 0 #000;font-size:1.4rem;margin:0 0 14px">What's next</h3>
+    <ol class="dir-next">
+      <li>Make mods from one sentence look and play better in the real game.</li>
+      <li>Let you tweak creatures, items and effects after the first version is made.</li>
+      <li>Missions, quests and characters you can put together yourself.</li>
+      <li>Cutscenes and dialogue.</li>
+      <li>Keep making it easier on cheap and free AI.</li>
+    </ol>
+    <p class="small">No dates, on purpose. We would rather tell you when something is ready than promise it early.</p>
+  </div>
+</section>
 
 <section id="make" class="stone">
   <div class="wrap">
@@ -439,7 +512,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
       <figure><div class="scroll"><img class="shot px" src="img/showcase/sheet-blocks.png" width="2064" height="444" loading="lazy" decoding="async" alt="A sheet of block textures drawn by the engine, side and top of each: stone, wood, metals, crystal, wool, brick, ore, lava, water and more."></div><figcaption>Block materials, side and top. They tile without seams.</figcaption></figure>
     </div>
     <h3 class="sh" style="margin-top:34px">In the game</h3>
-    <p>Real screenshots from Minecraft, taken by an automated camera test. The same small test mod was started on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars. This was a robot test, not a person playing, and it is not a finished mod.</p>
+    <p>Real screenshots from Minecraft of the same small test mod on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars. It is a test mod, not a finished one.</p>
     <ul class="clips">
       <li><figure><img src="img/showcase/ingame-fabric-26.3.png" width="854" height="480" loading="lazy" decoding="async" alt="Minecraft on Fabric 26.3: a row of blocks, a green flying creature with purple wings, a vehicle, a stone boss with a purple boss bar, and stamina and mana bars."><figcaption>Fabric, Minecraft 26.3</figcaption></figure></li>
       <li><figure><img src="img/showcase/ingame-neoforge-1.21.1.png" width="854" height="480" loading="lazy" decoding="async" alt="The same test mod on NeoForge 1.21.1."><figcaption>NeoForge, Minecraft 1.21.1</figcaption></figure></li>
