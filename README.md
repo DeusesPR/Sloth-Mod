@@ -60,7 +60,7 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
 
 ### In the game
 
-Real screenshots from Minecraft, taken by an automated camera test (not by a person playing). The same small test mod was started on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars.
+Real screenshots from Minecraft of the same small test mod on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars.
 
 <p align="center">
 <img src="docs/img/showcase/ingame-fabric-26.3.png" width="854" alt="Minecraft on Fabric 26.3: a row of blocks, a green flying creature with purple wings, a vehicle, a stone boss with a purple boss bar, and stamina and mana bars."><br>
@@ -132,6 +132,16 @@ Your AI provider may charge you; Gemini and Mistral have free tiers, OpenRouter 
 2. Windows SmartScreen will warn ("Windows protected your PC") because the installer is not code-signed yet. Click **More info**, then **Run anyway**. Only do this for an installer from this repository's Releases page.
 
 You need Windows 10 or 11 (64-bit), about 4 GB of free disk space, internet for the first setup, and Minecraft Java Edition to play what you make. The app updates itself and keeps your mods, settings and keys.
+
+## Where Sloth-Mod is going
+
+Sloth-Mod today turns a sentence into a mod that is built for real, started on a real Minecraft server and ready for you to try, with problems fixed along the way. Coming in the next update: we learned that this works best when the app does the hard parts itself, so the engine is being rebuilt around ready-made, tested building blocks, to make mods from cheap and free AI come out working more often.
+
+Where we are heading (not available today, and built step by step): a place to make your own Minecraft experiences. Describe an idea, then shape every part yourself without code: how creatures move and act, items and effects with sliders, campaigns with missions, quests and characters, cutscenes and dialogue.
+
+What stays: free, Windows, works with cheap or free AI (including AI on your own PC), a compatibility check against your modpack, and safety checks on AI-written code. If you use Sloth-Mod today, nothing breaks and updates keep coming through the app. Tell us what you want to make in the [Discussions](https://github.com/DeusesPR/Sloth-Mod/discussions), or use **Report a problem** in the app.
+
+What's next, in order, no dates: better look and play for one-sentence mods; tweaking creatures, items and effects afterwards; missions, quests and characters; cutscenes and dialogue; easier on cheap and free AI.
 
 ## Status
 
@@ -205,7 +215,7 @@ Longer answers are on the [website](https://deusespr.github.io/Sloth-Mod/#faq).
 
 <br>
 
-- Tested on a real Windows PC with a real AI (DeepSeek): a mod made from one sentence was built, checked on a test server and played in Minecraft (Fabric 26.3), plus quick edits, Undo and Share. Every supported loader and version is also built for real by an automated end-to-end test.
+- Tested on a real Windows PC with a real AI (DeepSeek): a mod made from one sentence was built, checked on a test server and played in Minecraft (Fabric 26.3), plus quick edits, Undo and Share. Every supported loader and version is also built for real before each release.
 - 1.1: the new art, sound engine, wearables, vehicles, guns and animations are built for real on all 10 supported versions with a test server start, and the game window is checked on Fabric, NeoForge and Forge. The newest additions are still being fine-tuned in real play.
 - "Sign in with Grok" is experimental and off by default (Settings → Experimental). It signs in with the identity of xAI's own Grok CLI, which may be against xAI's terms; xAI can block it or act on your account. You must accept a warning first, and an xAI API key is the supported way.
 - The installer is not code-signed.
