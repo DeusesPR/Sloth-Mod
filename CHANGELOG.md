@@ -2,6 +2,62 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.2.0
+
+The biggest update so far: far more things you can ask for, mods that are tried out before you see them, and a lot of safety work.
+
+New building blocks, effects and the checks that go with them are made for Minecraft 26.3 (Fabric) only. Older game versions keep what they had and say so in plain words when something is not available there.
+
+### New things you can ask for
+- **Block families and furniture.** Stairs, slabs, walls, doors and fences from one block, shaped blocks whose hit box matches how they look, and furniture.
+- **Hands-on stations and gestures.** Cutting boards, stacking tables, pans, stirring pots and other things you use with the mouse.
+- **Windows, storage and backpacks.** Chests and machines with their own window, backpacks and trade screens.
+- **Crops, feasts and animals.** Crops, meals, and tameable, breedable creatures with different looks.
+- **Wearable gadgets.** A jetpack with a fuel bar, a glider, a double jump, an item that pulls things to you, and goggles.
+- **Nightly invasions.** Waves of mobs that walk toward the players each night, with a boss bar, a mini boss and a night counter.
+- **Dragons that match their element.** A fire dragon is red and orange, an ice dragon pale blue, and its spawn egg matches.
+- **New recipe types and trades.** Smoking, campfire, stonecutting and smithing recipes, fuel items, and villager trades.
+- **Picture to pixel art.** Turn your own picture into game art. A button next to the idea box shows how to use Windows voice typing (Win + H).
+- **Characters that talk back.** Experimental: switch it on in Settings first (it is off by default). Characters inside your mod answer using your own AI key.
+- **Open libraries.** Mods can use well-known libraries; the app installs them next to your mod and tells you which ones.
+- **Add a mod to another pack.** Copy a mod you made into a different game profile.
+- **How players get things in survival.** New mods get extra ways to obtain what you make (a crafting recipe, loot, ore in the world, a trade) and the guide lists them. You can switch each one off. Mods made with an older version are not changed unless you switch something on in the mod's guide or Edit panel.
+
+### Better looking and moving creatures, items and effects
+- Creatures have real bodies, new walk, fly and swim motions, better faces and cleaner colours.
+- Item and block art is cleaner, items can have 3D models, and swords, staffs and guns get hit, trail, charge and glow effects. Guns shoot bullets you can see.
+- Behaviour tuning: change how a creature acts in the Edit panel without asking the AI.
+
+### Your mod is tried out before you see it
+- Each mod is started in a real Minecraft server before you see it, and what you asked for is tried out there: items are used, blocks are placed and clicked, and creatures are spawned and hit. Recipes that do not load are caught. Problems are fixed first or told to you plainly.
+- Generated files get a quick compile check and loot tables are written in the exact shape the newest game version expects, so fewer repair rounds are needed.
+- The guide says only what the mod really does, and results say plainly what was "Not built".
+
+### Big projects
+- **Fixed: earlier steps keep their files.** A repair in a later step of a Big project could delete files written by steps that were already finished. That no longer happens, and the "class exists" check accepts full class names.
+
+### Safer, more private
+- **Your AI key is never put into a shared modpack.** Exports leave out secrets by name and by content.
+- **Safer test runs.** Before every test run the build files are checked. For a build that is waiting for your test they are put back to what Sloth-Mod wrote, again after the game closes, even when you cancel; for a saved mod a changed build file stops the run.
+- A stricter check of the code the AI writes, and clearer privacy and licence texts: every online address the app uses is listed, and the open libraries it installs are credited.
+
+### Also
+- Translation of your mod into other languages and "explain this file" in plain words.
+- Faster feedback while the AI works, smaller prompts that suit smaller AI models, and a per-mod theme.
+
+### Still being polished
+- Some new parts were built and started on a test server but have not been played by many people yet: spells and tool tiers, kingdoms and quests, seats, "Check it in the game for me", test with a friend, live reload, backups to your own GitHub, datapack and resource pack export, and the modpack builder. If something acts up, use **Report a problem**.
+- New building blocks and in-game checks are for Minecraft 26.3 on Fabric first; NeoForge and Forge follow.
+- Dragons walk and look right; flying, riding and fire breath are coming next.
+- The installer is not code-signed yet: Windows SmartScreen shows a warning ("More info", then "Run anyway").
+
+### Coming in later updates (a small sneak peek)
+- Dragons you can ride, that fly and breathe fire.
+- Changing anything in your mod yourself, card by card, without asking the AI.
+
+### Update
+Already on 1.1.3: Sloth-Mod offers the update on start (Settings, Updates, Check for updates). Press **Update now**. Your projects, settings and keys stay.
+
 ## 1.1.3
 
 Guns now shoot bullets you can see, and the setup questions fit what you typed.

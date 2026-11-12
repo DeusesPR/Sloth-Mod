@@ -128,7 +128,7 @@ Your AI provider may charge you; Gemini and Mistral have free tiers, OpenRouter 
 
 ## Install
 
-1. Download [`Sloth-Mod_1.1.3_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.1.3/Sloth-Mod_1.1.3_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
+1. Download [`Sloth-Mod_1.2.0_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.2.0/Sloth-Mod_1.2.0_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
 2. Windows SmartScreen will warn ("Windows protected your PC") because the installer is not code-signed yet. Click **More info**, then **Run anyway**. Only do this for an installer from this repository's Releases page.
 
 You need Windows 10 or 11 (64-bit), about 4 GB of free disk space, internet for the first setup, and Minecraft Java Edition to play what you make. The app updates itself and keeps your mods, settings and keys.
@@ -145,7 +145,7 @@ What's next, in order, no dates: better look and play for one-sentence mods; twe
 
 ## Status
 
-**What works in this version (1.1.3):** mods are built with real Gradle and loaded by a real test server on all 10 supported Minecraft/loader versions; the game window opens and shows a test mod on Fabric 26.3, NeoForge 1.21.1 and Forge 1.20.1; staffs and wands answer a quick click and charge when held; custom keys work on Forge 1.20.1; the sound maker, Minecraft's own sounds and "Use my own sound", the Edit panel, the pixel editor and the Blockbench export/import work.
+**What works in this version (1.2.0):** mods are built with real Gradle and loaded by a real test server on all 10 supported Minecraft/loader versions; each new mod is started and tried out on a real server before you see it; the game window opens and shows a test mod on Fabric 26.3, NeoForge 1.21.1 and Forge 1.20.1; staffs and wands answer a quick click and charge when held; custom keys work on Forge 1.20.1; the sound maker, Minecraft's own sounds and "Use my own sound", the Edit panel, the pixel editor and the Blockbench export/import work.
 
 **Still being polished:** the newest additions (guns, vehicles, wearables, new animations and sounds) are still being fine-tuned in real play. The safety check is a strong guardrail, not a guarantee: only play mods you trust. The installer is not code-signed yet, so Windows SmartScreen shows a warning.
 
