@@ -41,17 +41,16 @@ New building blocks, effects and the checks that go with them are made for Minec
 - Behaviour tuning: change how a creature acts in the Edit panel without asking the AI.
 
 ### Your mod is tried out before you see it
-- Each mod is started in a real Minecraft server before you see it, and what you asked for is tried out there: items are used, blocks are placed and clicked, and creatures are spawned and hit. Recipes that do not load are caught. Problems are fixed first or told to you plainly.
-- Generated files get a quick compile check and loot tables are written in the exact shape the newest game version expects, so fewer repair rounds are needed.
-- The guide says only what the mod really does, and results say plainly what was "Not built".
+- Every mod is tried out in the game before you see it, and problems are fixed first or told to you plainly.
+- The guide says only what the mod really does.
 
 ### Big projects
-- **Fixed: earlier steps keep their files.** A repair in a later step of a Big project could delete files written by steps that were already finished. That no longer happens, and the "class exists" check accepts full class names.
+- Fixed: a later step of a Big project could remove work from earlier steps.
 
 ### Safer, more private
-- **Your AI key is never put into a shared modpack.** Exports leave out secrets by name and by content.
-- **Safer test runs.** Before every test run the build files are checked. For a build that is waiting for your test they are put back to what Sloth-Mod wrote, again after the game closes, even when you cancel; for a saved mod a changed build file stops the run.
-- A stricter check of the code the AI writes, and clearer privacy and licence texts: every online address the app uses is listed, and the open libraries it installs are credited.
+- Your AI key is never put into a shared modpack.
+- Safer test runs and a stricter check of the code the AI writes.
+- Clearer privacy and licence texts.
 
 ### Also
 - Translation of your mod into other languages and "explain this file" in plain words.
