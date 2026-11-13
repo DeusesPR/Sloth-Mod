@@ -11,7 +11,7 @@ var box=document.getElementById('c3d');
 if(box){(function(){
   var cv=box.querySelector('canvas.view'),g=cv&&cv.getContext&&cv.getContext('2d');if(!g)return;
   var W=cv.width,H=cv.height,yaw=-.75,pitch=.28,flap=!reduce,spin=!reduce,drag=null,vis=false,run=false,last=0,T=0;
-  var data=null,skin=null,bones=null,faces=null,R=100,ctr=[0,30,0],LIGHT=[-.4,.8,.45];
+  var NS=8,shades=[],data=null,skin=null,bones=null,faces=null,R=100,ctr=[0,30,0],LIGHT=[-.4,.8,.45];
   var bFlap=box.querySelector('[data-flap]'),bSpin=box.querySelector('[data-spin]');
 
   /* tiny 4x3 matrices: [r00 r01 r02 r10 r11 r12 r20 r21 r22 tx ty tz] */
@@ -28,23 +28,33 @@ if(box){(function(){
   function an(m,n){return[m[0]*n[0]+m[1]*n[1]+m[2]*n[2],m[3]*n[0]+m[4]*n[1]+m[5]*n[2],m[6]*n[0]+m[7]*n[1]+m[8]*n[2]]}
   var D=Math.PI/180;
 
-  /* the pose at time t (seconds): rest pose plus a wing flap and a slow tail sway */
+  /* the pose at time t (seconds): a steady flying beat. The wing angles follow the game's flying pose
+     (arm, forearm and hand each lag a little behind the one before; the membranes shrink on the up stroke). */
+  function sm(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)}
   function pose(t){
-    var w=[],i,b,n,a,f=flap?1:0,s=Math.sin(t*5.2),extra=[0,0,0];
+    var w=[],i,b,n,f=1,ph=t*6.9,sn=Math.sin(ph),cs=Math.cos(ph),amp=.6;
+    var up=Math.pow(Math.max(0,cs),1.5),
+      aRz=-(.1+amp*sn),aRy=-(.26+.18*up),aRx=.24*-cs,fRz=-(amp*.42*-Math.cos(ph-.25)),fRy=.42+.4*up,
+      hRz=-(amp*.52*-Math.cos(ph-.7)),hRy=-(.2+.2*up),hRx=.1*-Math.cos(ph-.5),szF=1-.14*up,
+      wsx=Math.max(.001,Math.min(2.8,Math.tan(Math.min(fRy,1.2))/.4663));
     for(i=0;i<bones.length;i++){
-      b=bones[i];n=b[0];a=[-b[3][0]*D,-b[3][1]*D,b[3][2]*D];
-      var addz=0,addy=0,addx=0,dy=0;
+      b=bones[i];n=b[0];
+      var ax=-b[3][0]*D,ay=-b[3][1]*D,az=b[3][2]*D,dy=0,sx=1,sz=1;
       if(f){
-        var left=/^wing_l/.test(n),right=/^wing_r/.test(n),sg=left?1:right?-1:0;
-        if(sg&&n.indexOf('_mem')<0&&n.indexOf('_web')<0&&n.indexOf('deco')<0){
-          var lvl=n==='wing_l'||n==='wing_r'?0:n.indexOf('fore')>0?1:2;
-          addz=sg*D*(34*Math.sin(t*5.2-lvl*.75)+(lvl?6:8)*0)*(lvl?(lvl===1?.55:.4):1)+sg*D*5;
+        var mm=/^wing_l/.test(n)?1:/^wing_r/.test(n)?-1:0;
+        if(mm&&n.indexOf('deco')<0){
+          if(n==='wing_l'||n==='wing_r'){ax+=aRx;ay+=mm*aRy;az-=mm*aRz}
+          else if(/_fore$/.test(n)){ay+=mm*fRy;az-=mm*fRz}
+          else if(/_hand$/.test(n)){ax+=hRx;ay+=mm*hRy;az-=mm*hRz}
+          else if(/_mem$/.test(n))sz=szF;
+          else if(/_web$/.test(n)){sx=wsx;sz=szF}
         }
-        if(/^tail[1-6]$/.test(n)){var k=+n.charAt(4);addy=D*7*Math.sin(t*2.3-k*.55)}
-        if(/^neck[1-4]$/.test(n)){addx=D*1.8*Math.sin(t*5.2-1.2)}
-        if(n==='root')dy=2.2*Math.sin(t*5.2+.9)
+        if(/^tail[1-6]$/.test(n)){ay+=.12*Math.sin(t*2.3-(+n.charAt(4))*.55)}
+        if(/^neck[1-4]$/.test(n)){ax+=.03*Math.sin(ph-1.2)}
+        if(n==='root')dy=2.4*Math.sin(ph+.9)
       }
-      var m=mul(mul(ry(a[1]+addy),rx(a[0]+addx)),rz(a[2]+addz));
+      var m=mul(mul(rz(az),ry(ay)),rx(ax));
+      if(sx!==1||sz!==1){m[0]*=sx;m[3]*=sx;m[6]*=sx;m[2]*=sz;m[5]*=sz;m[8]*=sz}
       var loc=mul(mul(tr(b[2][0],b[2][1]+dy,b[2][2]),m),tr(-b[2][0],-b[2][1],-b[2][2]));
       w[i]=b[1]>=0?mul(w[b[1]],loc):loc}
     return w}
@@ -67,7 +77,7 @@ if(box){(function(){
     var w0=pose(0),lo=[1e9,1e9,1e9],hi=[-1e9,-1e9,-1e9];
     faces.forEach(function(q){var p=ap(w0[q.b],q.o);for(var k=0;k<3;k++){if(p[k]<lo[k])lo[k]=p[k];if(p[k]>hi[k])hi[k]=p[k]}});
     ctr=[(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2];
-    R=Math.max(hi[0]-lo[0],hi[2]-lo[2])*.5*.97}
+    R=Math.max(hi[0]-lo[0],hi[2]-lo[2])*.5*1.25}
 
   function cam(p,cy,sy,cp,sp){var x=p[0]-ctr[0],y=p[1]-ctr[1],z=p[2]-ctr[2],X=x*cy+z*sy,Z=-x*sy+z*cy,Y=y*cp-Z*sp;Z=y*sp+Z*cp;return[X,Y,Z]}
   function draw(){
@@ -84,16 +94,14 @@ if(box){(function(){
     list.sort(function(a,b){return a.z-b.z});
     g.imageSmoothingEnabled=false;
     for(i=0;i<list.length;i++){var f=list[i],r=f.r,o2=f.o,u2=f.u,v2=f.v;
-      var ox=W/2+o2[0]*sc,oy=H/2+10-o2[1]*sc,ux=W/2+u2[0]*sc,uy=H/2+10-u2[1]*sc,vx=W/2+v2[0]*sc,vy=H/2+10-v2[1]*sc;
+      var ox=W/2+o2[0]*sc,oy=H/2+34-o2[1]*sc,ux=W/2+u2[0]*sc,uy=H/2+34-u2[1]*sc,vx=W/2+v2[0]*sc,vy=H/2+34-v2[1]*sc;
       g.save();g.setTransform((ux-ox)/r[2],(uy-oy)/r[2],(vx-ox)/r[3],(vy-oy)/r[3],ox,oy);
-      g.drawImage(skin,r[0],r[1],r[2],r[3],0,0,r[2],r[3]);
-      if(f.s<1){g.fillStyle='rgba(8,6,20,'+(1-f.s).toFixed(2)+')';g.fillRect(0,0,r[2],r[3])}
-      else if(f.s>1.02){g.fillStyle='rgba(255,240,220,'+Math.min(.2,(f.s-1)*.5).toFixed(2)+')';g.fillRect(0,0,r[2],r[3])}
+      g.drawImage(shades[Math.max(0,Math.min(NS-1,Math.round((f.s-.55)/.57*(NS-1))))],r[0],r[1],r[2],r[3],0,0,r[2],r[3]);
       g.restore()}}
   function frame(t){
     run=false;if(!vis||!faces||!skin)return;
     var dt=Math.min((t-last)/1000,.1);last=t;
-    if(flap)T+=dt;if(spin&&!drag)yaw+=dt*.5;
+    if(flap)T+=dt*.62;if(spin&&!drag)yaw+=dt*.5;
     draw();if((flap||spin||drag)&&vis){run=true;requestAnimationFrame(frame)}}
   function kick(){if(run)return;if(!vis||!faces||!skin){return}run=true;last=performance.now();requestAnimationFrame(frame);if(!flap&&!spin)draw()}
   function still(){draw()}
@@ -114,7 +122,7 @@ if(box){(function(){
   function load(){if(load.d)return;load.d=true;
     var base=box.getAttribute('data-src'),x=new XMLHttpRequest();x.open('GET',base+'ember.json');
     x.onload=function(){try{data=JSON.parse(x.responseText)}catch(e){return}bones=data.bones;build();
-      var im=new Image();im.onload=function(){skin=im;T=reduce?.4:0;draw();kick()};im.src=base+'ember.png'};x.send()}
+      var im=new Image();im.onload=function(){skin=im;shades=[];for(var k=0;k<NS;k++){var fct=.55+k*.57/(NS-1),c=document.createElement('canvas');c.width=im.width;c.height=im.height;var x=c.getContext('2d');x.drawImage(im,0,0);x.globalCompositeOperation='source-atop';if(fct<1){x.fillStyle='rgba(8,6,20,'+(1-fct)+')';x.fillRect(0,0,c.width,c.height)}else if(fct>1.02){x.fillStyle='rgba(255,240,220,'+Math.min(.2,(fct-1)*.5)+')';x.fillRect(0,0,c.width,c.height)}shades.push(c)}T=reduce?.4:0;draw();kick()};im.src=base+'ember.png'};x.send()}
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){vis=es[es.length-1].isIntersecting;if(vis)kick()}).observe(box);
     var lz=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){lz.disconnect();load()}},{rootMargin:'500px'});lz.observe(box)}

@@ -32,12 +32,13 @@ Free for Windows · works with any AI, cloud or local · no coding, no Java setu
 
 ## New in 1.3
 
-- **A whole world from one sentence.** Describe a theme and get blocks, creatures and items that fit together.
+- **A whole world from one sentence.** Describe a theme and get blocks, creatures and items that fit together (Fabric 26.3 for now).
 - **Change how it moves.** Pick a part of a creature and choose flap, wag, spin and more.
 - **Change its parts.** Add horns or wings, give it a longer tail, take a part away.
 - **Rules in plain sentences.** "When you right-click, do this", changed with pick lists.
-- **Wings from your own picture.**
-- **Better looking creatures and dragons.** Real feathered and leathery wings, new fox, shark and fairy bodies, and dragons you can adjust.
+- **Wings from your own picture.** Use a picture you drew or picked as a fairy's wings.
+- **Dragons.** Tame, ride and fly dragons in five looks, and adjust how they move (Fabric 26.3 for now).
+- **Better looking creatures.** Real feathered and leathery wings, and a fairy with butterfly wings.
 - **Ready-to-paste commands** in the player guide, a **Suggest an improvement** button, and a small **"Made with Sloth-Mod"** credit line that you can switch off.
 - Many fixes.
 
@@ -55,8 +56,8 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
     <td width="50%" align="center"><img src="docs/media/showcase-guns.webp" width="100%" alt="A pistol, a shotgun and a sniper rifle turning in 3D."><br><sub><b>Guns</b></sub></td>
   </tr>
   <tr>
-    <td width="50%" align="center"><img src="docs/media/showcase-blocks.webp" width="100%" alt="A log, a crystal block and a grass block turning in 3D."><br><sub><b>Blocks</b></sub></td>
-    <td width="50%" align="center"><img src="docs/img/v13/friends.webp" width="60%" alt="A grey fox, a red fox, a fairy and two sharks, each seen from the front, the side and a three-quarter angle in Minecraft."><br><sub><b>Fox, fairy and shark</b>, in the game</sub></td>
+    <td colspan="2" align="center"><img src="docs/media/showcase-blocks.webp" width="100%" alt="A log, a crystal block and a grass block turning in 3D."><br><sub><b>Blocks</b></sub></td>
+    
   </tr>
 </table>
 
