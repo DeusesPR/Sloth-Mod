@@ -2,6 +2,16 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.3.1
+
+Fixes for changing things you already made, and for mods on NeoForge and Forge.
+
+- **Preview works for guns and ability items.** Changing a gun or an ability item in the Edit panel shows its preview again, instead of saying the effects class is missing.
+- **An old sound the game no longer has no longer blocks a creature.** When a creature uses a sound this Minecraft version lacks, the Edit panel and a version port now leave that sound out, use the creature's usual one and tell you.
+- **A change that changes nothing leaves your sounds alone.** Applying an edit with no change no longer rewrites the sound files of guns and vehicles.
+- **No false mistake on NeoForge and Forge.** Creatures made for Minecraft 1.21.1 (NeoForge) and 1.20.1 (Forge) are no longer reported as having a forgotten start-up call, so the AI does not spend a repair round on nothing.
+- **Dragon guides keep true sentences.** A guide line saying a dragon flies is no longer cut, and a line about taming is cut only where that dragon really cannot be tamed.
+
 ## 1.3.0
 
 Make it, then make it yours. Everything the AI makes can now also be changed by hand, without code.
