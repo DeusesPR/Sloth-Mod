@@ -84,23 +84,7 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
     <td width="50%" align="center"><img src="docs/img/v13/drake.webp" width="75%" alt="A red dragon with glowing wing edges standing in Minecraft."><br><sub><b>A dragon with membrane wings</b></sub></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><img src="docs/img/v13/wings.webp" width="60%" alt="A feathered griffin, a bat, a green drake, a winged wolf and a winged stag, seen from several sides."><br><sub><b>Feathered and leathery wings</b></sub></td>
-  </tr>
-</table>
-
-### In the game, on three loaders
-
-Real screenshots from Minecraft of the same small test mod on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars.
-
-<p align="center">
-<img src="docs/img/showcase/ingame-fabric-26.3.png" width="854" alt="Minecraft on Fabric 26.3: a row of blocks, a green flying creature with purple wings, a vehicle, a stone boss with a purple boss bar, and stamina and mana bars."><br>
-<sub><b>Fabric, Minecraft 26.3</b></sub>
-</p>
-
-<table>
-  <tr>
-    <td width="50%" align="center"><img src="docs/img/showcase/ingame-neoforge-1.21.1.png" width="100%" alt="The same test mod on NeoForge 1.21.1."><br><sub><b>NeoForge, 1.21.1</b></sub></td>
-    <td width="50%" align="center"><img src="docs/img/showcase/ingame-forge-1.20.1.png" width="100%" alt="The same test mod on Forge 1.20.1, with a mob, blocks and a flying creature."><br><sub><b>Forge, 1.20.1</b></sub></td>
+    <td colspan="2" align="center"><img src="docs/img/v13/wings.webp" width="60%" alt="A green drake with leathery wings, a winged wolf and a winged stag with feathered wings, seen from several sides."><br><sub><b>Leathery and feathered wings</b></sub></td>
   </tr>
 </table>
 
