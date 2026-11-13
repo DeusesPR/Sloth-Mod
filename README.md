@@ -75,7 +75,7 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
 
 <p align="center">
 <img src="docs/img/v13/dragons.webp" width="100%" alt="Five dragons in a row in Minecraft: white, purple-black, small green, golden and red."><br>
-<sub><b>Five dragons.</b> You can spin a real 3D one on the <a href="https://deusespr.github.io/Sloth-Mod/#creatures">website</a>.</sub>
+<sub><b>Five dragons.</b> On the <a href="https://deusespr.github.io/Sloth-Mod/#creatures">website</a> you can look at dragons and a fairy from four sides.</sub>
 </p>
 
 <table>

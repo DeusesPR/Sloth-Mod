@@ -295,11 +295,11 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 .vid{margin:0 auto;max-width:900px}
 .vid video{display:block;width:100%;height:auto;background:#000}
 .vid figcaption{margin-top:14px;text-align:center;color:var(--dim);font-size:.95rem}
-#c3d canvas.view{max-width:none;aspect-ratio:3/2}
 .stage img.pic{display:block;width:100%;height:auto;aspect-ratio:12/7;margin:0 auto;cursor:grab;touch-action:pan-y;image-rendering:auto;background:#7aa8f0}
 .stage .note{margin:10px 6px 4px;font-size:.88rem;color:var(--dim);line-height:1.45}
 .stage .btnrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-.who{margin-top:44px}
+.turnwrap{max-width:900px;margin:0 auto 40px}
+.turnwrap .stage{padding:14px}
 .support{display:flex;gap:34px;align-items:center;flex-wrap:wrap}
 .support .qr{flex:0 0 auto;text-align:center}
 .support .qr img{display:block;width:170px;height:170px;image-rendering:auto;border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a}
@@ -486,23 +486,9 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
     <h2>Creatures</h2>
     <p class="lede">Made by Sloth-Mod 1.3 and then played in Minecraft: dragons, a fairy with butterfly wings, and feathered and leathery wings.</p>
     <p class="small" style="margin:-14px 0 24px">Dragons need Fabric 26.3 for now.</p>
-    <div class="engine">
-      <div id="c3d" class="stage" data-src="img/creature/">
-        <p class="nm">Ember dragon, in 3D</p>
-        <canvas class="view" width="900" height="600" tabindex="0" role="img" aria-label="A red dragon with spread wings, turning slowly in 3D. Drag to turn it, or use the arrow keys."></canvas>
-        <div class="btnrow"><button class="btn sm" type="button" data-flap aria-pressed="true">Stop flapping</button><button class="btn sm" type="button" data-spin aria-pressed="true">Stop turning</button></div>
-        <p class="note">This is the dragon's real model and skin, turned and flapped by a small viewer on this page.</p>
-      </div>
-      <div>
-        <h3 class="sh">Spin the dragon</h3>
-        <p><strong>Drag</strong> it to look from any side, or use the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> keys. It flaps its wings and sways its tail. Press the buttons to stop either one.</p>
-        <p class="small">In the app you can change the dragon's wings, horns, tail and how it moves, and see the result at once.</p>
-        <h3 class="sh" style="margin-top:26px">Fairy with butterfly wings</h3>
-        <figure style="margin:0"><picture><source media="(prefers-reduced-motion: reduce)" srcset="img/v13/fairy.webp"><img class="shot px" src="img/v13/fairy-flap.webp" width="560" height="440" loading="lazy" decoding="async" alt="A small fairy with large stained-glass butterfly wings, seen from the front in Minecraft. The wings beat up and down."></picture></figure>
-      </div>
-    </div>
-
-    <div class="engine who">
+    <div class="turnwrap">
+      <h3 class="sh" style="text-align:center">Look around in the game</h3>
+      <p class="lede" style="text-align:center;margin:0 auto 18px">Pick a creature, then a side. Every picture is a real screenshot of the creature standing in Minecraft.</p>
       <div id="turn" class="stage">
         <div class="tabs" role="group" aria-label="Pick a creature">
           <button class="tab" type="button" data-who="ember" data-label="Ember dragon" aria-pressed="true">Ember dragon</button><button class="tab" type="button" data-who="frost" data-label="Frost wyrm" aria-pressed="false">Frost wyrm</button><button class="tab" type="button" data-who="obsidian" data-label="Obsidian dragon" aria-pressed="false">Obsidian dragon</button><button class="tab" type="button" data-who="storm" data-label="Storm wyrm" aria-pressed="false">Storm wyrm</button><button class="tab" type="button" data-who="swamp" data-label="Swamp drake" aria-pressed="false">Swamp drake</button><button class="tab" type="button" data-who="fairy" data-label="Butterfly fairy" aria-pressed="false">Butterfly fairy</button>
@@ -512,13 +498,10 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
         <div class="tabs" role="group" aria-label="Pick a side"><button class="tab" type="button" data-view="0" aria-pressed="false">Front</button><button class="tab" type="button" data-view="1" aria-pressed="true">Three-quarter</button><button class="tab" type="button" data-view="2" aria-pressed="false">Side</button><button class="tab" type="button" data-view="3" aria-pressed="false">Back</button></div>
         <p class="note">These are pictures taken in Minecraft from four sides, not 3D. You can drag sideways to change the side.</p>
       </div>
-      <div>
-        <h3 class="sh">Look around in the game</h3>
-        <p>Pick a creature, then a side. Every picture is a real screenshot of the creature standing in Minecraft.</p>
-      </div>
     </div>
 
     <ul class="clips">
+      <li><figure><picture><source media="(prefers-reduced-motion: reduce)" srcset="img/v13/fairy.webp"><img class="shot px" src="img/v13/fairy-flap.webp" width="560" height="440" loading="lazy" decoding="async" alt="A small fairy with large stained-glass butterfly wings, seen from the front in Minecraft. The wings beat up and down."></picture><figcaption>A fairy with butterfly wings</figcaption></figure></li>
       <li><figure><img src="img/v13/dragons.webp" width="1600" height="249" loading="lazy" decoding="async" alt="Five dragons in a row in Minecraft: a white one, a purple-black one, a small green one, a golden one and a red one."><figcaption>Five dragons, five looks</figcaption></figure></li>
       <li><figure><img src="img/v13/wings.webp" width="1200" height="1167" loading="lazy" decoding="async" alt="Five winged creatures in Minecraft, seen from the front, the side and the back: a feathered griffin, a bat, a green drake, a winged wolf and a winged stag."><figcaption>Feathered and leathery wings: griffin, bat, drake, winged wolf and stag</figcaption></figure></li>
       <li><figure><img src="img/v13/motion.webp" width="1600" height="238" loading="lazy" decoding="async" alt="Four pictures of a green dragon with golden wing edges in flight, with its wings in different positions."><figcaption>A dragon whose flap was set by hand</figcaption></figure></li>
@@ -1044,6 +1027,6 @@ window.slothScene={time:function(c){tod=c;draw()},summon:function(t,x){spawn(t,x
 </script>
 <script src="fun.js" defer></script>
 <script src="item3d.js" defer></script>
-<script src="creature3d.js" defer></script>
+<script src="turn.js" defer></script>
 </body>
 </html>
