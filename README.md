@@ -16,9 +16,8 @@ Free for Windows · works with any AI, cloud or local · no coding, no Java setu
 
 <br>
 
-<img src="docs/img/readme/trailer.gif" alt="A 30-second silent clip: typing the idea of a fairy with butterfly wings, the app planning, drawing and building it, then changing how it moves, its parts and its rules by hand, and finally a fairy, dragons and a glowing cow in Minecraft." width="100%">
+<img src="docs/img/demo.gif" alt="The app in use: typing 'a ruby sword that sets mobs on fire', answering a few clickable questions, approving the plan, picking one of three sword textures and landing on the Ready for you to test card with a crafting guide." width="100%">
 
-<sub>An idea, alive in the game, in 30 seconds with no sound: sample screens from the app and real pictures from Minecraft.</sub>
 
 </div>
 
