@@ -287,6 +287,25 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 .dir-next{margin:0;padding:0;list-style:none;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:n}
 .dir-next li{counter-increment:n;background:#000;border:3px solid #555;padding:12px 14px 12px 50px;position:relative;color:var(--ink);line-height:1.45}
 .dir-next li:before{content:counter(n);position:absolute;left:10px;top:10px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:#ffe066;color:#2a2000;font:700 1rem var(--px);border:3px solid #000}
+
+/* 1.3 additions */
+.winnote{max-width:600px;margin:20px auto 0;background:#1c1810;border:3px solid #555;padding:10px 16px;text-align:left;font-size:.95rem;line-height:1.5;color:var(--dim)}
+.winnote strong{color:var(--ink)}
+.winnote a{white-space:nowrap}
+.vid{margin:0 auto;max-width:900px}
+.vid video{display:block;width:100%;height:auto;background:#000}
+.vid figcaption{margin-top:14px;text-align:center;color:var(--dim);font-size:.95rem}
+#c3d canvas.view{max-width:none;aspect-ratio:3/2}
+.stage img.pic{display:block;width:100%;height:auto;aspect-ratio:12/7;margin:0 auto;cursor:grab;touch-action:pan-y;image-rendering:auto;background:#7aa8f0}
+.stage .note{margin:10px 6px 4px;font-size:.88rem;color:var(--dim);line-height:1.45}
+.stage .btnrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.who{margin-top:44px}
+.support{display:flex;gap:34px;align-items:center;flex-wrap:wrap}
+.support .qr{flex:0 0 auto;text-align:center}
+.support .qr img{display:block;width:170px;height:170px;image-rendering:auto;border:4px solid #000;box-shadow:0 0 0 4px #5a5a5a}
+.support .qr span{display:block;margin-top:8px;font-size:.85rem;color:var(--dim)}
+.support .txt{max-width:480px}
+.support .txt p{margin:0 0 14px}
 </style>
 </head>
 <body>
@@ -299,14 +318,17 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
   <nav class="hotbar" aria-label="Sections">
     <a class="brand" href="#top"><img src="img/sloth.png" width="32" height="32" alt=""><span>Sloth-Mod</span></a>
     <button class="slot-nav snd" id="snd" type="button" aria-pressed="false" aria-label="Sound effects"><img src="img/ico-note.png" width="24" height="24" alt="">Sound<i class="n" id="snd-n">off</i></button>
+    <a class="slot-nav" href="#new"><img src="img/ico-gem.png" width="24" height="24" alt="">New in 1.3</a>
     <a class="slot-nav" href="#direction"><img src="img/ico-castle.png" width="24" height="24" alt="">Direction</a>
     <a class="slot-nav" href="#make"><img src="img/ico-sword.png" width="24" height="24" alt="">Make<i class="n">1</i></a>
     <a class="slot-nav" href="#how"><img src="img/ico-book.png" width="24" height="24" alt="">How<i class="n">2</i></a>
     <a class="slot-nav" href="#gallery"><img src="img/ico-magnifier.png" width="24" height="24" alt="">Look<i class="n">3</i></a>
+    <a class="slot-nav" href="#creatures"><img src="img/ico-mob.png" width="24" height="24" alt="">Creatures</a>
     <a class="slot-nav" href="#showcase"><img src="img/ico-palette.png" width="24" height="24" alt="">Showcase<i class="n">4</i></a>
     <a class="slot-nav" href="#features"><img src="img/ico-chest.png" width="24" height="24" alt="">Features<i class="n">5</i></a>
     <a class="slot-nav" href="#trust"><img src="img/ico-shield.png" width="24" height="24" alt="">Safety<i class="n">6</i></a>
     <a class="slot-nav" href="#requirements"><img src="img/ico-chip.png" width="24" height="24" alt="">Needs<i class="n">7</i></a>
+    <a class="slot-nav" href="#support"><img src="img/ico-coin.png" width="24" height="24" alt="">Support</a>
     <a class="slot-nav" href="#faq"><img src="img/ico-book.png" width="24" height="24" alt="">FAQ<i class="n">8</i></a>
     <a class="slot-nav" href="https://github.com/DeusesPR/Sloth-Mod"><img src="img/ico-gem.png" width="24" height="24" alt="">GitHub<i class="n">9</i></a>
     <span class="sp"></span>
@@ -315,7 +337,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 </div>
 
 <main id="main">
-<a class="banner" href="#direction"><b>Where Sloth-Mod is going.</b> We are growing from "mods from one sentence" into a place to shape your own Minecraft experiences. <u>Read the update</u></a>
+<a class="banner" href="#new"><b>New in 1.3.</b> Change what the AI made, by hand: how it moves, its parts and its rules. <u>See what is new</u></a>
 <header class="hero dirt" id="top">
   <div class="wrap">
     <img class="sloth" src="img/sloth.png" width="112" height="112" alt="Pixel-art sloth, the Sloth-Mod mascot">
@@ -326,7 +348,8 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
       <a class="btn go" id="dl" href="https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.2.2/Sloth-Mod_1.2.2_x64-setup.exe" rel="noopener"><img src="img/ico-chest.png" width="24" height="24" alt="">Download for Windows</a>
       <a class="btn" href="#how">See how it works</a>
     </div>
-    <p class="small">Free. Windows 10 and 11, 64-bit. Works with free and local AIs. <a href="#smartscreen">About the Windows warning</a></p>
+    <p class="small">Free. Windows 10 and 11, 64-bit. Works with free and local AIs.</p>
+    <p class="winnote" id="winwarning"><strong>Windows may show a blue warning.</strong> Sloth-Mod is free and not paid-signed, so Windows SmartScreen can say "Windows protected your PC". That is normal for a free app. Click <strong>More info</strong>, then <strong>Run anyway</strong>. <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">Privacy</a> &middot; <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/SECURITY.md">Security</a></p>
   </div>
   <div class="scene" id="scene-box">
     <canvas id="scene" width="320" height="104" role="img" aria-label="Animated pixel-art scene. A small blocky adventurer fights slimes, crystal golems, pumpkin-headed scarecrows and fire sprites on a grassy hill, while a sloth hangs from a tree branch and now and then crafts a new item. Clouds drift by and day slowly turns to night. Click or tap the ground to summon a mob, a mob to hit it, or the sloth to make it craft."></canvas>
@@ -350,56 +373,60 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
 </header>
 <div class="edge" aria-hidden="true"></div>
 
-<section id="direction" class="planks">
+<section id="trailer" class="dirt">
+  <div class="wrap">
+    <h2>An idea, alive in the game</h2>
+    <p class="lede">A short clip with no sound: type an idea, watch it get built, change it by hand, then see it in Minecraft.</p>
+    <figure class="vid"><video class="shot" controls muted playsinline preload="none" width="1280" height="720" poster="img/v13/trailer-poster.webp"><source src="media/trailer.webm" type="video/webm">Your browser cannot play this clip. The pictures below show the same thing.</video><figcaption>About 30 seconds. Sample screens from the app, and real pictures from the game.</figcaption></figure>
+  </div>
+</section>
+
+<section id="new" class="planks">
+  <div class="wrap">
+    <h2>New in 1.3</h2>
+    <p class="lede">Make it, then make it yours. You can now change what the AI built, by hand, without writing code.</p>
+    <ul class="grid feat-grid">
+      <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>A whole world from one sentence</h3><p>Describe a theme, like "a candy kingdom", and get blocks, creatures and items that fit together.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>Change how it moves</h3><p>Pick a part of a creature and choose how it moves: flap, wag, spin and more. You see it move right away.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-pencil.png" width="40" height="40" alt=""></span><div><h3>Change its parts</h3><p>Add horns or wings, give it a longer tail, make the legs bigger, or take a part away.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>Rules in plain sentences</h3><p>See what your mod does as sentences like "When you right-click, do this", and change them with pick lists.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Wings from your own picture</h3><p>Draw or pick a picture and use it as the wings.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-gem.png" width="40" height="40" alt=""></span><div><h3>Better looking creatures</h3><p>Real feathered and leathery wings, and new fox, shark and fairy bodies.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>Better dragons</h3><p>Dragons with bigger wings, horns and tails, and you can adjust them.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chest.png" width="40" height="40" alt=""></span><div><h3>Commands you can paste</h3><p>The player guide now has ready-to-paste commands for your mod.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-note.png" width="40" height="40" alt=""></span><div><h3>Suggest an improvement</h3><p>Send us an idea from inside the app.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-check.png" width="40" height="40" alt=""></span><div><h3>"Made with Sloth-Mod"</h3><p>A small credit line in what you share. You can switch it off. And many fixes.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="direction" class="stone">
   <div class="wrap">
     <h2>Where Sloth-Mod is going</h2>
-    <p class="lede">A short, honest update for everyone who has tried Sloth-Mod or is about to. Nothing you use today is going away. We just want you to know where we are headed, and what is real today and what is not.</p>
+    <p class="lede">A short, honest note. Nothing you use today is going away, and we say plainly what is real and what is not.</p>
     <div class="dir-cols">
-      <div class="dir-box">
-        <h3>What Sloth-Mod is today</h3>
-        <p>You describe a mod in plain English, and Sloth-Mod plans it, builds it and gets it ready for you to test in Minecraft.</p>
-        <p>Every mod is built for real with Minecraft's own tools and started on a real Minecraft server before you see it, and build problems are fixed along the way. Nothing is kept until you have tried it and say so.</p>
-        <p><strong>Coming in the next update:</strong> we learned that "describe it and it appears" works best when the app does the hard parts itself, so the next update rebuilds the engine around ready-made, tested building blocks. The goal is that mods from cheap and free AI come out working more often.</p>
-      </div>
       <div class="dir-box soon">
-        <span class="tag">WHERE WE ARE HEADING, NOT AVAILABLE TODAY</span>
-        <h3>A place to make your own Minecraft experiences</h3>
-        <p>One sentence is a great start, but it is not the whole story. Sloth-Mod is becoming a place where you describe an idea and then shape every part of it yourself, without writing code:</p>
+        <span class="tag">NOT AVAILABLE TODAY</span>
+        <h3>More ways to shape your own experiences</h3>
+        <p>One sentence is a great start. Next we want you to shape more of it yourself, without code:</p>
         <ul>
-          <li>tweak how creatures move and act</li>
-          <li>adjust items and effects with sliders</li>
-          <li>build campaigns with missions, quests and characters</li>
-          <li>add cutscenes and dialogue</li>
+          <li>campaigns with missions, quests and characters</li>
+          <li>cutscenes and dialogue</li>
+          <li>keep making it easier on cheap and free AI</li>
         </ul>
-        <p>We are building this step by step. None of the list above is in the app today, and we will say so plainly in the app and here when each piece arrives.</p>
+        <p>No dates, on purpose. We would rather tell you when something is ready than promise it early.</p>
       </div>
-    </div>
-    <div class="dir-cols">
       <div class="dir-box">
         <h3>What stays the same</h3>
         <ul>
           <li><strong>Free.</strong> No accounts, no tracking.</li>
           <li><strong>Windows</strong>, installed for your user only.</li>
-          <li><strong>Cheap or free AI.</strong> Cloud AIs with free tiers, or an AI running on your own PC.</li>
-          <li><strong>Modpack-friendly.</strong> Before a new mod joins your pack, the app can check it on a throwaway server together with the pack's mods.</li>
+          <li><strong>Cheap or free AI.</strong> Cloud AIs with free tiers, or an AI on your own PC.</li>
           <li><strong>Safety checks</strong> on everything the AI writes, before every build.</li>
         </ul>
-      </div>
-      <div class="dir-box">
-        <h3>If you use Sloth-Mod today</h3>
-        <p>Nothing breaks. Your mods, settings and keys stay where they are, and updates keep arriving through the app's own updater.</p>
-        <p>Your feedback shapes this. Tell us what you would like to make: join the <a href="https://github.com/DeusesPR/Sloth-Mod/discussions">Community discussions</a>, or press <em>Report a problem</em> in the app (Settings) when something goes wrong.</p>
+        <p>Nothing breaks when you update: your mods, settings and keys stay. Tell us what you would like to make in the <a href="https://github.com/DeusesPR/Sloth-Mod/discussions">Community discussions</a>.</p>
       </div>
     </div>
-    <h3 style="color:var(--yellow);text-shadow:2px 2px 0 #000;font-size:1.4rem;margin:0 0 14px">What's next</h3>
-    <ol class="dir-next">
-      <li>Make mods from one sentence look and play better in the real game.</li>
-      <li>Let you tweak creatures, items and effects after the first version is made.</li>
-      <li>Missions, quests and characters you can put together yourself.</li>
-      <li>Cutscenes and dialogue.</li>
-      <li>Keep making it easier on cheap and free AI.</li>
-    </ol>
-    <p class="small">No dates, on purpose. We would rather tell you when something is ready than promise it early.</p>
   </div>
 </section>
 
@@ -410,7 +437,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
     <ul class="grid">
       <li class="card"><span class="slot"><img src="img/ico-sword.png" width="40" height="40" alt=""></span><div><h3>Items</h3><p>Swords, snacks, tools, gems and gadgets, with their own look, sounds and behavior.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-block.png" width="40" height="40" alt=""></span><div><h3>Blocks</h3><p>Glowing lamps, singing blocks and machines that remember things, even after you reload the world.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>Mobs</h3><p>Friendly or hostile creatures, flying, swimming or rideable, with their own 3D model, art, spawn rules and custom sounds.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>Mobs</h3><p>Friendly or hostile creatures: dragons, winged beasts, foxes, sharks and fairies, flying, swimming or rideable, with their own model, art, spawn rules and sounds.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>Big projects</h3><p>Whole game-changing mods. The AI writes a design and a step-by-step plan, then builds one piece at a time so you can test each step.</p></div></li>
     </ul>
   </div>
@@ -454,13 +481,60 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
   </div>
 </section>
 
+<section id="creatures" class="dirt">
+  <div class="wrap">
+    <h2>Creatures</h2>
+    <p class="lede">Made by Sloth-Mod 1.3 and then played in Minecraft: dragons, a fairy with butterfly wings, feathered and leathery wings, a fox and a shark.</p>
+    <div class="engine">
+      <div id="c3d" class="stage" data-src="img/creature/">
+        <p class="nm">Ember dragon, in 3D</p>
+        <canvas class="view" width="900" height="600" tabindex="0" role="img" aria-label="A red dragon with spread wings, turning slowly in 3D. Drag to turn it, or use the arrow keys."></canvas>
+        <div class="btnrow"><button class="btn sm" type="button" data-flap aria-pressed="true">Stop flapping</button><button class="btn sm" type="button" data-spin aria-pressed="true">Stop turning</button></div>
+        <p class="note">This is the dragon's real model and skin, shown by a small viewer on this page, so it looks plainer than in the game.</p>
+      </div>
+      <div>
+        <h3 class="sh">Spin the dragon</h3>
+        <p><strong>Drag</strong> it to look from any side, or use the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> keys. It flaps its wings and sways its tail. Press the buttons to stop either one.</p>
+        <p class="small">In the app you can change the dragon's wings, horns, tail and how it moves, and see the result at once.</p>
+        <h3 class="sh" style="margin-top:26px">Fairy with butterfly wings</h3>
+        <figure style="margin:0"><picture><source media="(prefers-reduced-motion: reduce)" srcset="img/v13/fairy.webp"><img class="shot px" src="img/v13/fairy-flap.webp" width="560" height="440" loading="lazy" decoding="async" alt="A small fairy with large stained-glass butterfly wings, seen from the front in Minecraft. The wings beat up and down."></picture></figure>
+      </div>
+    </div>
+
+    <div class="engine who">
+      <div id="turn" class="stage">
+        <div class="tabs" role="group" aria-label="Pick a creature">
+          <button class="tab" type="button" data-who="ember" data-label="Ember dragon" aria-pressed="true">Ember dragon</button><button class="tab" type="button" data-who="frost" data-label="Frost wyrm" aria-pressed="false">Frost wyrm</button><button class="tab" type="button" data-who="obsidian" data-label="Obsidian dragon" aria-pressed="false">Obsidian dragon</button><button class="tab" type="button" data-who="storm" data-label="Storm wyrm" aria-pressed="false">Storm wyrm</button><button class="tab" type="button" data-who="swamp" data-label="Swamp drake" aria-pressed="false">Swamp drake</button><button class="tab" type="button" data-who="fairy" data-label="Butterfly fairy" aria-pressed="false">Butterfly fairy</button>
+        </div>
+        <img class="pic" src="img/turn/ember-three_quarter.webp" width="720" height="420" loading="lazy" decoding="async" alt="Ember dragon in Minecraft, three-quarter view. A real in-game picture.">
+        <p class="nm" data-cap aria-live="polite"></p>
+        <div class="tabs" role="group" aria-label="Pick a side"><button class="tab" type="button" data-view="0" aria-pressed="false">Front</button><button class="tab" type="button" data-view="1" aria-pressed="true">Three-quarter</button><button class="tab" type="button" data-view="2" aria-pressed="false">Side</button><button class="tab" type="button" data-view="3" aria-pressed="false">Back</button></div>
+        <p class="note">These are pictures taken in Minecraft from four sides, not 3D. You can drag sideways to change the side.</p>
+      </div>
+      <div>
+        <h3 class="sh">Look around in the game</h3>
+        <p>Pick a creature, then a side. Every picture is a real screenshot of the creature standing in Minecraft.</p>
+      </div>
+    </div>
+
+    <ul class="clips">
+      <li><figure><img src="img/v13/dragons.webp" width="1600" height="249" loading="lazy" decoding="async" alt="Five dragons in a row in Minecraft: a white one, a purple-black one, a small green one, a golden one and a red one."><figcaption>Five dragons, five looks</figcaption></figure></li>
+      <li><figure><img src="img/v13/wings.webp" width="1200" height="1167" loading="lazy" decoding="async" alt="Five winged creatures in Minecraft, seen from the front, the side and the back: a feathered griffin, a bat, a green drake, a winged wolf and a winged stag."><figcaption>Feathered and leathery wings: griffin, bat, drake, winged wolf and stag</figcaption></figure></li>
+      <li><figure><img src="img/v13/friends.webp" width="900" height="1100" loading="lazy" decoding="async" alt="A grey fox, a red fox, a fairy with small wings and two sharks, each seen from the front, the side and a three-quarter angle."><figcaption>Foxes, a fairy and sharks, in two colours</figcaption></figure></li>
+      <li><figure><img src="img/v13/motion.webp" width="1600" height="238" loading="lazy" decoding="async" alt="Four pictures of a green dragon with golden wing edges in flight, with its wings in different positions."><figcaption>A dragon whose flap was set by hand</figcaption></figure></li>
+      <li><figure><img src="img/v13/parts.webp" width="649" height="489" loading="lazy" decoding="async" alt="A brown stag creature shown twice from the front and the side: first with a short tail, then with bone horns, a longer tail, feathered wings and bigger legs."><figcaption>Before and after adding parts by hand</figcaption></figure></li>
+      <li><figure><img src="img/v13/rules.webp" width="960" height="600" loading="lazy" decoding="async" alt="At night in Minecraft, a cow glows with a white outline next to a stone block, and the chat says the stone hums and the animals glow."><figcaption>A rule you write: the stone hums and the animals glow</figcaption></figure></li>
+    </ul>
+  </div>
+</section>
+
 <section id="showcase" class="stone">
   <div class="wrap">
     <h2>Showcase</h2>
     <p class="lede">Everything in this section was drawn or made by Sloth-Mod's own engine, the same one that makes the art and sounds in your mods. <strong>No image generator, no Minecraft art, nothing touched up by hand.</strong></p>
     <div class="engine">
       <div id="item3d" class="stage" data-src="img/showcase/">
-        <div class="tabs" role="group" aria-label="Kind of art"><button class="tab" type="button" data-tab="guns" aria-pressed="true">Guns</button><button class="tab" type="button" data-tab="tools" aria-pressed="false">Tools</button><button class="tab" type="button" data-tab="food" aria-pressed="false">Food</button><button class="tab" type="button" data-tab="blocks" aria-pressed="false">Blocks</button><button class="tab" type="button" data-tab="mobs" aria-pressed="false">Mobs</button></div>
+        <div class="tabs" role="group" aria-label="Kind of art"><button class="tab" type="button" data-tab="guns" aria-pressed="true">Guns</button><button class="tab" type="button" data-tab="tools" aria-pressed="false">Tools</button><button class="tab" type="button" data-tab="food" aria-pressed="false">Food</button><button class="tab" type="button" data-tab="blocks" aria-pressed="false">Blocks</button></div>
         <canvas class="view" width="680" height="680" tabindex="0" role="img" aria-label="Spinning 3D art made by the Sloth-Mod art engine."></canvas>
         <p class="nm" data-name aria-live="polite"></p>
         <div class="picks" role="group" aria-label="Choose what to look at">
@@ -490,17 +564,13 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
           <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="grass" data-label="Grass block" aria-label="Grass block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
           <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="magic" data-label="Magic block" aria-label="Magic block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
           <button class="slot" type="button" data-cat="blocks" data-kind="block" data-key="gold" data-label="Gold block" aria-label="Gold block" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
-          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="fox" data-label="Fox" aria-label="Fox" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
-          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="ghoul" data-label="Ghoul" aria-label="Ghoul" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
-          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="slime" data-label="Slime" aria-label="Slime" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
-          <button class="slot" type="button" data-cat="mobs" data-kind="mob" data-key="bird" data-label="Bird" aria-label="Bird" aria-pressed="false" hidden><canvas width="72" height="72" aria-hidden="true"></canvas></button>
         </div>
         <button class="btn sm" type="button" data-spin>Stop spinning</button>
       </div>
       <div>
-        <h3 class="sh">Items, blocks and mobs</h3>
-        <p>Real 16x16 textures and mob skins from the engine. Items are shown the way the game draws a dropped item: every pixel stretched into a thin block. Mobs are built from boxes, like the game's own.</p>
-        <p>Pick <strong>Guns</strong>, <strong>Tools</strong>, <strong>Food</strong>, <strong>Blocks</strong> or <strong>Mobs</strong>, then <strong>drag</strong> to turn it. <strong>Click</strong> it (or press <kbd>Enter</kbd>) for the next one, or use the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> keys when it is focused.</p>
+        <h3 class="sh">Items and blocks</h3>
+        <p>Real 16x16 textures from the engine. Items are shown the way the game draws a dropped item: every pixel stretched into a thin block. Creatures have their own section above.</p>
+        <p>Pick <strong>Guns</strong>, <strong>Tools</strong>, <strong>Food</strong> or <strong>Blocks</strong>, then <strong>drag</strong> to turn it. <strong>Click</strong> it (or press <kbd>Enter</kbd>) for the next one, or use the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> keys when it is focused.</p>
         <p class="small">In the app, the art picker shows you several versions of each one, so you choose what ends up in your mod.</p>
         <h3 class="sh" style="margin-top:28px">Sounds</h3>
         <p>Made by the sound maker, not recorded. Each one becomes a real sound in your mod.</p>
@@ -512,7 +582,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
       <figure><div class="scroll"><img class="shot px" src="img/showcase/sheet-blocks.png" width="2064" height="444" loading="lazy" decoding="async" alt="A sheet of block textures drawn by the engine, side and top of each: stone, wood, metals, crystal, wool, brick, ore, lava, water and more."></div><figcaption>Block materials, side and top. They tile without seams.</figcaption></figure>
     </div>
     <h3 class="sh" style="margin-top:34px">In the game</h3>
-    <p>Real screenshots from Minecraft of the same small test mod on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars. It is a test mod, not a finished one.</p>
+    <p>Real screenshots of the same small test mod on three loaders: blocks, mobs, a flying creature, a vehicle, a boss bar and stamina and mana bars. It is a test mod, not a finished one.</p>
     <ul class="clips">
       <li><figure><img src="img/showcase/ingame-fabric-26.3.png" width="854" height="480" loading="lazy" decoding="async" alt="Minecraft on Fabric 26.3: a row of blocks, a green flying creature with purple wings, a vehicle, a stone boss with a purple boss bar, and stamina and mana bars."><figcaption>Fabric, Minecraft 26.3</figcaption></figure></li>
       <li><figure><img src="img/showcase/ingame-neoforge-1.21.1.png" width="854" height="480" loading="lazy" decoding="async" alt="The same test mod on NeoForge 1.21.1."><figcaption>NeoForge, Minecraft 1.21.1</figcaption></figure></li>
@@ -529,11 +599,10 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
       <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Any AI, including free and local</h3><p>Claude, OpenAI, Gemini, Grok, DeepSeek, OpenRouter (has free models), Mistral, Groq and more, or run one on your own PC with LM Studio or Ollama. Keys stay in Windows Credential Manager.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Art picker</h3><p>The AI draws several different designs of every texture and 3D model. You click your favourite, in a spinning 3D viewer for models and mobs.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-note.png" width="40" height="40" alt=""></span><div><h3>Sound maker</h3><p>614 kinds of sound, from squeaks and chimes to dragon roars and machine hums, made in the app, checked, and added to your mod as real sounds. No more "chicken that sounds like a chicken".</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>How-to-play guides</h3><p>Every mod gets a player guide with crafting panels drawn like the real game, drop and spawn info, and a pixel icon for the mod.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Faster builds</h3><p>A simple mod takes about two AI turns, and every result card shows where the time went.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>More things it can build</h3><p>Creatures that fly, swim or can be ridden, guns, vehicles, wearables, enchantments, music discs and armor trims.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-pencil.png" width="40" height="40" alt=""></span><div><h3>Quick edits</h3><p>"Make the squeak louder" or "change it to blue" finishes in about two AI steps, with no questions and no big plan.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Edit panel</h3><p>Change sizes, colours, numbers and sounds of what the app made, with a live preview and no AI. Paint textures in the built-in pixel editor, or take a model to Blockbench and back.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>How-to-play guides</h3><p>Every mod gets a player guide with crafting panels drawn like the real game, drop and spawn info, ready-to-paste commands and a pixel icon.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-mob.png" width="40" height="40" alt=""></span><div><h3>More things it can build</h3><p>Dragons and other creatures that fly, swim or can be ridden, guns, vehicles, wearables, enchantments, music discs and armor trims.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-pencil.png" width="40" height="40" alt=""></span><div><h3>Fast builds and quick edits</h3><p>A simple mod takes about two AI turns. "Make the squeak louder" or "change it to blue" is just as quick.</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-palette.png" width="40" height="40" alt=""></span><div><h3>Edit panel</h3><p>Change sizes, colours, numbers, sounds, how things move, their parts and their rules, with a live preview and no AI. Paint textures in the pixel editor, or take a model to Blockbench and back.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-block.png" width="40" height="40" alt=""></span><div><h3>Update to a new Minecraft version</h3><p>One run moves your mod to a newer version of the same loader (or Forge to NeoForge) and keeps your art, sounds and hand edits.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-castle.png" width="40" height="40" alt=""></span><div><h3>Big project mode</h3><p>For huge ideas: an approved design, a 20 to 50 step roadmap and a project map, built one tested step at a time.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-coin.png" width="40" height="40" alt=""></span><div><h3>Spending limit</h3><p>See what each mod costs. Ask before one mod passes an amount you pick, or stop for the day after a daily cap. A PIN can lock the limits.</p></div></li>
@@ -567,7 +636,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
     <ul class="grid feat-grid">
       <li class="card"><span class="slot"><img src="img/ico-shield.png" width="40" height="40" alt=""></span><div><h3>A guard reads the AI's code</h3><p>Before every build, AI-written code is scanned for things a mod should never do, like launching programs, opening web connections or touching files outside the game folders. The build files are checked too, locked while a mod is made, and only source files can be added to your project. A blocked build tells you why.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-gem.png" width="40" height="40" alt=""></span><div><h3>Nothing is kept until you say so</h3><p>The AI works on a copy. You test the result, then keep it or undo it. Older versions stay in History.</p></div></li>
-      <li class="card"><span class="slot"><img src="img/ico-chest.png" width="40" height="40" alt=""></span><div><h3>No accounts, no tracking</h3><p>No sign-up, no telemetry, no analytics, and nothing extra is added to the mods you make: your mod and its source are yours. Your requests and mod files go only to the AI you pick, or nowhere at all with a local AI. The AI may read a short summary from Wikipedia or the Minecraft wiki while planning (can be switched off).</p></div></li>
+      <li class="card"><span class="slot"><img src="img/ico-chest.png" width="40" height="40" alt=""></span><div><h3>No accounts, no tracking</h3><p>No sign-up, no telemetry, no analytics. The only thing added to your mods is a small "Made with Sloth-Mod" credit line, and you can switch it off. Your mod and its source are yours. Your requests and mod files go only to the AI you pick, or nowhere at all with a local AI. The AI may read a short summary from Wikipedia or the Minecraft wiki while planning (can be switched off).</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-chip.png" width="40" height="40" alt=""></span><div><h3>Keys stay on your PC</h3><p>API keys live in Windows Credential Manager, never in files or logs. Sloth-Mod never sees your Microsoft login: the official launcher handles it.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-book.png" width="40" height="40" alt=""></span><div><h3>Free, and your mods are yours</h3><p>Sloth-Mod costs nothing. What you make with it belongs to you: share it, publish it or sell it. Every open-source part inside the app is listed with its license.</p></div></li>
       <li class="card"><span class="slot"><img src="img/ico-magnifier.png" width="40" height="40" alt=""></span><div><h3>Honest limits</h3><p>The guard is a safety net, not a guarantee, and the installer is not code-signed yet. Code that passes the guard still runs with your Windows rights. Only play mods you trust.</p></div></li>
@@ -598,18 +667,32 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
   </div>
 </section>
 
+<section id="support" class="stone">
+  <div class="wrap">
+    <h2>Support Sloth-Mod</h2>
+    <div class="support">
+      <div class="txt">
+        <p class="lede" style="margin:0 0 16px">Sloth-Mod is free. If it helps you, you can support it here.</p>
+        <p><a class="btn go sm" href="https://buymeacoffee.com/SlothMod" rel="noopener">Support Sloth-Mod</a></p>
+        <p class="small">It is just a link. This page loads nothing from them, and it is fine not to.</p>
+      </div>
+      <div class="qr"><img src="img/support-qr.png" width="170" height="170" loading="lazy" decoding="async" alt="QR code that opens the Sloth-Mod support page, buymeacoffee.com/SlothMod."><span>or scan with your phone</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="faq" class="planks">
   <div class="wrap" style="max-width:860px">
     <h2>Questions<canvas class="mini" width="16" height="16" aria-hidden="true"></canvas></h2>
     <details><summary>Is it free?</summary><div class="ans"><p>Yes. Sloth-Mod is free to download and use, and the mods you make are yours. The only cost can be your AI: some providers have free tiers, OpenRouter has free models, and local AIs (LM Studio, Ollama) cost nothing to run. The app can show what each mod cost and lets you set a spending limit.</p></div></details>
     <details><summary>Do I need to know how to code?</summary><div class="ans"><p>No. You describe what you want in plain English and answer a few clickable questions. The app writes, builds and tests the mod. If you do like code, the Workshop view has a full editor and diffs.</p></div></details>
     <details><summary>Which AI should I use?</summary><div class="ans"><p>Any of them. The setup wizard lists every provider with a "Get an API key" button and a note on cost, and a <em>Test this AI</em> button checks that it can really drive the app. Bigger models make bigger mods with fewer repairs. For free: OpenRouter's free models, or a local model through LM Studio or Ollama.</p></div></details>
-    <details id="smartscreen"><summary>Windows SmartScreen says "Windows protected your PC"</summary><div class="ans"><p>The installer is not code-signed yet (certificates cost money), so Windows shows a warning for any new app. Click <strong>More info</strong>, then <strong>Run anyway</strong>. Updates the app downloads later are signed and checked before they install.</p></div></details>
+    <details id="smartscreen"><summary>Why does Windows show a warning?</summary><div class="ans"><p>Sloth-Mod is free and not paid-signed (a signing certificate costs money), so Windows SmartScreen can show a blue "Windows protected your PC" box for a new app. Click <strong>More info</strong>, then <strong>Run anyway</strong>. Only do this for the installer from this site or the GitHub Releases page. Updates the app downloads later are signed and checked before they install. More in <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">Privacy</a> and <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/SECURITY.md">Security</a>.</p></div></details>
     <details><summary>Is it safe?</summary><div class="ans"><p>It is built to be careful. The AI writes into a sandbox copy and you review the changes before anything is kept, with undo and history. AI-written code is scanned before every build for things a mod should never do. The build files are checked and locked while a mod is made. Downloads from Modrinth are checked against their SHA-512 checksums, and your API keys are stored in Windows Credential Manager, never in files. It never sees your Microsoft login: signing in and launching stay with Mojang's own launcher.</p><p>Be honest with yourself about limits: mods are programs, and the guard is a safety net, not a guarantee. Only play mods you trust, and see <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/SECURITY.md">SECURITY.md</a> for details and how to report a problem.</p></div></details>
     <details><summary>Does it work on Mac or Linux?</summary><div class="ans"><p>The installer is for Windows 10 and 11 only.</p></div></details>
     <details><summary>What about privacy, and "Sign in with Grok"?</summary><div class="ans"><p>No accounts and no telemetry: your keys stay in Windows Credential Manager, and your prompts and mod files go only to the AI provider you choose. Downloads contact Modrinth, Mojang and the loader sites. Read <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">PRIVACY.md</a>, <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/DISCLAIMER.md">DISCLAIMER.md</a> and the <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/THIRD_PARTY_LICENSES.md">third-party licenses</a>. "Sign in with Grok" is experimental and off by default: it may be against xAI's terms, so an xAI API key is the supported way.</p></div></details>
     <details><summary>Is this an official Minecraft product?</summary><div class="ans"><p>No. Sloth-Mod is a fan-made tool. It is not approved by or associated with Mojang or Microsoft, and it contains no Minecraft assets.</p></div></details>
-    <details><summary>Something broke. What do I do?</summary><div class="ans"><p>Press <em>Report a problem</em> in the app (on the failure card, in the crash window, or in Settings). It fills in a GitHub issue for you with your log already attached, with keys and your Windows name hidden. You just check it and press Submit. Have an idea? Use <em>Suggest an idea</em> in Settings, or <a href="https://github.com/DeusesPR/Sloth-Mod/issues/new/choose">open an issue</a> here.</p></div></details>
+    <details><summary>Something broke. What do I do?</summary><div class="ans"><p>Press <em>Report a problem</em> in the app (on the failure card, in the crash window, or in Settings). It fills in a GitHub issue for you with your log already attached, with keys and your Windows name hidden. You just check it and press Submit. Have an idea? Use <em>Suggest an improvement</em> in the app, or <a href="https://github.com/DeusesPR/Sloth-Mod/issues/new/choose">open an issue</a> here.</p></div></details>
   </div>
 </section>
 </main>
@@ -625,6 +708,7 @@ button.slot-nav{margin:0;cursor:pointer;font-family:var(--px)}
       <a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/CHANGELOG.md">Changelog</a>
       <a href="https://github.com/DeusesPR/Sloth-Mod/issues/new/choose">Report a bug</a>
       <a href="https://github.com/DeusesPR/Sloth-Mod/discussions">Community</a>
+      <a href="https://buymeacoffee.com/SlothMod" rel="noopener">Support Sloth-Mod</a>
     </div>
     <p class="legal">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB and Microsoft Corporation.</p>
     <p class="legal">Pixel art on this page is original. Headings use Pixelify Sans, with numbers in VT323 (both SIL Open Font License 1.1, see <a href="fonts/OFL.txt">fonts/OFL.txt</a> and <a href="fonts/OFL-VT323.txt">fonts/OFL-VT323.txt</a>). The release chest asks api.github.com for the latest version from your browser; there are no cookies or analytics (<a href="https://github.com/DeusesPR/Sloth-Mod/blob/main/PRIVACY.md">privacy</a>). Sound effects in the app: CC0 by Kenney.</p>
@@ -960,5 +1044,6 @@ window.slothScene={time:function(c){tod=c;draw()},summon:function(t,x){spawn(t,x
 </script>
 <script src="fun.js" defer></script>
 <script src="item3d.js" defer></script>
+<script src="creature3d.js" defer></script>
 </body>
 </html>

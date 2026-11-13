@@ -109,7 +109,7 @@ function load(){
   var x=new XMLHttpRequest();x.open('GET',base+'showcase.json');
   x.onload=function(){try{data=JSON.parse(x.responseText)}catch(e){return}
     img(base+data.atlas,function(im){atlas=im;ready()});
-    Object.keys(data.mobs).forEach(function(k){img(base+data.mobs[k].skin,function(im){skins[k]=im;ready()})})};
+    Object.keys(data.mobs).forEach(function(k){if(!btns.some(function(b){return b.getAttribute('data-key')===k}))return;img(base+data.mobs[k].skin,function(im){skins[k]=im;ready()})})};
   x.send()}
 
 /* ---- picking ---- */
