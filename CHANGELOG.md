@@ -2,10 +2,6 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
-## 1.2.1
-
-You can now remove a saved AI key (Settings, "Forget key" next to Save key), so a key you stopped using no longer warns you on every start. Each note in the "Before you build" panel also has a "Don't show again" button; a note comes back if it changes or gets worse.
-
 ## 1.2.0
 
 The biggest update so far: far more things you can ask for, mods that are tried out before you see them, and a lot of safety work.
