@@ -2,6 +2,30 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.3.0
+
+Make it, then make it yours. Everything the AI makes can now also be changed by hand, without code.
+
+- **Change how a creature moves.** Pick a part (a wing, the tail, the head) and choose how it moves: flap, swing, spin, wag, bob or sway. Set how fast, how far and when it moves, and watch the preview move the way the game will.
+- **Change a creature's parts.** Add horns or wings, make the tail longer or the legs bigger, change a part's colour or material, or take a part away.
+- **Rules in plain sentences.** See what your mod does as sentences like "When the player right-clicks this, at night, make the animals glow", and change them with pick lists. Rules you change by hand and rules the AI writes work together.
+- **Use your own picture.** Use a picture you drew or picked as a fairy's wings.
+- **Dragons.** Tame, ride and fly dragons in five looks, and adjust how they move. (Fabric 26.3 for now; on other versions a dragon gets the look and the numbers.)
+- **A whole world from one sentence.** Describe a theme, like "a frozen wasteland", and get blocks, creatures, items and a world event that fit together. (Fabric 26.3 for now.)
+- **Better looking creatures.** Real feathered and leathery wings, and a fairy with butterfly wings that really beat.
+- **Commands you can paste.** The player guide now shows ready-to-paste lines to get each thing in the game.
+- **Suggest an improvement** from inside the app, and a plain "Support Sloth-Mod" link if you want to help.
+- **"Made with Sloth-Mod."** A short line in the description of the mods you make. You can switch it off in Settings.
+- **Fixes.**
+  - Rules the AI attached to your own items, blocks and creatures now really work in the game, and short names like "zombie" or "diamond" in rules are understood.
+  - Names of things that do not exist in your Minecraft version are caught before the build, with a suggestion.
+  - The AI wastes far fewer turns when something keeps failing.
+  - Mods with a custom liquid start correctly.
+  - On horde nights with friends online, the mini boss always comes.
+  - The list of open-source parts in About shows correctly on Windows.
+  - Many smaller fixes.
+- Creatures and things you made with an earlier version keep their look until you change them.
+
 ## 1.2.2
 
 Creatures you ask for are more reliable, and Sloth-Mod is more honest when something did not work.
