@@ -1,0 +1,39 @@
+name: Suggest an improvement
+description: Tell us what you want to make, or what would make Sloth-Mod better for you
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the idea. The "Suggest an improvement" button in Sloth-Mod fills this form for you. Never paste API keys or tokens.
+  - type: textarea
+    id: want
+    attributes:
+      label: What do you want to make or do?
+      description: Say it in plain words, the way you would tell a friend.
+      placeholder: "I want a pet that follows me and lights up caves..."
+    validations:
+      required: true
+  - type: textarea
+    id: help
+    attributes:
+      label: What would help?
+      description: What should Sloth-Mod do, or do better, so this works for you?
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How important is it?
+      options:
+        - Nice to have
+        - Would help me a lot
+        - I cannot do what I want without it
+  - type: input
+    id: app-version
+    attributes:
+      label: Sloth-Mod version
+      placeholder: "1.3.0"
+  - type: input
+    id: mc
+    attributes:
+      label: Minecraft version and loader (if it matters)
+      placeholder: "26.3 / Fabric, 1.21.1 / NeoForge, 1.20.1 / Forge"
