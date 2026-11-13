@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Sloth-Mod trailer</title>
+<style>
+@font-face{font-family:"Pixelify Sans";font-weight:700;src:url(../docs/fonts/pixelify-sans-latin-700-normal.woff2) format("woff2")}
+*{box-sizing:border-box}
+html,body{margin:0;background:#14110e;overflow:hidden}
+#stage{position:relative;width:1280px;height:720px;overflow:hidden;background:#14110e;font-family:"Pixelify Sans",monospace;color:#f4f1e8}
+.sh{position:absolute;inset:0;opacity:0;transition:opacity .35s}
+.sh.on{opacity:1}
+.sh img{position:absolute;image-rendering:auto}
+.pix img{image-rendering:pixelated}
+.full img{left:0;top:0;width:1280px;height:720px;object-fit:cover}
+.frame{position:absolute;margin-top:70px;border:6px solid #000;box-shadow:0 0 0 6px #5a5a5a,12px 12px 0 6px rgba(0,0,0,.6);background:#000;overflow:hidden}
+.frame img{position:static;display:block;width:100%;height:auto;transform:scale(calc(1 + var(--p,0)*.05))}
+.back{position:absolute;inset:0;background:linear-gradient(rgba(24,16,10,.86),rgba(24,16,10,.86)),#2a1c10}
+.cap{position:absolute;left:0;right:0;top:0;padding:12px 28px 14px;background:rgba(0,0,0,.82);border-bottom:4px solid #000;font-size:32px;line-height:1.15;text-shadow:3px 3px 0 #000;display:flex;align-items:center;gap:16px;z-index:5}.cap small{display:flex;align-items:center;justify-content:center;width:42px;height:42px;margin:0;background:#ffe066;color:#2a2000;border:4px solid #000;font-size:26px;text-shadow:none;flex:none}
+.tag{position:absolute;right:18px;bottom:16px;z-index:6;background:#000;border:3px solid #555;padding:2px 12px;font-size:20px;color:#d6d0c0}
+.title{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(24,16,10,.88),rgba(24,16,10,.88)),#4a3320}
+.title h1{margin:10px 0 0;font-size:96px;color:#7be04e;text-shadow:5px 5px 0 #17380d,10px 10px 0 #000;letter-spacing:.03em}
+.title p{margin:14px 0 0;font-size:38px;color:#ffe066;text-shadow:3px 3px 0 #000}
+.title img{position:static;width:112px;height:112px;image-rendering:pixelated}
+.grass{position:absolute;left:0;right:0;top:0;height:8px;background:#4a8d2a}
+.bar{position:absolute;left:0;bottom:0;height:8px;background:#7be04e;width:calc(var(--g,0)*100%)}
+</style></head>
+<body><div id="stage" aria-label="Sloth-Mod trailer">
+<!-- title -->
+<div class="sh title" data-s="0" data-e="1.7"><img src="f/sloth.png" alt=""><h1>SLOTH-MOD</h1><p>From an idea to a creature in the game</p></div>
+
+<!-- 1 type -->
+<div class="sh full" data-s="1.7" data-e="6.3">
+  <div class="sh on" data-s="1.7" data-e="2.4"><img src="f/type0.webp" alt=""></div>
+  <div class="sh on" data-s="2.4" data-e="2.9"><img src="f/type1.webp" alt=""></div>
+  <div class="sh on" data-s="2.9" data-e="3.4"><img src="f/type2.webp" alt=""></div>
+  <div class="sh on" data-s="3.4" data-e="3.9"><img src="f/type3.webp" alt=""></div>
+  <div class="sh on" data-s="3.9" data-e="4.4"><img src="f/type4.webp" alt=""></div>
+  <div class="sh on" data-s="4.4" data-e="4.9"><img src="f/type5.webp" alt=""></div>
+  <div class="sh on" data-s="4.9" data-e="6.3"><img src="f/type6.webp" alt=""></div>
+  <div class="cap"><small>1</small>Type your idea in plain words</div>
+</div>
+
+<!-- 2 build -->
+<div class="sh" data-s="6.3" data-e="11.8"><div class="back"></div>
+  <div class="sh on" data-s="6.3" data-e="8.3"><div class="frame" style="left:240px;top:34px;width:800px"><img src="f/app-plan.webp" alt=""></div></div>
+  <div class="sh on" data-s="8.3" data-e="10.1"><div class="frame" style="left:240px;top:34px;width:800px"><img src="f/app-art.webp" alt=""></div></div>
+  <div class="sh on" data-s="10.1" data-e="11.8"><div class="frame" style="left:240px;top:34px;width:800px"><img src="f/app-test.webp" alt=""></div></div>
+  <div class="cap"><small>2</small>The app plans it, draws it and builds it</div>
+</div>
+
+<!-- 3 adjust -->
+<div class="sh full" data-s="11.8" data-e="14.3"><img src="f/motion.webp" alt=""><div class="cap"><small>3</small>Choose how it moves: flap, wag, spin</div></div>
+<div class="sh full" data-s="14.3" data-e="16.8"><img src="f/parts.webp" alt=""><div class="cap"><small>3</small>Add horns, wings or a longer tail</div></div>
+<div class="sh full" data-s="16.8" data-e="19.3"><img src="f/rules.webp" alt=""><div class="cap"><small>3</small>Write rules as plain sentences</div></div>
+
+<!-- 4 in the game -->
+<div class="sh pix" data-s="19.3" data-e="22.8"><div class="back"></div>
+  <div class="frame" style="left:290px;top:20px;width:700px"><div id="flap"></div></div>
+  <div class="cap"><small>4</small>It is alive in Minecraft: a fairy with butterfly wings</div>
+</div>
+<div class="sh pix" data-s="22.8" data-e="24.8"><div class="back"></div><div class="frame" style="left:50px;top:110px;width:1180px"><img src="f/dragons.webp" alt=""></div><div class="cap"><small>4</small>Dragons you can adjust</div></div>
+<div class="sh full" data-s="24.8" data-e="26.8"><div class="back"></div><div class="frame" style="left:190px;top:20px;width:900px"><img src="f/cow.webp" alt=""></div><div class="cap"><small>4</small>A rule you wrote: the animals glow</div></div>
+
+<!-- end -->
+<div class="sh title" data-s="26.8" data-e="29.5"><img src="f/sloth.png" alt=""><h1>SLOTH-MOD</h1><p>Free for Windows</p></div>
+
+<div class="tag" id="tag">Sample screens from the app. Pictures from the game.</div>
+<div class="bar" id="bar"></div>
+</div>
+<script>
+(function(){
+var DUR=29.5,els=[].slice.call(document.querySelectorAll('.sh[data-s]')),stage=document.getElementById('stage'),bar=document.getElementById('bar'),tag=document.getElementById('tag');
+var flap=document.getElementById('flap'),imgs=[];
+for(var i=1;i<=6;i++){var im=new Image();im.src='f/flap'+i+'.webp';im.style.cssText='display:block;width:100%;height:auto;position:'+(i>1?'absolute;left:0;top:0':'static')+';visibility:'+(i>1?'hidden':'visible');flap.appendChild(im);imgs.push(im)}
+flap.style.position='relative';
+var order=[0,1,2,3,4,5,4,3,2,1];
+function setT(t){
+  els.forEach(function(e){var s=+e.dataset.s,en=+e.dataset.e,on=t>=s&&t<en;
+    // a shot that is nested in another one only shows while its parent shows
+    e.classList.toggle('on',on);if(on)e.style.setProperty('--p',((t-s)/(en-s)).toFixed(3))});
+  var k=order[Math.floor(t*7)%order.length];imgs.forEach(function(m,j){m.style.visibility=j===k?'visible':'hidden'});
+  bar.style.setProperty('--g',(t/DUR).toFixed(4));
+  tag.style.display=(t<1.7||t>=26.8)?'none':'block'}
+window.setT=setT;window.DUR=DUR;
+var q=location.search;
+if(q.indexOf('still')<0){var t0=null;function tick(ts){if(t0===null)t0=ts;var t=(ts-t0)/1000;setT(Math.min(t,DUR-.01));if(t<DUR+.3)requestAnimationFrame(tick);else window.__done=true}
+  window.addEventListener('load',function(){setTimeout(function(){requestAnimationFrame(tick)},400)})}
+else setT(+(q.match(/t=([\d.]+)/)||[0,0])[1]);
+})();
+</script></body></html>
