@@ -2,6 +2,29 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.4.0
+
+Action combat, spell wheels, passive skill trees, multi-move bosses, sharper creature anatomy, richer live previews and one-click sharing.
+
+- **Dodge rolls and timed parries.** Key actions can now lunge in the direction you look while briefly dodging through hits, or open a short parry window that blocks the next strike, staggers the attacker, deals counter-damage and gives back stamina or mana. Every number can be tuned in the Edit panel.
+- **Spell wheel, loadouts and 3D spell items.** Hold a key to open a radial spell wheel and pick your active spell, switch between up to three named spell loadouts on the fly, and give staffs, wands, books and gadgets 3D hand-held models with a live 3D hand preview in the Edit panel.
+- **Skill trees in custom windows.** Custom windows can show a passive skill tree with connected perks, prerequisites, point costs, hover descriptions and permanent unlocks that stay after death. Perk names, descriptions and costs are editable in the Edit panel.
+- **Boss moves and breakable body parts.** Bosses and big creatures can wind up slams, sweeping beams, projectiles, pulls and minion calls with a clear warning before they land, and linked body parts can have their own health so breaking an arm or wing disables the attacks tied to it.
+- **Creatures that react when watched, plus ranged attackers.** Make statues or stalkers that freeze, vanish or turn hostile the moment a player looks at them (and creep closer when unseen or in the dark), as well as creatures that shoot arrows, snowballs or fireballs from afar.
+- **Ore veins for any custom block.** Turn any block into an Overworld, Nether or End ore vein and adjust vein size, frequency and depth in the Edit panel without needing a full tool set.
+- **Better wings, serpents and body sizes.** Membrane wings fan and fold cleanly along the flank (including new dragons on Fabric 26.3), feathered wings tuck neatly backward at rest, serpents lie on the ground with an arched neck, lighter belly and waving spine or mane, and the Body size slider scales quadruped, humanoid, bird, blob and dragon trunks while keeping feet on the ground.
+- **Per-part sizes and linked hitboxes.** Creatures built on the fox, allay, dolphin or ender dragon body (Fabric 26.3) get per-part size sliders (`0.35x` to `3x`) with live 3D previews and matching rider seats. Linked hitboxes ("hit any part") now cover big creatures with wings, necks, tails and limbs on Fabric 26.3 and NeoForge 26.3, serpents on NeoForge 1.21.1 and Forge 1.20.1, and rideable dragons on Fabric 26.3 without blocking the rider's aim.
+- **Zoom, Reset, Expand and Pause in the 3D preview, plus a wide main-screen Edit studio.** Scroll or press `+` / `-` to zoom, reset the view, expand the 3D stage, or press `Pause` to freeze turntable rotation while inspecting a model. The Edit panel now opens as a wide side-by-side studio with a visual thumbnail switcher strip across the top, your live 3D/2D preview pinned on the left, inline `Play` and `+ My sound` controls next to every sound picker, a `Shuffle` button on Look variation, arched two-sided 3D bat and feathered wings plus live leg and colour updates on golems, and direct `Edit in Studio` / `Blueprints` buttons at the top of the Simple sidebar and every art card in chat.
+- **Hands-on 3D Brush Painting and Part Grab in Studio.** Open **3D Paint & Grab** on any 3D creature, weapon or block in Studio to paint pixel strokes directly onto the live 3D surface with Pencil, Fill, Colour Swap, Eraser, Eyedropper and Left/Right Mirror, synced in real time with the 2D UV skin sheet, or switch to **3D Part Grab & Scale** to click and drag body parts directly in 3D with a live shape and UV check.
+- **Summoning cages, 3D altars and visual crafting recipes with real Minecraft icons.** Ask for a spawner or summoning block and choose between a modified Monster Spawner cage, a 3D Summoning Altar or a Glowing Runic Block — complete with live floating 3D flame, soul, portal and spark particles in the preview. Edit any item or block's 3x3 crafting recipe directly in the Edit studio using crisp pixelated Minecraft item icons, quick-pick brushes, live warnings if a pattern overrides a vanilla Minecraft recipe, and automatic unlocking in Minecraft's green Recipe Book in-game.
+- **Visual Blueprint Node Graph editor with multi-branch control flow.** Open **Blueprints & Rules** to view and edit every mod rule as an interactive node graph (`Event Trigger` -> `Only If` -> `Action Steps` + `If / Else` branches, `Repeat` loops and `Wait` pauses) connected with colour-coded wires, search triggers and actions with an inline picker, switch seamlessly to the plain-English **Sentence List** view at any time, or type what should happen in the **Ask AI to wire a Blueprint rule** bar to build new rule graphs automatically.
+- **Code mode with full Java syntax highlighting.** Switch to the **Code** tab (or open any existing Fabric, NeoForge or Forge Gradle folder from Home) with dark-theme Java, JSON and Gradle syntax colouring, file filtering, new-file creation, one-click JAR builds and side-by-side **Ask AI about this file** assistance.
+- **Showcase posts and banner cards in Share.** Copy a ready-to-paste Discord post or Markdown showcase, or save a `1200x630` PNG banner card with your mod's icon, summary and version badge.
+- **Faster, steadier AI runs and cleaner Simple view.** Longer builds use about a third fewer AI tokens while keeping quality, open projects keep the AI chat focused without starter-example clutter, follow-up creature and behaviour tweaks skip unneeded starter questions and highlight the matching Quest Log stage right away, and internal compiler repair notes stay out of Simple view.
+- **Minecraft 26.1 and 26.2 are no longer offered for new mods.** New mods target Minecraft `26.3` (Fabric, NeoForge), `1.21.1` (Fabric, NeoForge) or `1.20.1` (Fabric, Forge). Existing `26.1` and `26.2` mods still open, and one button moves them to `26.3`.
+- **Existing mods keep their look.** Creatures, wings and items made with an earlier version keep their exact appearance until you edit them.
+- **Still being polished.** Some of the new action-combat, spell-wheel, skill-tree and multi-move boss options are brand new and have not been played by many people or in multiplayer yet. If something acts up, use **Report a problem**.
+
 ## 1.3.1
 
 Fixes for changing things you already made, and for mods on NeoForge and Forge.
@@ -38,11 +61,7 @@ Make it, then make it yours. Everything the AI makes can now also be changed by 
 
 ## 1.2.2
 
-Creatures you ask for are more reliable, and Sloth-Mod is more honest when something did not work.
-
-- Companions, pets and helpers come out right more often.
-- If something in your mod still does not work after testing, Sloth-Mod tells you plainly, does not count it as finished and does not add it to your modpack. You can ask it to build that part next, or keep the rest anyway.
-- The "How to play" guide no longer explains things that are not working yet.
+A mod with something that cannot exist in the game is no longer reported as finished. When the test server could not put a creature (or a block) into the world even after the repairs, the result says "Not built: ... does not work yet", the stage is not counted as done, nothing is added to your modpack, and "Build them next" asks for the fix. You can still keep it anyway if you only want the rest. The player guide marks such a thing "Not built yet" instead of telling you to summon it. Companions, pets and helpers are now built from the proven creature recipe instead of hand-written code, a wrong creature attribute set-up is caught and repaired before the game starts, and a plan that promises an item that summons the creature is checked: if the item does not spawn it, it is listed as not built.
 
 ## 1.2.1
 
@@ -75,16 +94,17 @@ New building blocks, effects and the checks that go with them are made for Minec
 - Behaviour tuning: change how a creature acts in the Edit panel without asking the AI.
 
 ### Your mod is tried out before you see it
-- Every mod is tried out in the game before you see it, and problems are fixed first or told to you plainly.
-- The guide says only what the mod really does.
+- Each mod is started in a real Minecraft server before you see it, and what you asked for is tried out there: items are used, blocks are placed and clicked, and creatures are spawned and hit. Recipes that do not load are caught. Problems are fixed first or told to you plainly.
+- Generated files get a quick compile check and loot tables are written in the exact shape the newest game version expects, so fewer repair rounds are needed.
+- The guide says only what the mod really does, and results say plainly what was "Not built".
 
 ### Big projects
-- Fixed: a later step of a Big project could remove work from earlier steps.
+- **Fixed: earlier steps keep their files.** A repair in a later step of a Big project could delete files written by steps that were already finished. That no longer happens, and the "class exists" check accepts full class names.
 
 ### Safer, more private
-- Your AI key is never put into a shared modpack.
-- Safer test runs and a stricter check of the code the AI writes.
-- Clearer privacy and licence texts.
+- **Your AI key is never put into a shared modpack.** Exports leave out secrets by name and by content.
+- **Safer test runs.** Before every test run the build files are checked. For a build that is waiting for your test they are put back to what Sloth-Mod wrote, again after the game closes, even when you cancel; for a saved mod a changed build file stops the run.
+- A stricter check of the code the AI writes, and clearer privacy and licence texts: every online address the app uses is listed, and the open libraries it installs are credited.
 
 ### Also
 - Translation of your mod into other languages and "explain this file" in plain words.
@@ -107,21 +127,28 @@ Already on 1.1.3: Sloth-Mod offers the update on start (Settings, Updates, Check
 
 Guns now shoot bullets you can see, and the setup questions fit what you typed.
 
-### New
-- **Guns shoot visible bullets** from the barrel, with a small muzzle flash. The Edit panel can switch between real bullets, a tracer line or an instant hit, and set the flash to off, small or big. To update a gun you already made: open it in the Edit panel, change a value and press Apply.
-- **Setup questions fit your idea.** For creatures: Friendly, Leaves you alone unless attacked, Attacks players or Just scenery, plus where it lives, how often you see one and whether they look different.
+### Changed
+- **Guns shoot visible bullets.** Each shot sends a small, fast bullet out of the barrel and it flies to where you aim, with a small muzzle flash at the end of the barrel (no more big flame in your face). Shotguns send several pellets. In the Edit panel you can switch between real bullets, an instant hit with a tracer line, or an instant hit with nothing drawn, and turn the muzzle flash off, small or big.
+- **Setup questions fit your idea.** The questions before a build now follow what you wrote. For creatures there is a clearer "How does it act?" (Friendly, Leaves you alone unless attacked, Attacks players, Just scenery), plus where it lives, how often you see one and whether they should look different. Things you already said are filled in and marked "I guessed this from what you wrote", so you only fix what is wrong. Strength is no longer asked for creatures.
+
+### Updating a gun you already made
+- Open the gun in the Edit panel, change any value and press Apply, or ask the AI to "apply the gun recipe again" for that gun. Guns you do not touch keep working as before (instant hit with a tracer and a small flash).
+
+### Not there yet
+- Creatures that fly far overhead as part of the sky: you can ask for one and get a flying creature, but it spawns and flies near the ground for now.
+- A different look for every animal of the same kind: you get one set of colours per creature type for now.
 
 ## 1.1.2
 
-A small update: drops on the newest Minecraft version, and a few fixes to how the AI makes things.
+Safer, more reliable loot on the newest game version, and a few fixes to how the AI makes things.
 
 ### Fixed
-- **Drops work on Minecraft 26.3.** Custom mobs and custom loot give the amounts and chances you asked for; the newest game version changed how drops are written.
-- **Fewer wasted AI repair rounds** (recipes that equal one of the game's own, small slips while painting, more colour words, free sound descriptions).
-- **About window** shows the new terms and the open-source notices.
+- **Loot tables work on Minecraft 26.3.** Drops from blocks, mobs and chests that the app writes now use the exact format the newest game version expects, so crops, slabs, doors and mob drops give their items again.
+- **Fewer wasted AI repair rounds.** A crafting recipe that equals one of the game's own is caught the moment it is written; painting a texture forgives small slips instead of throwing the picture away; mob art that only gives colours borrows a sensible shape; a mob sound the mob does not have uses its other sound; more colour words are understood; a sound described in free words ("soft airy chime") is tried word by word.
+- **About window:** it now shows the new free-use terms and the notices of the open-source parts Sloth-Mod is made from.
 
 ### Terms
-- Sloth-Mod stays free to use. From 1.1.2 the source code is no longer published; see LICENSE. Versions up to 1.1.1 keep their MIT license.
+- Sloth-Mod stays free to use. From 1.1.2 the source code is no longer published; see LICENSE (the free-use terms) in the download page. Versions up to 1.1.1 keep their MIT license.
 
 ## 1.1.1
 

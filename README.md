@@ -2,9 +2,9 @@
 
 <a href="https://deusespr.github.io/Sloth-Mod/"><img src="docs/img/readme/banner.png" alt="Sloth-Mod: make Minecraft mods by describing them. A pixel sloth, the title, and a hotbar of items drawn by the app's art engine." width="100%"></a>
 
-<h3>Describe a Minecraft mod in plain English. Sloth-Mod plans it, writes it, builds it and gets it ready to play.</h3>
+<h3>Describe a Minecraft mod in plain English. Sloth-Mod plans it, writes it, builds it and gets it ready to play — then lets you sculpt, paint and wire it by hand.</h3>
 
-Free for Windows · works with any AI, cloud or local · no coding, no Java setup
+Free for Windows · works with any AI, cloud or local · no coding required, full Studio & Code mode included
 
 <a href="https://github.com/DeusesPR/Sloth-Mod/releases/latest"><img src="docs/img/readme/btn-download.png" alt="Download for Windows" width="300"></a>
 
@@ -12,34 +12,39 @@ Free for Windows · works with any AI, cloud or local · no coding, no Java setu
 [![Downloads](https://img.shields.io/github/downloads/DeusesPR/Sloth-Mod/total?color=2e7d22)](https://github.com/DeusesPR/Sloth-Mod/releases)
 [![Free to use](https://img.shields.io/badge/price-free-2e7d22)](LICENSE)
 
-[Website](https://deusespr.github.io/Sloth-Mod/) · [Showcase](#showcase) · [First mod in 3 steps](#your-first-mod-in-3-steps) · [Versions and AIs](#what-it-works-with) · [Install](#install) · [Help](#help-and-feedback) · [Support](#support-sloth-mod)
+[Website](https://deusespr.github.io/Sloth-Mod/) · [New in 1.4](#new-in-14) · [Showcase](#showcase) · [First mod in 3 steps](#your-first-mod-in-3-steps) · [Versions and AIs](#what-it-works-with) · [Install](#install) · [Help](#help-and-feedback) · [Support](#support-sloth-mod)
 
 <br>
 
-<img src="docs/img/demo.gif" alt="The app in use: typing 'a ruby sword that sets mobs on fire', answering a few clickable questions, approving the plan, picking one of three sword textures and landing on the Ready for you to test card with a crafting guide." width="100%">
-
+<img src="docs/img/v14/sloth-mod-1.4-trailer.gif" alt="Sloth-Mod 1.4 showcase trailer: describing a mod in plain English, inspecting articulated 3D creature wings in Studio, painting pixels directly onto a 3D creature with live UV sync, wiring multi-branch visual Blueprints, editing a 3x3 crafting grid with real Minecraft icons, and playing in Minecraft 26.3." width="100%">
 
 </div>
 
 ## What it does
 
-- **Builds mods from a sentence.** Items, blocks, mobs or a whole game-changing mod. The AI shows a plan you approve, writes the mod, builds it and repairs its own build errors.
-- **Draws the art and makes the sounds.** A built-in engine makes the textures, 3D models, mob skins and sound effects, with 614 kinds of sound. You pick your favourite version of each, and the Edit panel and pixel editor let you change them afterwards without the AI.
-- **Lets you test before anything is kept.** One button starts Minecraft with your mod. Then you keep it, ask for a fix or undo it.
-- **Lets you change what the AI made, by hand.** How a creature's parts move, its parts, and its rules as plain sentences, with no code (new in 1.3).
+- **Builds mods from a sentence.** Items, blocks, creatures, bosses, combat systems or a whole themed world. The AI shows a plan you approve, writes the mod, builds it and repairs its own build errors.
+- **Draws the art and makes the sounds.** A built-in engine makes the textures, 3D models, creature skins and sound effects across 614 sound types. Pick your favourite version of each, then refine anything in the wide side-by-side **Studio** without spending AI tokens.
+- **Hands-on 3D Studio, Visual Blueprints & Code mode.** Paint pixels directly onto 3D models with live 2D UV sync, grab and scale creature parts, edit 3x3 crafting grids with real Minecraft icons, wire game logic as visual Blueprint node graphs (or plain sentences), or open full **Code** mode with Java syntax highlighting.
+- **Lets you test before anything is kept.** One button starts Minecraft with your mod. Keep it, ask for a fix or undo it.
 - **Manages your mods too.** Browse Modrinth, install mods, modpacks, resource packs and shaders, and keep game profiles for Fabric, Quilt, Forge, NeoForge and vanilla.
 
-## New in 1.3
+## New in 1.4
 
-- **A whole world from one sentence.** Describe a theme and get blocks, creatures and items that fit together (Fabric 26.3 for now).
-- **Change how it moves.** Pick a part of a creature and choose flap, wag, spin and more.
-- **Change its parts.** Add horns or wings, give it a longer tail, take a part away.
-- **Rules in plain sentences.** "When you right-click, do this", changed with pick lists.
-- **Wings from your own picture.** Use a picture you drew or picked as a fairy's wings.
-- **Dragons.** Tame, ride and fly dragons in five looks, and adjust how they move (Fabric 26.3 for now).
-- **Better looking creatures.** Real feathered and leathery wings, and a fairy with butterfly wings.
-- **Ready-to-paste commands** in the player guide, a **Suggest an improvement** button, and a small **"Made with Sloth-Mod"** credit line that you can switch off.
-- Many fixes.
+<table>
+  <tr>
+    <td width="50%" valign="top"><img src="docs/img/v14/studio-paint-3d.png" width="100%" alt="Studio 3D Paint & Grab tab showing live pixel brush painting directly on a 3D winged golem synced with its 2D UV texture sheet."><br><sub><b>3D Paint &amp; Part Grab in Studio.</b> Paint directly onto 3D creatures, weapons and blocks with Pencil, Fill, Swap, Erase and Mirror synced live with the 2D UV sheet, or grab and scale parts in 3D.</sub></td>
+    <td width="50%" valign="top"><img src="docs/img/v14/blueprints-graph.png" width="100%" alt="Blueprints & Rules visual node graph showing Event Trigger, Only If, Action Steps and an If / Else Flow Branch card with colour-coded wires."><br><sub><b>Visual Blueprints with multi-branch flow.</b> Wire triggers, conditions, <code>If / Else</code> branches, <code>Repeat</code> loops and <code>Wait</code> steps visually, switch to plain-English sentences anytime, or ask AI to wire a rule.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><img src="docs/img/v14/studio-wings.png" width="100%" alt="Wide Studio preview showing a Crystal Winged Golem with articulated two-sided membrane wings, zoom controls and part sliders."><br><sub><b>Articulated 3D wings, serpents &amp; part sizes.</b> Arched membrane and feathered wings that fan and fold cleanly, grounded waving serpents, per-part size sliders (<code>0.35x</code> to <code>3x</code>) and multi-part hitboxes.</sub></td>
+    <td width="50%" valign="top"><img src="docs/img/v14/crafting-and-code.png" width="100%" alt="Visual 3x3 crafting recipe editor with pixelated Minecraft item icons alongside dark-theme Java Code mode."><br><sub><b>Real-icon 3x3 crafting &amp; full Code mode.</b> Click-paint recipes with real Minecraft item icons and vanilla-override checks, or jump into dark-theme Java, JSON and Gradle editing with file AI help.</sub></td>
+  </tr>
+</table>
+
+- **Dodge rolls, timed parries, spell wheels and skill trees.** Add directional dodge rolls, timed parries with stagger and counter-damage, radial spell wheels with up to three named loadouts, 3D hand-held staffs and wands, and custom windows with permanent passive skill trees.
+- **Multi-move bosses, watched stalkers and ranged attackers.** Build bosses that wind up slams, sweeping beams, pulls and minion calls with breakable body parts that disable tied attacks, statues that freeze or turn hostile when watched, and ranged creatures that fire arrows, snowballs or fireballs.
+- **Summoning cages, 3D particle altars and custom ore veins.** Choose between Monster Spawner cages, 3D Summoning Altars or Glowing Runic Blocks with live floating 3D flame, soul and portal particles, or turn any block into an Overworld, Nether or End ore vein.
+- **Wide side-by-side Studio & one-click Share cards.** Thumbnail switcher strip across the top, Zoom / Reset / Expand / Pause in 3D previews, inline sound `Play` and `+ My sound` buttons, cleaner focused AI chat inside open projects, ~33% leaner AI token usage on long builds, and `1200x630` PNG showcase cards in **Share**.
 
 ## Showcase
 
@@ -56,7 +61,6 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
   </tr>
   <tr>
     <td colspan="2" align="center"><img src="docs/media/showcase-blocks.webp" width="100%" alt="A log, a crystal block and a grass block turning in 3D."><br><sub><b>Blocks</b></sub></td>
-    
   </tr>
 </table>
 
@@ -70,7 +74,7 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
 <sub><b>Block materials, side and top.</b> They tile without seams.</sub>
 </p>
 
-### Creatures made with 1.3, in the game
+### Creatures and bosses in Minecraft
 
 <p align="center">
 <img src="docs/img/v13/dragons.webp" width="100%" alt="Five dragons in a row in Minecraft: white, purple-black, small green, golden and red."><br>
@@ -83,14 +87,15 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
     <td width="50%" align="center"><img src="docs/img/v13/drake.webp" width="75%" alt="A red dragon with glowing wing edges standing in Minecraft."><br><sub><b>A dragon with membrane wings</b></sub></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><img src="docs/img/v13/wings.webp" width="60%" alt="A green drake with leathery wings, a winged wolf and a winged stag with feathered wings, seen from several sides."><br><sub><b>Leathery and feathered wings</b></sub></td>
+    <td width="50%" align="center"><img src="docs/img/v13/wings.webp" width="100%" alt="A green drake with leathery wings, a winged wolf and a winged stag with feathered wings, seen from several sides."><br><sub><b>Leathery and feathered wings</b></sub></td>
+    <td width="50%" align="center"><img src="docs/img/v14/boss-and-creatures-ingame.png" width="100%" alt="Real Minecraft 26.3 screenshots showing an Iron Colossus boss with multi-part hitboxes, a Frost Archer and a Stone Sentinel."><br><sub><b>Multi-part bosses, archers and sentinels in 26.3</b></sub></td>
   </tr>
 </table>
 
 ## Your first mod in 3 steps
 
 1. **Describe it.** Click **Create New Mod**, pick a Minecraft version and type what you want, for example "a ruby sword that sets mobs on fire". Sloth-Mod asks a few clickable questions and shows a plan.
-2. **Pick the art.** You get a few versions of each texture, 3D model and sound. Click the ones you like.
+2. **Pick and customize the art.** Choose from several versions of each texture, 3D model and sound — or jump into **Studio** and **Blueprints** to paint in 3D, tweak parts, edit crafting recipes and wire rules by hand.
 3. **Test it in Minecraft.** One button starts the game with your mod. Then answer "Did it work?": keep it, say what is wrong so the AI fixes it, or undo.
 
 <table>
@@ -110,11 +115,11 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
 
 ## What it works with
 
-**Minecraft versions** it can build mods for:
+**Minecraft versions** it builds new mods for:
 
 | Minecraft | Fabric | NeoForge | Forge |
 |:---|:---:|:---:|:---:|
-| 26.3, 26.2, 26.1 | ✓ | ✓ | |
+| 26.3 | ✓ | ✓ | |
 | 1.21.1 | ✓ | ✓ | |
 | 1.20.1 | ✓ | | ✓ |
 
@@ -123,8 +128,8 @@ Where new things land:
 | | Versions | What to expect |
 |:---|:---|:---|
 | **New things first** | Fabric 26.3 | Everything new is built and proven here first |
-| **Supported** | NeoForge 1.21.1 · Forge 1.20.1 · Fabric 1.21.1 · Fabric 1.20.1 · NeoForge 26.3 | Works and gets fixes; new things arrive later, in batches |
-| **Maintained** | Fabric and NeoForge 26.1, 26.2 | Keeps working, gets fixes only |
+| **Supported** | NeoForge 26.3 · NeoForge 1.21.1 · Forge 1.20.1 · Fabric 1.21.1 · Fabric 1.20.1 | Works and gets fixes; new things arrive in batches |
+| **Legacy projects** | Fabric and NeoForge 26.1, 26.2 | Existing mods still open and move to 26.3 in one click |
 
 Small updates arrive often; the app offers them by itself, and your mods, settings and keys stay as they are.
 
@@ -141,22 +146,22 @@ Your AI provider may charge you; Gemini and Mistral have free tiers, OpenRouter 
 
 ## Install
 
-1. Download [`Sloth-Mod_1.3.1_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.3.1/Sloth-Mod_1.3.1_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
+1. Download [`Sloth-Mod_1.4.0_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.4.0/Sloth-Mod_1.4.0_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
 2. **Why Windows shows a warning.** Sloth-Mod is free and not paid-signed, so Windows SmartScreen may show a blue "Windows protected your PC" box. That is normal for a free app. Click **More info**, then **Run anyway**. Only do this for an installer from this repository's Releases page. More in [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
 
 You need Windows 10 or 11 (64-bit), about 4 GB of free disk space, internet for the first setup, and Minecraft Java Edition to play what you make. The app updates itself and keeps your mods, settings and keys.
 
 ## Where Sloth-Mod is going
 
-Not available today, and built step by step: campaigns with missions, quests and characters, cutscenes and dialogue, and making it easier on cheap and free AI. No dates, on purpose.
+Not available today, and built step by step: campaigns with missions, quests and characters, cutscenes and dialogue, full free-hand 3D box adding and custom animation timelines in Studio, and making everything even easier on cheap and free AI. No dates, on purpose.
 
 What stays: free, Windows, works with cheap or free AI (including AI on your own PC), a compatibility check against your modpack, and safety checks on AI-written code. If you use Sloth-Mod today, nothing breaks and updates keep coming through the app. Tell us what you want to make in the [Discussions](https://github.com/DeusesPR/Sloth-Mod/discussions), or use **Report a problem** in the app.
 
 ## Status
 
-**What works in this version (1.3.1):** mods are built with real Gradle and loaded by a real test server on all 10 supported Minecraft/loader versions; each new mod is started and tried out on a real server before you see it; blocks, items, rules, creature motions and winged creatures were seen working in the game on Fabric 26.3, NeoForge 26.3, Fabric 1.21.1 and NeoForge 1.21.1; dragons fly and can be ridden on Fabric 26.3 (on other versions they get the look and the numbers); the Edit panel (looks, motion, parts, rules), the pixel editor, the sound maker and the Blockbench export/import work.
+**What works in this version (1.4.0):** mods are built with real Gradle and loaded by a real test server across all 6 active Minecraft/loader targets (`Fabric 26.3`, `NeoForge 26.3`, `Fabric 1.21.1`, `NeoForge 1.21.1`, `Fabric 1.20.1`, `Forge 1.20.1`); action combat (`dodge roll` & `parry`), spell wheels, passive skill trees, multi-move bosses with breakable linked parts, watched stalkers, ranged mobs, custom ore veins, articulated wings and grounded serpents were verified in-game on Fabric 26.3 (and NeoForge 26.3 server/client checks); the wide Studio (`Looks and sounds`, `3D Paint & Grab`, `Motion`, `Parts`, `3x3 Crafting`), `Blueprints & Rules` (`If / Else`, `Repeat`, `Wait` + Sentence List), `Code` mode, sound maker and `Share` showcase cards all work offline without spending AI tokens.
 
-**Still being polished:** the newest additions (guns, vehicles, wearables, new animations and sounds) are still being fine-tuned in real play. The safety check is a strong guardrail, not a guarantee: only play mods you trust. The installer is not paid-signed, so Windows SmartScreen may show a warning.
+**Still being polished:** some of the newest action-combat, spell-wheel, skill-tree and multi-move boss options are brand new and have not been played by many people or in multiplayer yet. The safety check is a strong guardrail, not a guarantee: only play mods you trust. The installer is not paid-signed, so Windows SmartScreen may show a warning.
 
 ## More details
 
@@ -166,19 +171,19 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 <br>
 
 - **Describe, plan, build, test.** The AI asks only what it needs, shows a plan you approve, writes the mod in a sandbox, builds it, repairs build errors, runs quick checks and ends with "Ready for you to test".
-- **Art picker.** Several different designs of every texture, 3D model and mob. The others are kept so you can swap later. A pixel editor and a Blockbench export/import let you change them by hand.
+- **Art picker & 3D Studio.** Several different designs of every texture, 3D model and creature. Open **Studio** to paint pixels directly onto the 3D surface synced with the 2D UV sheet, grab and scale parts, adjust motion, or edit 3x3 crafting recipes with real Minecraft icons.
+- **Visual Blueprints & Plain Sentences.** View and wire every mod rule as a colour-coded Blueprint node graph with `If / Else` branches, `Repeat` loops and `Wait` pauses, flip to plain-English sentences anytime, or ask AI to wire a rule.
+- **Code mode.** Open any mod or existing Fabric, NeoForge or Forge Gradle folder in **Code** mode with dark-theme Java, JSON and Gradle syntax colouring, file search, one-click JAR builds and side-by-side file AI help.
 - **Sound maker.** 614 kinds of sound (creatures, weapons, magic, materials, machines, interface, ambience, music), made in the app, checked for clicks and clipping, and added as real mod sounds.
 - **How-to-play guides.** Every mod gets a player guide with crafting panels, drop and spawn info, ready-to-paste commands and a mod icon.
-- **Fast builds and quick edits.** A simple mod takes about two AI turns, and "Make the squeak louder" is just as quick.
-- **Edit panel.** Change sizes, colours, numbers and sounds of what the app made, how its parts move, its parts and its rules, with a live preview and no AI.
+- **Action combat, magic & bosses.** Dodge rolls, timed parries, radial spell wheels with three loadouts, 3D hand-held staffs, passive skill-tree windows, multi-move bosses with breakable parts, watched stalkers, ranged mobs and custom ore veins.
 - **Update to a new Minecraft version.** One run moves your mod to a newer version of the same loader (or Forge to NeoForge) and keeps your art, sounds and hand edits.
-- **More things it can build.** Creatures that fly, swim or can be ridden, guns, vehicles, wearables, enchantments, music discs and armor trims.
 - **Big project mode.** An approved design, a 20 to 50 step roadmap and a project map; one tested step at a time.
 - **Add-ons.** Make a mod that builds on another mod from Modrinth.
 - **Spending limit.** Per-mod and daily limits with an optional PIN, and a cost readout for every run.
 - **Mod manager.** Modrinth search and installs, game profiles, updates, `.mrpack` export, and Play through the official launcher.
 - **Modpack compatibility check.** A throwaway server tells you whether your new mod works with the pack's mods.
-- **Crash explainer, version history, share and publish** (export a `.jar` with a readme, or publish a draft to Modrinth).
+- **Crash explainer, version history, share and publish** (export a `.jar` with a readme, save a `1200x630` showcase banner card, copy a Discord/Markdown post, or publish a draft to Modrinth).
 
 </details>
 
@@ -202,7 +207,7 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 
 **Is it free?** Yes. Free to download and use, and the mods you make are yours ([terms](LICENSE)). Your AI provider may charge; free tiers, OpenRouter's free models and local AIs exist.
 
-**Do I need to code?** No. You describe what you want and click through a few choices. If you like code, the Workshop view has an editor and diffs.
+**Do I need to code?** No. You describe what you want, click through a few choices, and customize looks, parts, crafting and Blueprints visually. If you do like code, **Code** mode and Workshop view give you a syntax-coloured Java editor, diffs and one-click Gradle builds.
 
 **Which AI should I use?** Any listed provider. Bigger models make bigger mods with fewer repairs. **Test this AI** in Settings checks yours.
 
@@ -221,8 +226,8 @@ Longer answers are on the [website](https://deusespr.github.io/Sloth-Mod/#faq).
 
 <br>
 
-- Tested on a real Windows PC with a real AI (DeepSeek): a mod made from one sentence was built, checked on a test server and played in Minecraft (Fabric 26.3), plus quick edits, Undo and Share. Every supported loader and version is also built for real before each release.
-- 1.1: the new art, sound engine, wearables, vehicles, guns and animations are built for real on all 10 supported versions with a test server start, and the game window is checked on Fabric, NeoForge and Forge. The newest additions are still being fine-tuned in real play.
+- Tested on a real Windows PC with real cloud and local AIs: mods made from plain sentences were built with Gradle, checked on a dedicated server and played in a real Minecraft client window (Fabric 26.3 and NeoForge 26.3), alongside Studio 3D painting, Blueprint editing, quick edits, Undo and Share. Every supported loader and version is built for real before each release.
+- 1.4: action combat, spell wheels, passive skill trees, multi-move bosses with breakable parts, watched stalkers, ranged mobs, ore veins, articulated dragon/bat/feathered wings and grounded serpents are verified in real builds and client/server checks, while multiplayer edge cases are still being fine-tuned in real play.
 - "Sign in with Grok" is experimental and off by default (Settings → Experimental). It signs in with the identity of xAI's own Grok CLI, which may be against xAI's terms; xAI can block it or act on your account. You must accept a warning first, and an xAI API key is the supported way.
 - The installer is not paid-signed.
 
