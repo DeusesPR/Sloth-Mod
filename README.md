@@ -16,7 +16,7 @@ Free for Windows · works with any AI, cloud or local · no coding required, ful
 
 <br>
 
-<img src="docs/img/v14/sloth-mod-1.4-trailer.gif" alt="Sloth-Mod 1.4 showcase trailer: describing a mod in plain English, inspecting articulated 3D creature wings in Studio, painting pixels directly onto a 3D creature with live UV sync, wiring multi-branch visual Blueprints, editing a 3x3 crafting grid with real Minecraft icons, and playing in Minecraft 26.3." width="100%">
+<img src="docs/img/v14/sloth-mod-1.4-trailer.gif" alt="Sloth-Mod 1.4 showcase trailer: picking a wing style for a creature that rebuilds live in Studio, painting both wings of the 3D model with a mirrored brush, wiring an If / Else rule node by node, clicking a 3x3 crafting recipe together, the mod's own Java code, and dragons flying in Minecraft 26.3." width="100%">
 
 </div>
 
