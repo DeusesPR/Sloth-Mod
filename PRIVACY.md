@@ -58,7 +58,7 @@ The app itself still sends nothing beyond the table above. But a mod made with t
 
 Your settings, your mod projects, the version history, run logs, the AI's knowledge base and caches, and your usage and cost counters are all files on your computer. Run logs can contain your prompts and the AI's answers; "Copy run log" only copies them to your clipboard. Nothing is uploaded unless you choose to share it yourself.
 
-**Files inside a built mod.** When Sloth-Mod builds a `.jar` file for your mod, it stores a copy of that mod's source files and Studio settings inside the `.jar` (`META-INF/sloth-project.json`) so you—or anyone you give the `.jar` to—can reopen the mod in Sloth-Mod later even if the original project folder is gone. Your computer's folder paths, game profile IDs, chat history, run logs, and saved keys are never put into the `.jar`.
+**Files inside a built mod.** When Sloth-Mod builds a `.jar` file for your mod, it stores a copy of that mod's source files and Studio settings inside the `.jar` (`META-INF/sloth-project.json`) so you—or anyone you give the `.jar` to—can reopen the mod in Sloth-Mod later even if the original project folder is gone. By default this is only your mod's source files and Studio settings: your Big Project design and roadmap notes are NOT included. If you switch on "Also include my Big Project plan" for a mod, its sanitized design and step list go into that mod's `.jar` too, and whoever reopens the `.jar` gets them as an unapproved suggestion. Your computer's folder paths, game profile IDs, chat history, run logs, and saved keys are never put into the `.jar`.
 
 ## Your choices
 
