@@ -2,6 +2,18 @@
 
 All notable changes to Sloth-Mod are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [semantic versioning](https://semver.org/).
 
+## 1.5.0
+
+Reopen any Sloth-Mod `.jar`, tweak existing `.jar` mods, create and duplicate content without spending AI tokens, and work faster in a docked 3D Studio and Blueprint canvas.
+
+- **Reopen any Sloth-Mod `.jar` as a full project.** Click **Open `.jar` Mod** on Home and choose any `.jar` built by Sloth-Mod (`1.5.0` and newer) to restore its full project, custom textures, sounds, 3D parts, motions, crafting recipes, Blueprints and code into a fresh folder ready to edit and rebuild. Built `.jar` files include a small project bundle with no API keys or PC folder paths.
+- **Tweak other `.jar` mods and export Overlay Packs.** Open a third-party Fabric, NeoForge or Forge `.jar` via **Open `.jar` Mod** to inspect its items, blocks, textures, sounds and recipes, repaint textures or adjust data safely without touching its code, or export your visual and data tweaks as a clean `.zip` Overlay Pack in one click.
+- **Manual Creator and one-click Duplicate (zero AI tokens).** Click **Build Manually** on Home or **Add Content** (`+` in the left rail) inside any project to add items, tools, weapons, armor, food, blocks or creatures with starter presets, live previews and **Create & Add Another** — without calling an AI. In Studio, click **Duplicate** on any item, block or creature to clone a new variant with its own name, ID, custom painted skin and sounds.
+- **Docked 3D Studio, smart material brushes and protected strokes.** Studio and Blueprints now dock directly inside the main workspace with a collapsible left sidebar rail for extra canvas room, smoother 3D previews across every screen, smart **Scales**, **Crystal**, **Metal**, **Fur** and **Rune Glow** pixel brushes, repeatable **Auto-Shade** lighting, clean transparent **3D snapshot PNG** renders without helper outlines, and automatic protection so unsaved Studio edits and brush strokes are never dropped silently when switching items, opening files, leaving a project, changing views, duplicating or rebuilding.
+- **More Blueprint flow nodes, Quick Spawner and saved layouts.** Wire **For Each** target loops, **Random Pick** branches and **Chance Roll** nodes alongside **If / Else**, **Repeat** and **Wait (Delay)** steps. Double-click empty grid space (or drag a pin onto empty space) to open the **Quick Node Spawner**, zoom around your cursor with `Ctrl + Scroll`, and keep your arranged node positions saved per rule.
+- **Live Sync to Game (`F3+T`) and stronger mod checks.** Click **Sync to Game (`F3+T`)** in the bottom bar to push updated textures, models and sounds straight into a running Minecraft test session and press `F3 + T` in-game to see art changes without restarting. Pre-build safety checks now also inspect mod metadata and imported `.jar` projects.
+- **Existing mods keep their look.** Mods, creatures and items made with earlier versions keep their exact appearance until you edit them.
+
 ## 1.4.0
 
 Action combat, spell wheels, passive skill trees, multi-move bosses, sharper creature anatomy, richer live previews and one-click sharing.
@@ -211,7 +223,7 @@ Independent security review of the code guard; the reviewer tried 76 new ways ar
 ### New
 - **Edit panel.** Change what the app made, with no AI: sizes, colours, numbers, choices and sounds, with a live preview. Pictures you painted or models you imported are kept.
 - **Pixel editor.** Draw on your mod's own textures in the app, with tips in plain words.
-- **Blockbench.** Export blocks, items and mobs as `.bbmodel` and import your edited model back.
+- **Custom `.bbmodel` 3D models.** Export blocks, items and mobs as `.bbmodel` and import your edited model back.
 - **Update my mod to a new Minecraft version** (a newer version of the same loader, or Forge to NeoForge) in one run, keeping your art, sounds and hand edits.
 - **Creatures from a description:** any body (quadruped, dragon, serpent, blob, humanoid, bird) with parts, walking, flying, swimming, climbing, riding.
 - **Guns** (hitscan, magazine, reload, recoil, scope), **vehicles**, **wearables** (hats, capes, wings, backpacks) and **data-driven content** (enchantments, damage types, music discs, armor trims).

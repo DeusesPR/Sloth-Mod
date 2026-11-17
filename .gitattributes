@@ -1,0 +1,6 @@
+# Sloth-Mod's desktop app source (Rust + TypeScript) lives in a private repository;
+# this public repository hosts releases, player documentation, and the GitHub Pages site.
+docs/** linguist-documentation
+*.html linguist-documentation
+*.js linguist-documentation
+*.css linguist-documentation

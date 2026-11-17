@@ -12,23 +12,42 @@ Free for Windows · works with any AI, cloud or local · no coding required, ful
 [![Downloads](https://img.shields.io/github/downloads/DeusesPR/Sloth-Mod/total?color=2e7d22)](https://github.com/DeusesPR/Sloth-Mod/releases)
 [![Free to use](https://img.shields.io/badge/price-free-2e7d22)](LICENSE)
 
-[Website](https://deusespr.github.io/Sloth-Mod/) · [New in 1.4](#new-in-14) · [Showcase](#showcase) · [First mod in 3 steps](#your-first-mod-in-3-steps) · [Versions and AIs](#what-it-works-with) · [Install](#install) · [Help](#help-and-feedback) · [Support](#support-sloth-mod)
+[Website](https://deusespr.github.io/Sloth-Mod/) · [New in 1.5](#new-in-15) · [Showcase](#showcase) · [First mod in 3 steps](#your-first-mod-in-3-steps) · [Versions and AIs](#what-it-works-with) · [Install](#install) · [Help](#help-and-feedback) · [Support](#support-sloth-mod)
 
 <br>
 
-<img src="docs/img/v14/sloth-mod-1.4-trailer.gif" alt="Sloth-Mod 1.4 showcase trailer: picking a wing style for a creature that rebuilds live in Studio, painting both wings of the 3D model with a mirrored brush, wiring an If / Else rule node by node, clicking a 3x3 crafting recipe together, the mod's own Java code, and dragons flying in Minecraft 26.3." width="100%">
+<img src="docs/img/v14/sloth-mod-1.4-trailer.gif" alt="Sloth-Mod showcase trailer: picking a wing style for a creature that rebuilds live in Studio, painting both wings of the 3D model with a mirrored brush, wiring an If / Else rule node by node, clicking a 3x3 crafting recipe together, the mod's own Java code, and dragons flying in Minecraft 26.3." width="100%">
 
 </div>
 
 ## What it does
 
-- **Builds mods from a sentence.** Items, blocks, creatures, bosses, combat systems or a whole themed world. The AI shows a plan you approve, writes the mod, builds it and repairs its own build errors.
-- **Draws the art and makes the sounds.** A built-in engine makes the textures, 3D models, creature skins and sound effects across 614 sound types. Pick your favourite version of each, then refine anything in the wide side-by-side **Studio** without spending AI tokens.
-- **Hands-on 3D Studio, Visual Blueprints & Code mode.** Paint pixels directly onto 3D models with live 2D UV sync, grab and scale creature parts, edit 3x3 crafting grids with real Minecraft icons, wire game logic as visual Blueprint node graphs (or plain sentences), or open full **Code** mode with Java syntax highlighting.
-- **Lets you test before anything is kept.** One button starts Minecraft with your mod. Keep it, ask for a fix or undo it.
+- **Builds mods from a sentence — or by hand with zero AI tokens.** Describe items, blocks, creatures, bosses, combat systems or a whole themed world for the AI to plan and build, or use **Build Manually** / **Add Content** and **Duplicate** to add and clone content offline at zero AI cost.
+- **Draws the art and makes the sounds.** A built-in engine makes the textures, 3D models, creature skins and sound effects across 614 sound types. Pick your favourite version of each, then refine anything in the docked **Studio** without spending AI tokens.
+- **Reopens `.jar` mods & exports Overlay Packs.** Click **Open `.jar` Mod** to reopen any `.jar` built by Sloth-Mod (`1.5.0+`) with its full project, custom art, Blueprints and code intact, or open another Fabric, NeoForge or Forge `.jar` to tweak its textures, sounds and recipes and export a clean `.zip` Overlay Pack.
+- **Hands-on 3D Studio, Visual Blueprints & Code mode.** Paint pixels directly onto 3D models with smart material brushes and live 2D UV sync, grab and scale creature parts, edit 3x3 crafting grids with real Minecraft icons, wire game logic as visual Blueprint node graphs (or plain sentences), or open full **Code** mode with Java syntax highlighting.
+- **Lets you test before anything is kept.** One button starts Minecraft with your mod, and **Sync to Game (`F3+T`)** pushes live art tweaks into a running test session. Keep it, ask for a fix or undo it.
 - **Manages your mods too.** Browse Modrinth, install mods, modpacks, resource packs and shaders, and keep game profiles for Fabric, Quilt, Forge, NeoForge and vanilla.
 
-## New in 1.4
+## New in 1.5
+
+<table>
+  <tr>
+    <td width="50%" valign="top"><img src="docs/img/v15/jar-import-tweaker.png" width="100%" alt="Open & Tweak .jar Mod dialog inspecting a Fabric 26.3 mod's textures, models, recipes and sounds ready to reopen or export as an Overlay Pack."><br><sub><b>Open <code>.jar</code> Mods &amp; Export Overlay Packs.</b> Reopen any Sloth-Mod <code>1.5.0+</code> <code>.jar</code> as a full editable project, or tweak another Fabric, NeoForge or Forge <code>.jar</code> into a clean <code>.zip</code> Overlay Pack.</sub></td>
+    <td width="50%" valign="top"><img src="docs/img/v15/manual-creator-duplicate.png" width="100%" alt="Manual Content Creator dialog showing zero-AI presets for weapons, blocks, creatures and synth sound effects with live preview and Create & Add Another."><br><sub><b>Manual Creator &amp; One-Click Duplicate (0 AI tokens).</b> Add items, weapons, armor, food, blocks, creatures or sounds offline with presets and <code>Create &amp; Add Another</code>, or clone variants in Studio.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><img src="docs/img/v15/docked-studio-materials.png" width="100%" alt="Docked 3D Studio with collapsible sidebar rail showing an Ember Drake painted with Crystal and Rune Glow smart material brushes alongside its 2D UV sheet."><br><sub><b>Docked 3D Studio &amp; Smart Material Brushes.</b> Paint with <code>Scales</code>, <code>Crystal</code>, <code>Metal</code>, <code>Fur</code> and <code>Rune Glow</code> brushes, repeatable <code>Auto-Shade</code>, clean 3D PNG snapshots and unsaved-work guards.</sub></td>
+    <td width="50%" valign="top"><img src="docs/img/v15/blueprints-v15-spawner.png" width="100%" alt="Docked Blueprints graph showing For Each, Random Pick and Chance Roll flow cards alongside the floating Quick Node Spawner and Sync to Game F3+T bar."><br><sub><b>Expanded Blueprints &amp; Live <code>F3+T</code> Sync.</b> Wire <code>For Each</code>, <code>Random Pick</code> and <code>Chance Roll</code> nodes, double-click empty space for the <b>Quick Node Spawner</b>, and push live art into a running game.</sub></td>
+  </tr>
+</table>
+
+- **Reopen any Sloth-Mod `.jar`, or tweak other `.jar` mods.** Click **Open `.jar` Mod** on Home to restore any `.jar` built by Sloth-Mod (`1.5.0+`) back into a full editable project, or open a third-party Fabric, NeoForge or Forge `.jar` to repaint its textures, swap sounds, edit recipes and export a clean `.zip` Overlay Pack without touching its code.
+- **Manual Creator & one-click Duplicate (zero AI tokens).** Click **Build Manually** on Home or **Add Content** inside a project to add custom items, tools, weapons, armor, food, blocks or creatures with starter presets, live previews and **Create & Add Another**, or click **Duplicate** in Studio to clone any item, block or creature with its own name, ID, painted skin and sounds.
+- **Docked 3D Studio, smart material brushes & protected strokes.** Studio and Blueprints dock right inside the main workspace with a collapsible left sidebar rail, smoother 3D previews everywhere, smart **Scales**, **Crystal**, **Metal**, **Fur** and **Rune Glow** pixel brushes, repeatable **Auto-Shade**, clean transparent **3D snapshot PNG** captures, and automatic warnings before unsaved Studio edits or paint strokes could be lost.
+- **Expanded Blueprints & live `F3+T` asset sync.** Wire **For Each** loops, **Random Pick** branches and **Chance Roll** nodes alongside **If / Else**, **Repeat** and **Wait (Delay)** steps, double-click empty grid space (or drag a pin) for the **Quick Node Spawner**, keep your node layout saved per rule, and use **Sync to Game (`F3+T`)** to push live texture and sound updates straight into a running Minecraft test session.
+
+### Also in 1.4
 
 <table>
   <tr>
@@ -44,7 +63,7 @@ Free for Windows · works with any AI, cloud or local · no coding required, ful
 - **Dodge rolls, timed parries, spell wheels and skill trees.** Add directional dodge rolls, timed parries with stagger and counter-damage, radial spell wheels with up to three named loadouts, 3D hand-held staffs and wands, and custom windows with permanent passive skill trees.
 - **Multi-move bosses, watched stalkers and ranged attackers.** Build bosses that wind up slams, sweeping beams, pulls and minion calls with breakable body parts that disable tied attacks, statues that freeze or turn hostile when watched, and ranged creatures that fire arrows, snowballs or fireballs.
 - **Summoning cages, 3D particle altars and custom ore veins.** Choose between Monster Spawner cages, 3D Summoning Altars or Glowing Runic Blocks with live floating 3D flame, soul and portal particles, or turn any block into an Overworld, Nether or End ore vein.
-- **Wide side-by-side Studio & one-click Share cards.** Thumbnail switcher strip across the top, Zoom / Reset / Expand / Pause in 3D previews, inline sound `Play` and `+ My sound` buttons, cleaner focused AI chat inside open projects, ~33% leaner AI token usage on long builds, and `1200x630` PNG showcase cards in **Share**.
+- **Showcase posts & banner cards.** Save `1200x630` PNG showcase cards or copy ready-to-paste Discord and Markdown posts from **Share**.
 
 ## Showcase
 
@@ -146,7 +165,7 @@ Your AI provider may charge you; Gemini and Mistral have free tiers, OpenRouter 
 
 ## Install
 
-1. Download [`Sloth-Mod_1.4.0_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.4.0/Sloth-Mod_1.4.0_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
+1. Download [`Sloth-Mod_1.5.0_x64-setup.exe`](https://github.com/DeusesPR/Sloth-Mod/releases/download/v1.5.0/Sloth-Mod_1.5.0_x64-setup.exe) (or pick a version on the [releases page](https://github.com/DeusesPR/Sloth-Mod/releases)) and run it. It installs for your user only, with no admin prompt.
 2. **Why Windows shows a warning.** Sloth-Mod is free and not paid-signed, so Windows SmartScreen may show a blue "Windows protected your PC" box. That is normal for a free app. Click **More info**, then **Run anyway**. Only do this for an installer from this repository's Releases page. More in [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
 
 You need Windows 10 or 11 (64-bit), about 4 GB of free disk space, internet for the first setup, and Minecraft Java Edition to play what you make. The app updates itself and keeps your mods, settings and keys.
@@ -159,9 +178,9 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 
 ## Status
 
-**What works in this version (1.4.0):** mods are built with real Gradle and loaded by a real test server across all 6 active Minecraft/loader targets (`Fabric 26.3`, `NeoForge 26.3`, `Fabric 1.21.1`, `NeoForge 1.21.1`, `Fabric 1.20.1`, `Forge 1.20.1`); action combat (`dodge roll` & `parry`), spell wheels, passive skill trees, multi-move bosses with breakable linked parts, watched stalkers, ranged mobs, custom ore veins, articulated wings and grounded serpents were verified in-game on Fabric 26.3 (and NeoForge 26.3 server/client checks); the wide Studio (`Looks and sounds`, `3D Paint & Grab`, `Motion`, `Parts`, `3x3 Crafting`), `Blueprints & Rules` (`If / Else`, `Repeat`, `Wait` + Sentence List), `Code` mode, sound maker and `Share` showcase cards all work offline without spending AI tokens.
+**What works in this version (1.5.0):** core mod recipes compile with real Gradle across all 6 active Minecraft/loader targets (`Fabric 26.3`, `NeoForge 26.3`, `Fabric 1.21.1`, `NeoForge 1.21.1`, `Fabric 1.20.1`, `Forge 1.20.1`), and `1.5.0`'s **Open `.jar` Mod** project restore, zero-token **Build Manually** / **Add Content** & Studio **Duplicate**, and `.zip` Overlay Pack export were built with real Gradle and checked in a live Minecraft `Fabric 26.3` client session; the docked Studio (`Looks and sounds`, `3D Paint & Grab` with smart **Scales**, **Crystal**, **Metal**, **Fur** and **Rune Glow** brushes and `Auto-Shade`, `Motion`, `Parts`, `3x3 Crafting`), `Blueprints & Rules` (`If / Else`, `Repeat`, `For Each`, `Random Pick`, `Chance Roll`, `Wait (Delay)` + Sentence List), **Sync to Game (`F3+T`)**, `Code` mode, sound maker and `Share` showcase cards all work offline without spending AI tokens.
 
-**Still being polished:** some of the newest action-combat, spell-wheel, skill-tree and multi-move boss options are brand new and have not been played by many people or in multiplayer yet. The safety check is a strong guardrail, not a guarantee: only play mods you trust. The installer is not paid-signed, so Windows SmartScreen may show a warning.
+**Still being polished:** some of the newest action-combat, spell-wheel, skill-tree and multi-move boss options are still young and have not been played in large multiplayer sessions yet, and third-party `.jar` tweaking intentionally edits textures, sounds, recipes and data rather than decompiling compiled Java classes. The safety check is a strong guardrail, not a guarantee: only play mods you trust. The installer is not paid-signed, so Windows SmartScreen may show a warning.
 
 ## More details
 
@@ -170,9 +189,10 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 
 <br>
 
-- **Describe, plan, build, test.** The AI asks only what it needs, shows a plan you approve, writes the mod in a sandbox, builds it, repairs build errors, runs quick checks and ends with "Ready for you to test".
-- **Art picker & 3D Studio.** Several different designs of every texture, 3D model and creature. Open **Studio** to paint pixels directly onto the 3D surface synced with the 2D UV sheet, grab and scale parts, adjust motion, or edit 3x3 crafting recipes with real Minecraft icons.
-- **Visual Blueprints & Plain Sentences.** View and wire every mod rule as a colour-coded Blueprint node graph with `If / Else` branches, `Repeat` loops and `Wait` pauses, flip to plain-English sentences anytime, or ask AI to wire a rule.
+- **Describe, plan, build, test — or create manually.** Ask the AI to plan and build from plain English, or click **Build Manually** / **Add Content** and **Duplicate** to add and clone items, blocks and creatures offline at zero AI cost.
+- **Reopen `.jar` mods & export Overlay Packs.** Click **Open `.jar` Mod** to restore any `.jar` built by Sloth-Mod (`1.5.0+`) into its full project, or open another Fabric, NeoForge or Forge `.jar` to customize textures, sounds and recipes and export a clean `.zip` Overlay Pack.
+- **Art picker & docked 3D Studio.** Several different designs of every texture, 3D model and creature. Open **Studio** right inside the workspace to paint pixels directly onto the 3D surface with smart **Scales**, **Crystal**, **Metal**, **Fur** and **Rune Glow** brushes synced to the 2D UV sheet, grab and scale parts, adjust motion, or edit 3x3 crafting recipes with real Minecraft icons.
+- **Visual Blueprints & Plain Sentences.** View and wire every mod rule as a colour-coded Blueprint node graph with `If / Else`, `Repeat`, `For Each`, `Random Pick`, `Chance Roll` and `Wait (Delay)` nodes, spawn nodes quickly by double-clicking empty grid space or dragging a pin, flip to plain-English sentences anytime, or ask AI to wire a rule.
 - **Code mode.** Open any mod or existing Fabric, NeoForge or Forge Gradle folder in **Code** mode with dark-theme Java, JSON and Gradle syntax colouring, file search, one-click JAR builds and side-by-side file AI help.
 - **Sound maker.** 614 kinds of sound (creatures, weapons, magic, materials, machines, interface, ambience, music), made in the app, checked for clicks and clipping, and added as real mod sounds.
 - **How-to-play guides.** Every mod gets a player guide with crafting panels, drop and spawn info, ready-to-paste commands and a mod icon.
@@ -192,9 +212,9 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 
 <br>
 
-- **A guard reads the AI's code and the build files.** Before every build, AI-written code is scanned for things a mod should never do, like launching programs, opening web connections or touching files outside the game folders. The build files are checked too, locked while a mod is made, and only source files can be added to your project. A blocked build tells you why.
+- **A guard reads mod code, metadata and build files.** Before every build, code as well as mod metadata and resource files are scanned for things a mod should never do, like launching programs, opening web connections, running hidden commands during a build or touching files outside the game folders. The build files are locked while a mod is made, and a blocked build tells you why.
 - **Nothing is kept until you say so.** The AI works on a copy of your mod. You test it, then keep or undo. Older versions stay in History.
-- **No accounts, no tracking.** No sign-up, no telemetry, no analytics. The only thing added to your mods is a small "Made with Sloth-Mod" credit line, which you can switch off. Your requests and mod files go only to the AI provider you choose, or nowhere with a local AI. Downloads contact Modrinth, Mojang and the loader sites, and the update check contacts GitHub. If "Let the AI look things up online" is on (the default), the AI may read a short summary from Wikipedia or the Minecraft wiki while planning. The full list is in [PRIVACY.md](PRIVACY.md).
+- **No accounts, no tracking.** No sign-up, no telemetry, no analytics. Built `.jar` files include a small project bundle (your mod's own source, textures, sounds and Blueprints, with no API keys or PC folder paths) so you or anyone you share the `.jar` with can reopen it in Sloth-Mod, plus an optional "Made with Sloth-Mod" credit line you can switch off in Settings. Your requests and mod files go only to the AI provider you choose, or nowhere with a local AI. Downloads contact Modrinth, Mojang and the loader sites, and the update check contacts GitHub. If "Let the AI look things up online" is on (the default), the AI may read a short summary from Wikipedia or the Minecraft wiki while planning. The full list is in [PRIVACY.md](PRIVACY.md).
 - **Keys stay on your PC.** API keys live in Windows Credential Manager, never in files or logs. Sloth-Mod never sees your Microsoft login; the official launcher handles it.
 - **Honest limits.** Mods are programs and the guard is a safety net, not a guarantee. Code that passes the guard still runs with your Windows rights. Only play mods you trust. How to report a security problem: [SECURITY.md](SECURITY.md). Terms in plain words: [DISCLAIMER.md](DISCLAIMER.md).
 
@@ -207,7 +227,7 @@ What stays: free, Windows, works with cheap or free AI (including AI on your own
 
 **Is it free?** Yes. Free to download and use, and the mods you make are yours ([terms](LICENSE)). Your AI provider may charge; free tiers, OpenRouter's free models and local AIs exist.
 
-**Do I need to code?** No. You describe what you want, click through a few choices, and customize looks, parts, crafting and Blueprints visually. If you do like code, **Code** mode and Workshop view give you a syntax-coloured Java editor, diffs and one-click Gradle builds.
+**Do I need to code?** No. You describe what you want (or use **Build Manually** / **Add Content**), click through a few choices, and customize looks, parts, crafting and Blueprints visually. If you do like code, **Code** mode and Workshop view give you a syntax-coloured Java editor, diffs and one-click Gradle builds.
 
 **Which AI should I use?** Any listed provider. Bigger models make bigger mods with fewer repairs. **Test this AI** in Settings checks yours.
 
@@ -226,8 +246,8 @@ Longer answers are on the [website](https://deusespr.github.io/Sloth-Mod/#faq).
 
 <br>
 
-- Tested on a real Windows PC with real cloud and local AIs: mods made from plain sentences were built with Gradle, checked on a dedicated server and played in a real Minecraft client window (Fabric 26.3 and NeoForge 26.3), alongside Studio 3D painting, Blueprint editing, quick edits, Undo and Share. Every supported loader and version is built for real before each release.
-- 1.4: action combat, spell wheels, passive skill trees, multi-move bosses with breakable parts, watched stalkers, ranged mobs, ore veins, articulated dragon/bat/feathered wings and grounded serpents are verified in real builds and client/server checks, while multiplayer edge cases are still being fine-tuned in real play.
+- Tested on a real Windows PC with real cloud and local AIs: AI-built mods from plain sentences were built with real Gradle, checked on dedicated servers (`Fabric 26.3` and `NeoForge 26.3`) and played in a real Minecraft client window (`Fabric 26.3`), alongside quick edits, Undo and Share; `1.5`'s **Build Manually** / **Add Content**, **Duplicate**, **Open `.jar` Mod** project restore and Overlay Pack `.zip` export were built with real Gradle and checked in a live Minecraft `Fabric 26.3` client session. Core recipes compile across every supported loader and version before each release.
+- 1.4 & 1.5: `.jar` round-trip restore, Overlay Pack export, Manual Creator, Duplicate, docked 3D Studio, action combat, spell wheels, passive skill trees, multi-move bosses with breakable parts, watched stalkers, ranged mobs, ore veins, articulated dragon/bat/feathered wings and grounded serpents are verified in real builds and client/server checks, while multiplayer and cross-loader edge cases are still being fine-tuned in real play.
 - "Sign in with Grok" is experimental and off by default (Settings → Experimental). It signs in with the identity of xAI's own Grok CLI, which may be against xAI's terms; xAI can block it or act on your account. You must accept a warning first, and an xAI API key is the supported way.
 - The installer is not paid-signed.
 
