@@ -89,8 +89,8 @@ Everything here was drawn by Sloth-Mod's own art engine, the one that makes the 
 </p>
 
 <p align="center">
-<img src="docs/img/showcase/sheet-blocks.png" width="100%" alt="A sheet of block textures, side and top of each: stone, wood, metals, crystal, wool, brick, ore, lava, water and more."><br>
-<sub><b>Block materials, side and top.</b> They tile without seams.</sub>
+<img src="docs/img/showcase/sheet-blocks.png" width="100%" alt="A sheet of 40 unique block textures drawn by the engine: stone, wood, log rings, metals, crystal, wool, brick, ore, lava, water, grass and more."><br>
+<sub><b>Every block material the engine knows</b> (with separate tops for logs, bone and grass). They tile without seams.</sub>
 </p>
 
 ### Creatures and bosses in Minecraft
